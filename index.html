@@ -22,6 +22,7 @@ main{max-width:480px;margin:0 auto;padding:14px 14px 0}
 .hero:after{content:"";position:absolute;left:-30px;top:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(255,196,0,.35),transparent 70%);filter:blur(4px)}
 .hero h2{margin:4px 0 6px;font-size:19px}
 .hero p{margin:0;color:#D6DCE6;font-size:13px;line-height:1.9}
+.hero-img{width:100%;display:block;height:210px;object-fit:cover;object-position:top center}
 .btn{width:100%;border:0;border-radius:16px;padding:14px;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer;transition:.15s}
 .btn-gold{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#14100A;box-shadow:0 8px 24px rgba(255,196,0,.4)}
 .btn-gold:active{transform:scale(.98)}
@@ -68,6 +69,10 @@ nav button.on{color:var(--yellow)}nav button i{font-size:20px;font-style:normal}
 <header><div class="logo-tire">🛞</div><div class="h-title"><b>پیست یزدتایر</b><span>جام واحدها • فصل اول • یزدتایر</span></div><div class="pill">هفته ۱</div></header>
 <main>
 <div id="scr-home">
+<div class="card" style="padding:0;overflow:hidden;border-color:rgba(255,196,0,.35)">
+<img src="login-bg.jpg" alt="YAZD TIRE RUN" class="hero-img">
+<div style="padding:12px 14px"><b>YAZD TIRE RUN • با هم، قوی‌تر، سریع‌تر</b><div class="small">تیم خودت را انتخاب کن، وارد پیست شو و برای واحدت امتیاز جمع کن.</div></div>
+</div>
 <div class="card hero"><span class="badge">🔥 شیفت امروز باز است</span><h2>راننده، موتور را روشن کن!</h2><p>۶۰ ثانیه در پیست بتاز، سکه‌های یزدتایر را جمع کن و از کله‌قندی‌ها فرار کن. امتیازت هم برای خودت ثبت می‌شود هم برای واحدت.</p><div style="height:12px"></div><button class="btn btn-gold" onclick="startGame()">🏁 شروع شیفت امروز</button><button class="btn btn-ghost" onclick="show('league')">مشاهده جدول لیگ واحدها</button><button class="btn btn-ghost" id="musicBtn" onclick="toggleMusic()">🔊 موسیقی: روشن</button></div>
 <div class="card"><div class="row"><div class="stat"><b id="myBest">۰</b><span>بهترین رکورد من</span></div><div class="stat"><b id="myTotal">۰</b><span>مجموع امتیاز فصل</span></div><div class="stat"><b id="myLevel">تازه‌کار</b><span>سطح رانندگی</span></div></div><div style="height:10px"></div><div class="small" id="meLine">واحد: —</div></div>
 <div class="card"><b>🏆 لیگ واحدها (زنده)</b><div id="unitsHome"></div></div>
