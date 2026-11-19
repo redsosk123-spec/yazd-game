@@ -19,13 +19,11 @@ header{position:sticky;top:0;z-index:20;background:rgba(11,13,18,.85);backdrop-f
 main{max-width:480px;margin:0 auto;padding:14px 14px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;backdrop-filter:blur(12px);margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .hero{background:linear-gradient(135deg,#1A2030 0%,#0E1420 40%,#2A1E05 100%);border:1px solid rgba(255,196,0,.35);position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;left:-30px;top:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(255,196,0,.35),transparent 70%);filter:blur(4px)}
 .hero h2{margin:4px 0 6px;font-size:19px}
 .hero p{margin:0;color:#D6DCE6;font-size:13px;line-height:1.9}
 .hero-img{width:100%;display:block;height:210px;object-fit:cover;object-position:top center}
 .btn{width:100%;border:0;border-radius:16px;padding:14px;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer;transition:.15s}
 .btn-gold{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#14100A;box-shadow:0 8px 24px rgba(255,196,0,.4)}
-.btn-gold:active{transform:scale(.98)}
 .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--line);margin-top:8px;font-size:13px}
 .row{display:flex;gap:10px}.row>div{flex:1}
 .stat{background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}
@@ -70,8 +68,19 @@ nav button.on{color:var(--yellow)}nav button i{font-size:20px;font-style:normal}
 <main>
 <div id="scr-home">
 <div class="card" style="padding:0;overflow:hidden;border-color:rgba(255,196,0,.35)">
-<img src="login-bg.jpg" alt="YAZD TIRE RUN" class="hero-img">
-<div style="padding:12px 14px"><b>YAZD TIRE RUN • با هم، قوی‌تر، سریع‌تر</b><div class="small">تیم خودت را انتخاب کن، وارد پیست شو و برای واحدت امتیاز جمع کن.</div></div>
+<div id="bannerWrap">
+<img id="bannerImg" alt="YAZD TIRE RUN" class="hero-img" style="display:none">
+<div id="bannerEmpty" style="padding:26px 16px;text-align:center">
+<div style="font-size:40px">🖼️</div>
+<b>بنر صفحه اصلی</b>
+<div class="small">برای نمایش عکس YAZD TIRE RUN دکمه زیر را بزن و همان عکس login-bg.jpg را انتخاب کن. فقط یک‌بار لازم است.</div>
+<button class="btn btn-gold" style="margin-top:12px" onclick="document.getElementById('bannerFile').click()">📷 انتخاب عکس بنر</button>
+</div>
+</div>
+<input type="file" id="bannerFile" accept="image/*" class="hidden">
+<div style="padding:12px 14px"><b>YAZD TIRE RUN • با هم، قوی‌تر، سریع‌تر</b><div class="small">تیم خودت را انتخاب کن، وارد پیست شو و برای واحدت امتیاز جمع کن.</div>
+<button class="btn btn-ghost" style="font-size:12px;padding:9px" onclick="document.getElementById('bannerFile').click()">تغییر عکس بنر</button>
+</div>
 </div>
 <div class="card hero"><span class="badge">🔥 شیفت امروز باز است</span><h2>راننده، موتور را روشن کن!</h2><p>۶۰ ثانیه در پیست بتاز، سکه‌های یزدتایر را جمع کن و از کله‌قندی‌ها فرار کن. امتیازت هم برای خودت ثبت می‌شود هم برای واحدت.</p><div style="height:12px"></div><button class="btn btn-gold" onclick="startGame()">🏁 شروع شیفت امروز</button><button class="btn btn-ghost" onclick="show('league')">مشاهده جدول لیگ واحدها</button><button class="btn btn-ghost" id="musicBtn" onclick="toggleMusic()">🔊 موسیقی: روشن</button></div>
 <div class="card"><div class="row"><div class="stat"><b id="myBest">۰</b><span>بهترین رکورد من</span></div><div class="stat"><b id="myTotal">۰</b><span>مجموع امتیاز فصل</span></div><div class="stat"><b id="myLevel">تازه‌کار</b><span>سطح رانندگی</span></div></div><div style="height:10px"></div><div class="small" id="meLine">واحد: —</div></div>
@@ -98,6 +107,18 @@ document.addEventListener('pointerdown',tryPlayMusic);
 document.addEventListener('touchstart',tryPlayMusic,{passive:true});
 function startMusicForce(){ musicStarted=false; tryPlayMusic(); }
 function toggleMusic(){ var btn=document.getElementById('musicBtn'); if(!bgm) return; if(bgm.paused){musicOn=true;musicStarted=false;tryPlayMusic(); btn.textContent='🔊 موسیقی: روشن';} else {bgm.pause(); musicOn=false; btn.textContent='🔇 موسیقی: خاموش';} try{haptic('light')}catch(e){} }
+function showBannerData(url){var img=document.getElementById('bannerImg');var emp=document.getElementById('bannerEmpty');if(!img)return;img.src=url;img.style.display='block';if(emp)emp.style.display='none';}
+function initBanner(){
+var f=document.getElementById('bannerFile');
+if(f){f.addEventListener('change',function(){var file=f.files&&f.files[0];if(!file)return;var r=new FileReader();r.onload=function(){try{localStorage.setItem('yazd_banner',r.result);}catch(e){}showBannerData(r.result);haptic('light');};r.readAsDataURL(file);});}
+var saved=null;try{saved=localStorage.getItem('yazd_banner');}catch(e){}
+if(saved){showBannerData(saved);return;}
+var img=document.getElementById('bannerImg');
+if(!img)return;
+img.onerror=function(){img.style.display='none';var emp=document.getElementById('bannerEmpty');if(emp)emp.style.display='block';};
+img.onload=function(){var emp2=document.getElementById('bannerEmpty');if(emp2)emp2.style.display='none';img.style.display='block';};
+img.src='login-bg.jpg';
+}
 let units=[{n:'تولید',c:'#FFC400',s:12450},{n:'کنترل کیفیت',c:'#22E584',s:11200},{n:'فنی و نگه‌داری',c:'#4DA3FF',s:10800},{n:'انبار و لجستیک',c:'#FF8A00',s:9800},{n:'فروش و بازاریابی',c:'#FF5C7A',s:9400},{n:'اداری و مالی',c:'#B78CFF',s:8600}];
 let bots=[{n:'علی رضایی',u:'تولید',s:2450},{n:'سارا محمدی',u:'کنترل کیفیت',s:2310},{n:'حسین کریمی',u:'فنی و نگه‌داری',s:2180},{n:'مریم احمدی',u:'فروش و بازاریابی',s:2050},{n:'رضا یزدی',u:'انبار و لجستیک',s:1980},{n:'نگار حسینی',u:'اداری و مالی',s:1870},{n:'محمد طالبی',u:'تولید',s:1750},{n:'زهرا دهقانی',u:'کنترل کیفیت',s:1640},{n:'امیر صادقی',u:'فنی و نگه‌داری',s:1520},{n:'فاطمه نادری',u:'فروش و بازاریابی',s:1410}];
 let me=null; try{me=JSON.parse(localStorage.getItem('yazd_me')||'null')}catch(e){me=null}
@@ -126,9 +147,10 @@ function closeResult(){document.getElementById('resultModal').classList.add('hid
 function confetti(){let c=document.getElementById('confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;let p=[];for(let i=0;i<120;i++)p.push({x:Math.random()*c.width,y:-20-Math.random()*200,v:2+Math.random()*4,s:4+Math.random()*6,c:['#FFC400','#FF3D2E','#22E584','#4DA3FF','#fff'][i%5],r:Math.random()*6});let n=0;(function a(){x.clearRect(0,0,c.width,c.height);p.forEach(function(o){o.y+=o.v;o.r+=.1;x.save();x.translate(o.x,o.y);x.rotate(o.r);x.fillStyle=o.c;x.fillRect(0,0,o.s,o.s*0.6);x.restore()});if(n++<120)requestAnimationFrame(a);else x.clearRect(0,0,c.width,c.height)})()}
 let splashDone=false;
 function hideSplash(){if(splashDone)return;splashDone=true;var s=document.getElementById('splash');if(s){s.style.opacity='0';setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},650)}try{renderBoards()}catch(e){}if(!me){try{document.getElementById('loginModal').classList.remove('hidden')}catch(e){}}else{try{refresh()}catch(e){}}try{tryPlayMusic()}catch(e){}}
-document.addEventListener('DOMContentLoaded',function(){renderBoards();setTimeout(hideSplash,1300);});
+document.addEventListener('DOMContentLoaded',function(){renderBoards();initBanner();setTimeout(hideSplash,1300);});
 setTimeout(hideSplash,3500);
 try{renderBoards()}catch(e){}
+try{initBanner();}catch(e){}
 </script>
 <script>
 setTimeout(function(){var s=document.getElementById('splash');if(s){s.style.opacity='0';s.style.pointerEvents='none';setTimeout(function(){s.style.display='none'},700)}},4500);
