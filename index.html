@@ -85,52 +85,23 @@ nav button.on{color:var(--yellow)}nav button i{font-size:20px;font-style:normal}
 .small{font-size:12px;color:var(--muted);line-height:1.9}
 .badge{display:inline-block;background:rgba(34,229,132,.15);color:var(--green);border:1px solid rgba(34,229,132,.4);padding:4px 10px;border-radius:99px;font-size:11px;margin:2px}
 
-/* FIX: keep the live units league stacked vertically, with each unit as one horizontal row */
-#unitsHome, #leagueUnit {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 0;
-}
+/* FIX: League unit markup and layout */
+#unitsHome, #leagueUnit { display:block !important; width:100%; }
 #unitsHome .unit, #leagueUnit .unit {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  gap: 8px;
-  padding: 12px 0;
-  border-bottom: 1px dashed rgba(255,255,255,.1);
+  display:flex !important; flex-direction:row !important; align-items:center !important;
+  width:100%; min-width:0; gap:8px; padding:11px 0;
 }
 #unitsHome .u-name, #leagueUnit .u-name {
-  flex: 0 0 105px;
-  min-width: 0;
-  font-size: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex:0 0 108px; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
-#unitsHome .bar, #leagueUnit .bar {
-  flex: 1 1 auto;
-  min-width: 0;
-  height: 8px;
+#unitsHome .bar, #leagueUnit .bar { flex:1 1 auto; min-width:24px; }
+#unitsHome .u-score, #leagueUnit .u-score { flex:0 0 48px; min-width:48px; white-space:nowrap; text-align:left; }
+@media(max-width:380px){
+  #unitsHome .unit, #leagueUnit .unit { gap:6px; }
+  #unitsHome .u-name, #leagueUnit .u-name { flex-basis:88px; font-size:11px; }
+  #unitsHome .u-score, #leagueUnit .u-score { flex-basis:42px; min-width:42px; font-size:10px; }
 }
-#unitsHome .u-score, #leagueUnit .u-score {
-  flex: 0 0 48px;
-  min-width: 48px;
-  text-align: left;
-  white-space: nowrap;
-  font-size: 11px;
-}
-#unitsHome .dot, #leagueUnit .dot {
-  flex: 0 0 10px;
-  width: 10px;
-  height: 10px;
-}
-@media (max-width: 380px) {
-  #unitsHome .unit, #leagueUnit .unit { gap: 6px; }
-  #unitsHome .u-name, #leagueUnit .u-name { flex-basis: 90px; font-size: 11px; }
-  #unitsHome .u-score, #leagueUnit .u-score { flex-basis: 42px; min-width: 42px; font-size: 10px; }
-}
+
 </style>
 </head>
 <body>
@@ -191,7 +162,7 @@ let me=null; try{me=JSON.parse(localStorage.getItem('yazd_me')||'null')}catch(e)
 function show(t){try{if(typeof running!=='undefined' && running && t!=='game'){try{endGame(true)}catch(e){try{running=false;clearInterval(timer)}catch(_){}}}}catch(e){}['home','game','league','profile'].forEach(function(k){document.getElementById('scr-'+k).classList.add('hidden')});document.getElementById('scr-'+t).classList.remove('hidden');['home','game','league','profile'].forEach(function(k){var b=document.getElementById('n-'+k); if(b)b.classList.remove('on')});try{document.getElementById('n-'+t).classList.add('on')}catch(e){} window.scrollTo(0,0);}
 function tab(t){document.getElementById('tabInd').classList.toggle('on',t==='ind');document.getElementById('tabUnit').classList.toggle('on',t==='unit');document.getElementById('leagueInd').classList.toggle('hidden',t!=='ind');document.getElementById('leagueUnit').classList.toggle('hidden',t!=='unit');}
 function levelFor(total){if(total>10000)return'اسطوره یزدتایر';if(total>5000)return'قهرمان آسفالت';if(total>2000)return'راننده شیفت';if(total>500)return'کارآموز پیست';return'تازه‌کار'}
-function renderBoards(){var maxU=Math.max.apply(null,units.map(function(x){return x.s}));var uh=units.slice().sort(function(a,b){return b.s-a.s}).map(function(u,i){return '<div class="unit"><div class="dot" style="background:'+u.c+'"></div><div class="u-name">'+(i===0?'👑 ':'')+u.n+'</div><div class="bar"><i style="width:'+Math.round(u.s/maxU*100)+'%;background:'+u.c+'"></i></div><div class="u-score">'+fa(u.s)+'</div>'}).join('');document.getElementById('unitsHome').innerHTML=uh;document.getElementById('leagueUnit').innerHTML=uh;var all=bots.slice();if(me){all.push({n:me.name+' (شما)',u:me.unit,s:me.best||0,me:true})}all.sort(function(a,b){return b.s-a.s});var topHtml=all.slice(0,3).map(function(p,i){return '<div class="p-row '+(p.me?'me':'')+'"><div class="rank '+(i===0?'first':'')+'">'+fa(i+1)+'</div><div class="avatar">'+p.n.trim().charAt(0)+'</div><div style="flex:1"><b style="font-size:13px">'+p.n+'</b><div class="small">'+p.u+'</div></div><b style="color:var(--yellow)">'+fa(p.s)+'</b></div>'}).join('');document.getElementById('top3').innerHTML=topHtml;var allHtml=all.map(function(p,i){return '<div class="p-row '+(p.me?'me':'')+'"><div class="rank '+(i===0?'first':'')+'">'+fa(i+1)+'</div><div class="avatar">'+p.n.trim().charAt(0)+'</div><div style="flex:1"><b style="font-size:13px">'+p.n+'</b><div class="small">'+p.u+'</div></div><b style="color:var(--yellow)">'+fa(p.s)+'</b></div>'}).join('');document.getElementById('leagueInd').innerHTML=allHtml;if(me){var myRank=all.findIndex(function(x){return x.me})+1;document.getElementById('pfRank').textContent='#'+fa(myRank);}}
+function renderBoards(){var maxU=Math.max.apply(null,units.map(function(x){return x.s}));var uh=units.slice().sort(function(a,b){return b.s-a.s}).map(function(u,i){return '<div class="unit"><div class="dot" style="background:'+u.c+'"></div><div class="u-name">'+(i===0?'👑 ':'')+u.n+'</div><div class="bar"><i style="width:'+Math.round(u.s/maxU*100)+'%;background:'+u.c+'"></i></div><div class="u-score">'+fa(u.s)+'</div></div>'}).join('');document.getElementById('unitsHome').innerHTML=uh;document.getElementById('leagueUnit').innerHTML=uh;var all=bots.slice();if(me){all.push({n:me.name+' (شما)',u:me.unit,s:me.best||0,me:true})}all.sort(function(a,b){return b.s-a.s});var topHtml=all.slice(0,3).map(function(p,i){return '<div class="p-row '+(p.me?'me':'')+'"><div class="rank '+(i===0?'first':'')+'">'+fa(i+1)+'</div><div class="avatar">'+p.n.trim().charAt(0)+'</div><div style="flex:1"><b style="font-size:13px">'+p.n+'</b><div class="small">'+p.u+'</div></div><b style="color:var(--yellow)">'+fa(p.s)+'</b></div>'}).join('');document.getElementById('top3').innerHTML=topHtml;var allHtml=all.map(function(p,i){return '<div class="p-row '+(p.me?'me':'')+'"><div class="rank '+(i===0?'first':'')+'">'+fa(i+1)+'</div><div class="avatar">'+p.n.trim().charAt(0)+'</div><div style="flex:1"><b style="font-size:13px">'+p.n+'</b><div class="small">'+p.u+'</div></div><b style="color:var(--yellow)">'+fa(p.s)+'</b></div>'}).join('');document.getElementById('leagueInd').innerHTML=allHtml;if(me){var myRank=all.findIndex(function(x){return x.me})+1;document.getElementById('pfRank').textContent='#'+fa(myRank);}}
 function refresh(){renderBoards();if(!me)return;document.getElementById('myBest').textContent=fa(me.best||0);document.getElementById('myTotal').textContent=fa(me.total||0);document.getElementById('myLevel').textContent=levelFor(me.total||0);document.getElementById('meLine').textContent='واحد: '+me.unit+' • استریک: '+fa(me.streak||1)+' روز';document.getElementById('pfName').textContent=me.name;document.getElementById('pfUnit').textContent='واحد '+me.unit+' • کد '+me.code;document.getElementById('pfAvatar').textContent=(me.name||'ی').trim().charAt(0);document.getElementById('pfGames').textContent=fa(me.games||0);document.getElementById('pfCoins').textContent=fa(me.coins||0);document.getElementById('pfMedal2').textContent='🔥 '+fa(me.streak||1)+' روز استریک';}
 function doLogin(){var n=document.getElementById('inName').value.trim();var u=document.getElementById('inUnit').value;var c=document.getElementById('inCode').value.trim();if(n.length<2){haptic('heavy');alert('نام را کامل بنویس');return}me={name:n,unit:u,code:c||'----',best:0,total:0,coins:0,games:0,streak:1};try{localStorage.setItem('yazd_me',JSON.stringify(me))}catch(e){}document.getElementById('loginModal').classList.add('hidden');refresh();haptic('heavy');startMusicForce();}
 function resetMe(){try{localStorage.removeItem('yazd_me')}catch(e){} me=null; var m=document.getElementById('loginModal'); if(m)m.classList.remove('hidden'); show('profile');}
