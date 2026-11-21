@@ -84,6 +84,53 @@ nav button.on{color:var(--yellow)}nav button i{font-size:20px;font-style:normal}
 .hidden{display:none!important}
 .small{font-size:12px;color:var(--muted);line-height:1.9}
 .badge{display:inline-block;background:rgba(34,229,132,.15);color:var(--green);border:1px solid rgba(34,229,132,.4);padding:4px 10px;border-radius:99px;font-size:11px;margin:2px}
+
+/* FIX: keep the live units league stacked vertically, with each unit as one horizontal row */
+#unitsHome, #leagueUnit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0;
+}
+#unitsHome .unit, #leagueUnit .unit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(255,255,255,.1);
+}
+#unitsHome .u-name, #leagueUnit .u-name {
+  flex: 0 0 105px;
+  min-width: 0;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#unitsHome .bar, #leagueUnit .bar {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 8px;
+}
+#unitsHome .u-score, #leagueUnit .u-score {
+  flex: 0 0 48px;
+  min-width: 48px;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 11px;
+}
+#unitsHome .dot, #leagueUnit .dot {
+  flex: 0 0 10px;
+  width: 10px;
+  height: 10px;
+}
+@media (max-width: 380px) {
+  #unitsHome .unit, #leagueUnit .unit { gap: 6px; }
+  #unitsHome .u-name, #leagueUnit .u-name { flex-basis: 90px; font-size: 11px; }
+  #unitsHome .u-score, #leagueUnit .u-score { flex-basis: 42px; min-width: 42px; font-size: 10px; }
+}
 </style>
 </head>
 <body>
