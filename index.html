@@ -2,353 +2,352 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>پیست یزدتایر | لیگ کارکنان</title>
-<script src="https://tapi.bale.ai/miniapp.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+<script src="https://tapi.bale.ai/miniapp.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--bg:#0b0d12;--card:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--yellow:#FFC400;--orange:#FF8A00;--red:#FF3D2E;--green:#22E584;--muted:#9AA3B2}
-body{margin:0;font-family:Vazirmatn,Tahoma,sans-serif;background:radial-gradient(1200px 600px at 50% -10%,#232A3A 0%,#0B0D12 55%) fixed,var(--bg);color:#fff;min-height:100vh;padding-bottom:92px}
-.bg-road{position:fixed;inset:0;pointer-events:none;opacity:.5;background:repeating-linear-gradient(-45deg,transparent 0 26px,rgba(255,255,255,.02) 26px 28px)}
-header{position:sticky;top:0;z-index:20;background:rgba(11,13,18,.85);backdrop-filter:blur(14px);border:1px solid var(--line);padding:12px 16px;display:flex;align-items:center;gap:12px}
-.logo-tire{width:44px;height:44px;border-radius:50%;background:conic-gradient(#222 0 20%,#444 20% 40%,#222 40% 60%,#444 60% 80%,#222 80% 100%);border:3px solid #333;display:flex;align-items:center;justify-content:center;font-size:22px;animation:spin 6s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.h-title{flex:1}.h-title b{font-size:15px;display:block}.h-title span{font-size:11.5px;color:var(--muted)}
-.pill{font-size:11px;background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;font-weight:800;padding:6px 10px;border-radius:999px}
-main{max-width:480px;margin:0 auto;padding:14px 14px 0}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;backdrop-filter:blur(12px);margin-bottom:12px}
-.logo-hero-card{text-align:center;background:linear-gradient(135deg,#141A28 0%,#1E1605 60%,#141A28 100%);border:1px solid rgba(255,196,0,.45);position:relative;overflow:hidden}
-.logo-hero{position:relative;display:inline-block;background:#fff;border-radius:18px;padding:10px 20px;margin:6px 0 4px;animation:logoFloat 3s ease-in-out infinite;box-shadow:0 0 28px rgba(255,196,0,.45)}
-.logo-hero img{display:block;width:228px;max-width:68vw;height:auto}
-@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.logo-side{position:absolute;top:22px;font-size:30px;animation:spin 2.2s linear infinite}
-.logo-side.r{right:12px}.logo-side.l{left:12px}
-.logo-sub{font-size:12px;color:#E6EBF2;margin-top:6px}
-.hero{background:linear-gradient(135deg,#1A2030 0%,#0E1420 40%,#2A1E05 100%);border:1px solid rgba(255,196,0,.35);position:relative;overflow:hidden}
-.hero h2{margin:4px 0 6px;font-size:19px}.hero p{margin:0;color:#D6DCE6;font-size:13px;line-height:1.9}
-.slideshow{position:relative;height:380px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,196,0,.3);background:#0B0D12}
-.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;transition:opacity .9s ease;padding:14px;text-align:center}
-.slide.active{opacity:1}.slide b{font-size:15px;position:relative;z-index:2}.slide span{font-size:12px;color:#E6EBF2;position:relative;z-index:2}
-.slide .txt{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px}
-.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0B0D12}
-.s1{background:linear-gradient(135deg,#1A2030 0%,#2A1E05 100%)}.s2{background:linear-gradient(135deg,#0E2030 0%,#123324 100%)}.s3{background:linear-gradient(135deg,#2A1020 0%,#1A2030 100%)}
-.dots{display:flex;gap:6px;justify-content:center;margin-top:8px}.dot2{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2)}.dot2.active{background:#FFC400}
-.btn{width:100%;border:0;border-radius:16px;padding:14px;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer}
-.btn-gold{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#14100A}
-.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--line);margin-top:8px;font-size:13px}
-.row{display:flex;gap:10px}.row>div{flex:1}
-.stat{background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}
-.stat b{font-size:18px;color:var(--yellow);display:block}.stat span{font-size:11px;color:var(--muted)}
-.unit{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.1)}
-.unit:last-child{border:0}.dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.bar{flex:1;height:8px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--yellow),var(--orange))}
-.u-name{font-size:13px;min-width:110px}.u-score{font-size:12px;color:var(--yellow);min-width:54px;text-align:left}
-.tabs{display:flex;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:14px;padding:4px;margin-bottom:10px}
-.tabs button{flex:1;border:0;background:transparent;color:var(--muted);font-family:inherit;font-weight:700;padding:10px;border-radius:10px}
-.tabs button.on{background:var(--yellow);color:#111}
-.p-row{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);margin-bottom:8px}
-.rank{width:28px;height:28px;border-radius:10px;background:#1E2534;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
-.rank.first{background:linear-gradient(135deg,#FFD700,#FF8A00);color:#111}
-.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3A435C,#171C28);display:flex;align-items:center;justify-content:center;font-weight:800}
-.hud{display:flex;gap:8px;margin:10px 0}.hud div{flex:1;background:#141927;border:1px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:12px}.hud b{display:block;font-size:17px;color:var(--yellow)}
-.controls{display:flex;gap:10px;margin-top:10px}.controls button{flex:1;padding:16px;border-radius:16px;border:1px solid var(--line);background:#1A2132;color:#fff;font-size:22px;font-family:inherit}
-nav{position:fixed;bottom:0;right:0;left:0;z-index:30;background:rgba(11,13,18,.92);border-top:1px solid var(--line);display:flex;padding:8px 10px calc(10px + env(safe-area-inset-bottom))}
-nav button{flex:1;border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px}
-nav button.on{color:var(--yellow)}nav button i{font-size:20px;font-style:normal}
-.modal{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:20px}
-.box{width:100%;max-width:400px;background:#141927;border:1px solid rgba(255,196,0,.4);border-radius:24px;padding:22px;text-align:center}
-.box input,.box select{width:100%;margin:8px 0;padding:13px;border-radius:14px;border:1px solid var(--line);background:#0E1320;color:#fff;font-family:inherit;font-size:14px}
-#splash{position:fixed;inset:0;z-index:100;background:#0B0D12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .6s}
-.tire-big{font-size:90px;animation:spin 1.6s linear infinite}
-#confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
-.hidden{display:none!important}.small{font-size:12px;color:var(--muted);line-height:1.9}
-.badge{display:inline-block;background:rgba(34,229,132,.15);color:var(--green);border:1px solid rgba(34,229,132,.4);padding:4px 10px;border-radius:99px;font-size:11px;margin:2px}
-#unitsHome,#leagueUnit{display:block!important;width:100%}
-#unitsHome .u-name,#leagueUnit .u-name{flex:0 0 108px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#unitsHome .bar,#leagueUnit .bar{flex:1 1 auto;min-width:24px}
-#unitsHome .u-score,#leagueUnit .u-score{flex:0 0 48px;white-space:nowrap;text-align:left}
-/* بازی سه‌بعدی + HUD زنده */
-#three-container{width:100%;height:480px;border-radius:20px;background:#11141B;border:1px solid rgba(255,196,0,.3);overflow:hidden;position:relative;touch-action:none}
-#three-container canvas{display:block;width:100%!important;height:480px!important}
-#three-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:#11141B;z-index:20;font-size:13px;color:#FFC400;text-align:center;padding:20px}
-#time-bar-wrap{position:absolute;top:0;right:0;left:0;height:6px;background:rgba(255,255,255,.15);z-index:12}
-#time-bar{height:100%;width:100%;background:linear-gradient(90deg,#22E584,#FFC400)}
-#time-bar.danger{background:linear-gradient(90deg,#FF3D2E,#FF8A00);animation:blink .6s infinite alternate}
-@keyframes blink{to{opacity:.55}}
-#hud-top{position:absolute;top:14px;right:10px;left:10px;display:flex;gap:8px;z-index:11;pointer-events:none}
-.hud-chip{flex:1;background:rgba(5,7,11,.72);border:1px solid rgba(255,196,0,.55);border-radius:14px;padding:6px 4px;text-align:center;backdrop-filter:blur(8px);box-shadow:0 4px 18px rgba(0,0,0,.5)}
-.hud-chip.big{flex:1.35;border-width:2px}
-.hud-chip b{display:block;font-size:21px;color:#FFC400;line-height:1.3}
-.hud-chip.big b{font-size:26px}
-.hud-chip span{font-size:11px;color:#fff}
-.hud-chip.time-low b{color:#FF3D2E;animation:blink .5s infinite alternate}
-#hud-bottom{position:absolute;bottom:12px;right:12px;left:12px;display:flex;justify-content:space-between;align-items:center;z-index:11;pointer-events:none}
-#comboTag{background:rgba(255,196,0,.92);color:#111;font-weight:900;font-size:13px;border-radius:99px;padding:6px 14px;box-shadow:0 4px 14px rgba(255,196,0,.5)}
-#speedTag{background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.2);font-size:12px;border-radius:99px;padding:6px 12px;color:#fff}
-#speedTag b{color:#FFC400}
-#comboPop{position:absolute;top:78px;left:50%;transform:translateX(-50%);font-weight:900;font-size:23px;color:#FFC400;text-shadow:0 2px 14px #000,0 0 22px rgba(255,196,0,.7);opacity:0;transition:.3s;pointer-events:none;z-index:13;white-space:nowrap}
-.float-plus{position:absolute;top:42%;font-weight:900;font-size:20px;color:#FFE45C;text-shadow:0 2px 10px #000,0 0 16px rgba(255,196,0,.8);z-index:13;pointer-events:none;opacity:0;transform:translateY(10px) scale(.8);transition:all .85s ease-out}
-.float-plus.show{opacity:1;transform:translateY(-46px) scale(1.15)}
-.float-minus{color:#FF6B5E!important}
+*{box-sizing:border-box;font-family:Vazirmatn, Tahoma}
+body{margin:0;background:#0e1420;color:#fff}
+#app{max-width:440px;margin:auto;padding:10px}
+header{text-align:center;padding:8px}
+header img{width:150px;background:#fff;border-radius:12px;padding:6px}
+.card{background:#182233;border-radius:16px;padding:12px;margin:10px 0}
+input,select{width:100%;padding:10px;border-radius:10px;border:0;margin:6px 0;color:#111}
+button{border:0;border-radius:12px;padding:12px;width:100%;font-size:16px;background:#f5731a;color:#fff;margin-top:8px}
+.row{display:flex;gap:8px}
+#slideImg{width:100%;border-radius:12px;height:170px;object-fit:cover;background:#000}
+#league table{width:100%;font-size:14px;border-collapse:collapse}
+#league td,#league th{padding:6px;border-bottom:1px solid #2a3a55;text-align:right}
+tr.me{background:#f5731a33}
+#game-screen{padding-bottom:20px}
+#hud-top{display:flex;gap:8px;align-items:center;background:#182233;border-radius:12px;padding:8px;margin:8px 0}
+#hud-top div{flex:1;text-align:center;background:#0e1420;border-radius:8px;padding:6px;font-size:13px}
+#musicBtnInGame{width:48px;flex:none;font-size:20px;background:#0e1420;padding:6px}
+#time-bar-wrap{background:#000;border-radius:99px;height:8px;overflow:hidden;margin:4px 0}
+#time-bar{height:100%;width:100%;background:#22c55e}
+#tags{display:flex;justify-content:space-between;font-size:13px;min-height:20px}
+#three-container{width:100%;max-width:420px;height:480px;margin:auto;position:relative;overflow:hidden;border-radius:16px;background:#000}
+#comboPop{position:absolute;top:40%;width:100%;text-align:center;font-size:28px;font-weight:800;pointer-events:none;opacity:0;transition:.3s}
+.float-plus{position:absolute;color:#ffe600;font-weight:800;animation:up 0.8s forwards;pointer-events:none}
+@keyframes up{to{transform:translateY(-60px);opacity:0}}
+#controls{display:flex;gap:12px;margin:10px 0}
+#controls button{width:64px;height:64px;font-size:28px;margin:auto;flex:none;border-radius:50%}
+#result{display:none;text-align:center}
 </style>
 </head>
 <body>
-<div class="bg-road"></div>
-<canvas id="confetti"></canvas>
-<div id="splash"><div class="tire-big">🛞</div><b>پیست یزدتایر</b><span class="small">لیگ کارکنان • در حال آماده‌سازی پیست...</span></div>
-<header><div class="logo-tire">🛞</div><div class="h-title"><b>پیست یزدتایر</b><span>جام واحدها • فصل اول • یزدتایر</span></div><div class="pill">هفته ۱</div></header>
-<main>
-<div id="scr-home">
-<div class="card logo-hero-card"><div class="logo-side r">🛞</div><div class="logo-side l">🛞</div><div class="logo-hero"><img src="https://yric.com/wp-content/uploads/2025/09/yazd-tire-logo-site-01-copy.svg" alt="لوگوی یزدتایر" onerror="this.style.display='none'"></div><div><b>پیست یزدتایر • لیگ کارکنان</b></div><div class="logo-sub">مجتمع صنایع لاستیک یزد از ۱۳۶۴ • yric.com</div><div style="margin-top:8px"><span class="badge">🛞 سکه‌ها لوگوی یزدتایر هستند</span></div></div>
-<div class="card hero"><span class="badge">🔥 شیفت امروز باز است</span><h2>راننده، موتور را روشن کن!</h2><p>۶۰ ثانیه در پیست بتاز، تایرهای لوگوی یزدتایر را جمع کن و از کله‌قندی‌ها فرار کن. امتیازت هم برای خودت ثبت می‌شود هم برای واحدت.</p><div style="height:12px"></div><button class="btn btn-gold" onclick="startGame()">🏁 شروع شیفت امروز</button><button class="btn btn-ghost" onclick="show('league')">مشاهده جدول لیگ واحدها</button><button class="btn btn-ghost" id="musicBtn" onclick="toggleMusic()">🔊 موسیقی: روشن</button><button class="btn btn-ghost" id="voiceBtnHome" onclick="toggleVoice()">🔊 شمارش صوتی سکه: روشن</button></div>
-<div class="card" style="padding:12px"><div class="slideshow" id="slideshow"></div><div class="dots" id="slideDots"></div><div class="small" style="text-align:center;margin-top:6px">بهترین سایز عکس: عمودی 800x1000 با فرمت jpg</div></div>
-<div class="card"><div class="row"><div class="stat"><b id="myBest">۰</b><span>بهترین رکورد من</span></div><div class="stat"><b id="myTotal">۰</b><span>مجموع امتیاز فصل</span></div><div class="stat"><b id="myLevel">تازه‌کار</b><span>سطح رانندگی</span></div></div><div style="height:10px"></div><div class="small" id="meLine">واحد: —</div></div>
-<div class="card"><b>🏆 لیگ واحدها (زنده)</b><div id="unitsHome"></div></div>
-<div class="card"><b>🥇 سه نفر برتر امروز</b><div id="top3"></div></div>
+<div id="app">
+<header>
+<img src="https://yric.com/wp-content/uploads/2025/09/yazd-tire-logo-site-01-copy.svg">
+<h3 style="margin:6px">پیست یزدتایر | لیگ کارکنان</h3>
+</header>
+<div id="home">
+<div class="card">
+<label>نام و نام خانوادگی<input id="inName" placeholder="مثلاً علی رضایی"></label>
+<label>واحد<select id="inUnit">
+<option>تکنیکال</option>
+<option>کنترل کیفیت</option>
+<option>فنی</option>
+<option>اداری</option>
+<option selected>تولید</option>
+<option>انبار</option>
+<option>برنامه‌ریزی</option>
+</select></label>
+<button onclick="startGame()">شروع مسابقه 🏁</button>
+<div class="row">
+<button id="musicBtn" onclick="toggleMusic(event)">🔊 موسیقی</button>
+<button id="voiceBtn" onclick="toggleVoice()">🎙 گفتار: روشن</button>
 </div>
-<div id="scr-game" class="hidden"><div id="gameWrap" style="display:block;position:relative">
-<div id="three-container">
-<div id="time-bar-wrap"><div id="time-bar"></div></div>
+</div>
+<div class="card"><img id="slideImg" src="slide1.jpg"></div>
+<div class="card" id="result"></div>
+<div class="card"><h4 style="margin:4px">جدول لیگ</h4><div id="league"></div></div>
+</div>
+<div id="game-screen" style="display:none">
 <div id="hud-top">
-<div class="hud-chip big"><span>⭐ امتیاز زنده</span><b id="oScore">۰</b></div>
-<div class="hud-chip"><span>🛞 لوگو</span><b id="oCoin">۰</b></div>
-<div class="hud-chip" id="oTimeChip"><span>⏱ زمان</span><b id="oTime">۶۰</b></div>
+<div>امتیاز<br><b id="oScore">0</b></div>
+<div>سکه<br><b id="oCoin">0</b></div>
+<div>زمان<br><b id="oTime">60</b></div>
+<button id="musicBtnInGame" onclick="toggleMusic(event)">🔊</button>
 </div>
-<div id="comboPop"></div>
-<div id="hud-bottom"><div id="comboTag">🔥 ×۱</div><div id="speedTag"><b>۰</b> km/h</div></div>
-<div id="three-loading">🛞 در حال آماده‌سازی پیست سه‌بعدی...<span class="small">اگر بیش از ۵ ثانیه ماند، اینترنت را چک کن</span></div>
+<div id="time-bar-wrap"><div id="time-bar"></div></div>
+<div id="tags"><span id="comboTag"></span><span id="speedTag"></span></div>
+<div id="three-container"><div id="comboPop"></div></div>
+<div id="controls">
+<button onclick="move(-1)">◀</button>
+<button onclick="move(1)">▶</button>
 </div>
-<div class="hud"><div>⏱ زمان<b id="hTime">۶۰</b></div><div>🛞 لوگو<b id="hCoin">۰</b></div><div>⭐ امتیاز<b id="hScore">۰</b></div><div>🔥 کمبو<b id="hCombo">×۱</b></div></div>
-<div class="controls"><button onclick="move(-1)">◀</button><button onclick="move(1)">▶</button></div>
-<button class="btn btn-ghost" id="voiceBtn" onclick="toggleVoice()">🔊 شمارش صوتی سکه: روشن</button>
-<button class="btn btn-ghost" onclick="endGame(true)">پایان شیفت</button></div></div>
-<div id="scr-league" class="hidden"><div class="card"><div class="tabs"><button id="tabInd" class="on" onclick="tab('ind')">نفرات برتر</button><button id="tabUnit" onclick="tab('unit')">واحدها</button></div><div id="leagueInd"></div><div id="leagueUnit" class="hidden"></div></div></div>
-<div id="scr-profile" class="hidden"><div class="card" style="text-align:center"><div class="avatar" style="width:64px;height:64px;font-size:24px;margin:0 auto" id="pfAvatar">ی</div><h3 id="pfName" style="margin:8px 0 2px">راننده یزدتایر</h3><div class="small" id="pfUnit">واحد تولید</div><div class="row"><div class="stat"><b id="pfGames">۰</b><span>تعداد شیفت</span></div><div class="stat"><b id="pfCoins">۰</b><span>لوگو</span></div><div class="stat"><b id="pfRank">#۰</b><span>رتبه من</span></div></div><div style="height:10px"></div><button class="btn btn-gold" onclick="sendToBale()">ثبت امتیاز در لیگ شرکت</button><div style="height:8px"></div><button class="btn btn-ghost" onclick="resetMe()">تغییر نام / واحد</button></div></div>
-</main>
-<nav><button id="n-home" class="on" onclick="show('home')"><i>🏠</i>خانه</button><button id="n-game" onclick="startGame()"><i>🏁</i>مسابقه</button><button id="n-league" onclick="show('league')"><i>🏆</i>لیگ</button><button id="n-profile" onclick="show('profile')"><i>👤</i>پروفایل</button></nav>
-<audio id="bgm" loop preload="none" playsinline><source src="music.mp3" type="audio/mpeg"></audio>
-<div id="loginModal" class="modal hidden"><div class="box"><div style="font-size:50px">🛞</div><h3 style="margin:6px 0">ورود به پیست یزدتایر</h3><div class="small">مخصوص کارکنان • نام و واحد سازمانی را انتخاب کن</div><input id="inName" placeholder="نام و نام خانوادگی" maxlength="30"><select id="inUnit"><option>تولید</option><option>کنترل کیفیت</option><option>فنی و نگه‌داری</option><option>انبار و لجستیک</option><option>فروش و بازاریابی</option><option>اداری و مالی</option></select><input id="inCode" inputmode="numeric" placeholder="کد پرسنلی (دمو: ۱۲۳۴)"><button class="btn btn-gold" onclick="doLogin()">ورود به پیست 🏁</button></div></div>
-<div id="resultModal" class="modal hidden"><div class="box"><div style="font-size:56px" id="resEmoji">🏆</div><h2 id="resTitle" style="margin:6px 0">شیفت تمام شد!</h2><p class="small" id="resDesc"></p><div class="row"><div class="stat"><b id="resScore">۰</b><span>امتیاز این شیفت</span></div><div class="stat"><b id="resCoin">۰</b><span>لوگو</span></div></div><div style="height:10px"></div><button class="btn btn-gold" onclick="closeResult()">بازگشت به خانه</button><button class="btn btn-ghost" onclick="startGame()">تلاش مجدد 🔁</button></div></div>
+<button onclick="endGame()" style="background:#334155">پایان مسابقه</button>
+</div>
+</div>
+<audio id="bgm" src="music.mp3" loop></audio>
 <script>
-let WA=null; try{WA=window.Bale&&window.Bale.WebApp?window.Bale.WebApp:null; if(WA){WA.ready(); try{WA.expand()}catch(e){} try{WA.setHeaderColor('#0B0D12')}catch(e){}}}catch(e){}
-function haptic(m){try{if(WA&&WA.HapticFeedback){WA.HapticFeedback.impactOccurred(m||'medium')}}catch(e){} try{if(navigator.vibrate)navigator.vibrate(25)}catch(e){}}
-function fa(n){try{return Number(n).toLocaleString('fa-IR')}catch(e){return n}}
-const bgm=document.getElementById('bgm'); if(bgm){bgm.volume=0.35;}
-let musicOn=true; let musicStarted=false;
-function tryPlayMusic(){ if(!musicOn||!bgm) return; if(musicStarted && !bgm.paused) return; var p=bgm.play(); if(p&&p.then){p.then(function(){musicStarted=true;}).catch(function(){});} }
-document.addEventListener('pointerdown',tryPlayMusic); document.addEventListener('touchstart',tryPlayMusic,{passive:true});
-function startMusicForce(){ musicStarted=false; tryPlayMusic(); }
-function toggleMusic(){ var btn=document.getElementById('musicBtn'); if(!bgm) return; if(bgm.paused){musicOn=true;musicStarted=false;tryPlayMusic(); btn.textContent='🔊 موسیقی: روشن';} else {bgm.pause(); musicOn=false; btn.textContent='🔇 موسیقی: خاموش';} }
-let audioCtx=null;
-function playWarning(){try{if(!window.AudioContext&&!window.webkitAudioContext)return;audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();var t=audioCtx.currentTime;[[0,740],[0.18,520]].forEach(function(s){var o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='square';o.frequency.setValueAtTime(s[1],t+s[0]);g.gain.setValueAtTime(0.14,t+s[0]);g.gain.exponentialRampToValueAtTime(0.001,t+s[0]+0.15);o.connect(g);g.connect(audioCtx.destination);o.start(t+s[0]);o.stop(t+s[0]+0.16);});}catch(e){}}
-function playCoinDing(){try{if(!window.AudioContext&&!window.webkitAudioContext)return;audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();var t=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.setValueAtTime(1320+combo*90,t);o.frequency.exponentialRampToValueAtTime(1760+combo*90,t+0.07);g.gain.setValueAtTime(0.12,t);g.gain.exponentialRampToValueAtTime(0.001,t+0.1);o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+0.11);}catch(e){}}
-let voiceOn=true;
-function faWords(n){n=Math.floor(n);var one=["","یک","دو","سه","چهار","پنج","شش","هفت","هشت","نه","ده","یازده","دوازده","سیزده","چهارده","پانزده","شانزده","هفده","هجده","نوزده"];var tens=["","","بیست","سی","چهل","پنجاه","شصت","هفتاد","هشتاد","نود"];var hunds=["","صد","دویست","سیصد","چهارصد","پانصد","ششصد","هفتصد","هشتصد","نهصد"];if(n<20)return one[n]||"صفر";if(n<100){var t=Math.floor(n/10),r=n%10;return tens[t]+(r?" و "+one[r]:"");}if(n<1000){var h=Math.floor(n/100),rr=n%100;return hunds[h]+(rr?" و "+faWords(rr):"");}if(n<10000){var th=Math.floor(n/1000),rrr=n%1000;return one[th]+" هزار"+(rrr?" و "+faWords(rrr):"");}return String(n);}
-function speakCoin(n){try{if(!voiceOn)return;if(!('speechSynthesis' in window))return;try{window.speechSynthesis.cancel();}catch(e){}var u=new SpeechSynthesisUtterance(faWords(n));u.lang='fa-IR';u.rate=1.15;u.volume=1;window.speechSynthesis.speak(u);}catch(e){}}
-function toggleVoice(){voiceOn=!voiceOn;var t1=document.getElementById('voiceBtn'),t2=document.getElementById('voiceBtnHome');var txt=voiceOn?'🔊 شمارش صوتی سکه: روشن':'🔇 شمارش صوتی سکه: خاموش';if(t1)t1.textContent=txt;if(t2)t2.textContent=txt;if(!voiceOn){try{window.speechSynthesis.cancel()}catch(e){}}}
-let slideIdx=0,slideTimer=null;
-function showSlide(n){var s=document.querySelectorAll('#slideshow .slide'),d=document.querySelectorAll('#slideDots .dot2');if(!s.length)return;slideIdx=(n+s.length)%s.length;s.forEach(function(x,i){x.classList.toggle('active',i===slideIdx)});d.forEach(function(x,i){x.classList.toggle('active',i===slideIdx)});}
-function buildSlideshow(list){var box=document.getElementById('slideshow'),db=document.getElementById('slideDots');if(!box)return;box.innerHTML='';if(db)db.innerHTML='';var defs=[{e:'🛞',t:'سکه‌های تایر یزدتایر',c:'s1'},{e:'🏭',t:'افتخار ساخت یزد از ۱۳۶۴',c:'s2'},{e:'🏆',t:'جام واحدها • فصل اول',c:'s3'}];var L=(list&&list.length)?list:[null,null,null];L.forEach(function(src,i){var d=defs[i%3],div=document.createElement('div');div.className='slide '+d.c+(i===0?' active':'');if(src){div.classList.add('photo');var im=document.createElement('img');im.src=src;im.onerror=function(){this.remove()};div.appendChild(im);}else{var t=document.createElement('div');t.className='txt';t.innerHTML='<b>'+d.t+'</b><div style="font-size:48px">'+d.e+'</div>';div.appendChild(t);}box.appendChild(div);if(db){var dt=document.createElement('div');dt.className='dot2'+(i===0?' active':'');(function(ix){dt.onclick=function(){showSlide(ix)}})(i);db.appendChild(dt);}});slideIdx=0;if(slideTimer)clearInterval(slideTimer);slideTimer=setInterval(function(){showSlide(slideIdx+1)},5000);}
-function initSlideshow(){buildSlideshow([]);var idx=1,found=[],miss=0;function tryNext(){if(idx>12||(miss>=3&&found.length)){if(found.length)buildSlideshow(found);return;}var nm='slide'+idx+'.jpg',cur=idx,im=new Image(),dn=false;im.onload=function(){if(dn)return;dn=true;found.push(nm);idx=cur+1;tryNext();};im.onerror=function(){if(dn)return;dn=true;miss++;idx=cur+1;tryNext();};try{im.src=nm}catch(e){miss++;idx=cur+1;tryNext();}setTimeout(function(){if(!dn){dn=true;miss++;idx=cur+1;tryNext();}},3500);}tryNext();}
-let units=[{n:'تولید',c:'#FFC400',s:12450},{n:'کنترل کیفیت',c:'#22E584',s:11200},{n:'فنی و نگه‌داری',c:'#4DA3FF',s:10800},{n:'انبار و لجستیک',c:'#FF8A00',s:9800},{n:'فروش و بازاریابی',c:'#FF5C7A',s:9400},{n:'اداری و مالی',c:'#B78CFF',s:8600}];
-let bots=[{n:'علی رضایی',u:'تولید',s:2450},{n:'سارا محمدی',u:'کنترل کیفیت',s:2310},{n:'حسین کریمی',u:'فنی و نگه‌داری',s:2180},{n:'مریم احمدی',u:'فروش و بازاریابی',s:2050},{n:'رضا یزدی',u:'انبار و لجستیک',s:1980},{n:'نگار حسینی',u:'اداری و مالی',s:1870},{n:'محمد طالبی',u:'تولید',s:1750},{n:'زهرا دهقانی',u:'کنترل کیفیت',s:1640},{n:'امیر صادقی',u:'فنی و نگه‌داری',s:1520},{n:'فاطمه نادری',u:'فروش و بازاریابی',s:1410}];
-let me=null; try{me=JSON.parse(localStorage.getItem('yazd_me')||'null')}catch(e){}
-function show(t){try{if(typeof running!=='undefined'&&running&&t!=='game'){try{endGame(true)}catch(e){}}}catch(e){}['home','game','league','profile'].forEach(function(k){document.getElementById('scr-'+k).classList.add('hidden')});document.getElementById('scr-'+t).classList.remove('hidden');['home','game','league','profile'].forEach(function(k){var b=document.getElementById('n-'+k);if(b)b.classList.remove('on')});try{document.getElementById('n-'+t).classList.add('on')}catch(e){}window.scrollTo(0,0);if(t==='game'){setTimeout(updateThreeSize,80);setTimeout(updateThreeSize,300);}}
-function tab(t){document.getElementById('tabInd').classList.toggle('on',t==='ind');document.getElementById('tabUnit').classList.toggle('on',t==='unit');document.getElementById('leagueInd').classList.toggle('hidden',t!=='ind');document.getElementById('leagueUnit').classList.toggle('hidden',t!=='unit');}
-function levelFor(x){if(x>10000)return'اسطوره یزدتایر';if(x>5000)return'قهرمان آسفالت';if(x>2000)return'راننده شیفت';if(x>500)return'کارآموز پیست';return'تازه‌کار'}
-function renderBoards(){var mx=Math.max.apply(null,units.map(function(x){return x.s}));var uh=units.slice().sort(function(a,b){return b.s-a.s}).map(function(u,i){return '<div class="unit"><div class="dot" style="background:'+u.c+'"></div><div class="u-name">'+(i===0?'👑 ':'')+u.n+'</div><div class="bar"><i style="width:'+Math.round(u.s/mx*100)+'%;background:'+u.c+'"></i></div><div class="u-score">'+fa(u.s)+'</div></div>'}).join('');document.getElementById('unitsHome').innerHTML=uh;document.getElementById('leagueUnit').innerHTML=uh;var all=bots.slice();if(me)all.push({n:me.name+' (شما)',u:me.unit,s:me.best||0,me:true});all.sort(function(a,b){return b.s-a.s});document.getElementById('top3').innerHTML=all.slice(0,3).map(function(p,i){return '<div class="p-row"><div class="rank '+(i===0?'first':'')+'">'+fa(i+1)+'</div><div class="avatar">'+p.n.trim().charAt(0)+'</div><div style="flex:1"><b style="font-size:13px">'+p.n+'</b><div class="small">'+p.u+'</div></div><b style="color:var(--yellow)">'+fa(p.s)+'</b></div>'}).join('');document.getElementById('leagueInd').innerHTML=all.map(function(p,i){return '<div class="p-row"><div class="rank '+(i===0?'first':'')+'">'+fa(i+1)+'</div><div class="avatar">'+p.n.trim().charAt(0)+'</div><div style="flex:1"><b style="font-size:13px">'+p.n+'</b><div class="small">'+p.u+'</div></div><b style="color:var(--yellow)">'+fa(p.s)+'</b></div>'}).join('');if(me){var r=all.findIndex(function(x){return x.me})+1;document.getElementById('pfRank').textContent='#'+fa(r);}}
-function refresh(){renderBoards();if(!me)return;document.getElementById('myBest').textContent=fa(me.best||0);document.getElementById('myTotal').textContent=fa(me.total||0);document.getElementById('myLevel').textContent=levelFor(me.total||0);document.getElementById('meLine').textContent='واحد: '+me.unit+' • استریک: '+fa(me.streak||1)+' روز';document.getElementById('pfName').textContent=me.name;document.getElementById('pfUnit').textContent='واحد '+me.unit+' • کد '+me.code;document.getElementById('pfAvatar').textContent=(me.name||'ی').trim().charAt(0);document.getElementById('pfGames').textContent=fa(me.games||0);document.getElementById('pfCoins').textContent=fa(me.coins||0);}
-function doLogin(){var n=document.getElementById('inName').value.trim(),u=document.getElementById('inUnit').value,c=document.getElementById('inCode').value.trim();if(n.length<2){alert('نام را کامل بنویس');return}me={name:n,unit:u,code:c||'----',best:0,total:0,coins:0,games:0,streak:1};try{localStorage.setItem('yazd_me',JSON.stringify(me))}catch(e){}document.getElementById('loginModal').classList.add('hidden');refresh();startMusicForce();}
-function resetMe(){try{localStorage.removeItem('yazd_me')}catch(e){}me=null;document.getElementById('loginModal').classList.remove('hidden');show('profile');}
-function sendToBale(){if(!me)return;var p=JSON.stringify({name:me.name,unit:me.unit,code:me.code,best:me.best,total:me.total});try{if(WA&&WA.sendData)WA.sendData(p);else alert('دمو: '+p)}catch(e){}}
-/* ===== موتور سه‌بعدی + لامبورگینی ===== */
 var LANES=[-3.1,0,3.1];
-var scene=null,camera=null,renderer=null,car=null,carGlass=null,carWing=null,logoTex=null,headLight=null;
-var wheels=[],roadLines=[],poleMeshes=[],coinMeshes=[],obsMeshes=[];
-var running=false,lane=1,targetX=0,score=0,coins=0,combo=1,timeLeft=60,timer=null,inv=0;
-var speed=32,spawnT=0,shake=0,elapsed=0,threeReady=false,animStarted=false,lastT=0;
-function move(d){if(!running)return;lane=Math.max(0,Math.min(2,lane+d));targetX=LANES[lane];haptic('light');}
-var _sx=0;
-document.addEventListener('touchstart',function(e){try{_sx=e.touches[0].clientX}catch(_){}},{passive:true});
-document.addEventListener('touchend',function(e){try{if(!running)return;var sc=document.getElementById('scr-game');if(sc.classList.contains('hidden'))return;var dx=e.changedTouches[0].clientX-_sx;if(dx>30)move(1);else if(dx<-30)move(-1);}catch(_){}},{passive:true});
-document.addEventListener('keydown',function(e){if(!running)return;if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1);});
-function ensureThree(cb){if(typeof THREE!=='undefined'){cb(true);return;}var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';s.onload=function(){cb(typeof THREE!=='undefined')};s.onerror=function(){cb(false)};document.head.appendChild(s);}
-function getGameSize(){var c=document.getElementById('three-container'),w=c?c.clientWidth:0;if(!w||w<10)w=360;return{w:w,h:480};}
-function updateThreeSize(){if(!renderer||!camera)return;try{var s=getGameSize();camera.aspect=s.w/s.h;camera.updateProjectionMatrix();renderer.setSize(s.w,s.h,false);renderer.domElement.style.width='100%';renderer.domElement.style.height='480px';}catch(e){}}
-window.addEventListener('resize',updateThreeSize);
-function makeLogoTexture(){var c=document.createElement('canvas');c.width=256;c.height=256;var x=c.getContext('2d');x.fillStyle='#fff';x.beginPath();x.arc(128,128,128,0,7);x.fill();x.fillStyle='#0A2A6B';x.font='bold 52px Tahoma';x.textAlign='center';x.fillText('YAZD',128,112);x.fillStyle='#E30613';x.font='bold 46px Tahoma';x.fillText('TIRE',128,166);x.strokeStyle='#FFC400';x.lineWidth=14;x.beginPath();x.arc(128,128,118,0,7);x.stroke();return new THREE.CanvasTexture(c);}
-function syncHUD(){
-var s=Math.floor(score);
-var oS=document.getElementById('oScore');if(oS)oS.textContent=fa(s);
-var oC=document.getElementById('oCoin');if(oC)oC.textContent=fa(coins);
-var oT=document.getElementById('oTime');if(oT)oT.textContent=fa(Math.max(0,timeLeft));
-var hT=document.getElementById('hTime');if(hT)hT.textContent=fa(Math.max(0,timeLeft));
-var hC=document.getElementById('hCoin');if(hC)hC.textContent=fa(coins);
-var hS=document.getElementById('hScore');if(hS)hS.textContent=fa(s);
-var hK=document.getElementById('hCombo');if(hK)hK.textContent='×'+fa(combo);
-var ct=document.getElementById('comboTag');if(ct){ct.textContent='🔥 ×'+fa(combo)+(combo>=4?' • عالی!':combo>=3?' • داغ!':'');ct.style.background=combo>=4?'linear-gradient(135deg,#FF3D2E,#FFC400)':combo>=2?'rgba(255,196,0,.92)':'rgba(255,255,255,.85)';}
-var tb=document.getElementById('time-bar');if(tb){tb.style.width=(Math.max(0,timeLeft)/60*100)+'%';tb.classList.toggle('danger',timeLeft<=10);}
-var chip=document.getElementById('oTimeChip');if(chip)chip.classList.toggle('time-low',timeLeft<=10);
-var sp=document.getElementById('speedTag');if(sp)sp.innerHTML='<b>'+fa(Math.round(120+speed*2.2))+'</b> km/h';
+var units=[
+{n:'تکنیکال',c:'#1e5fe0',shirt:'#1e5fe0',second:'#ffffff',p:13250},
+{n:'کنترل کیفیت',c:'#178040',shirt:'#178040',second:'#d6cfa3',p:12980},
+{n:'فنی',c:'#1e3260',shirt:'#1e3260',second:'#ffffff',p:12760},
+{n:'اداری',c:'#4fb4e8',shirt:'#4fb4e8',second:'#ffffff',p:12470},
+{n:'تولید',c:'#f5731a',shirt:'#1e3260',second:'#f5731a',p:12190},
+{n:'انبار',c:'#6b4423',shirt:'#6b4423',second:'#ffffff',p:11870},
+{n:'برنامه‌ریزی',c:'#eab308',shirt:'#151515',second:'#eab308',p:11620}
+];
+var me=null; try{me=JSON.parse(localStorage.getItem('yazd_me')||'null')}catch(e){}
+var musicOn=true, voiceOn=true;
+var faWords=['آفرین','عالی','باریکلا','ادامه بده','تو می‌تونی','سرعتت عالیه'];
+var laneIndex=1,targetX=0;
+var scene=null,camera=null,renderer=null,car=null;
+var carBodyMat=null,driverShirtMat=null,driverSecondMat=null;
+var wheels=[],coins=[],obstacles=[],dashes=[];
+var running=false,score=0,coinCount=0,timeLeft=60,combo=0,lastTime=0,threeInit=false;
+function M(c){return new THREE.MeshPhongMaterial({color:c,shininess:60});}
+function normalizeUnitName(u){
+u=(u||'').toString().trim().replace(/ي/g,'ی').replace(/ك/g,'ک');
+if(u.indexOf('کنترل')>=0)return 'کنترل کیفیت';
+if(u.indexOf('برنامه')>=0)return 'برنامه‌ریزی';
+if(u.indexOf('تکنی')>=0)return 'تکنیکال';
+if(u.indexOf('تول')>=0)return 'تولید';
+if(u.indexOf('انبار')>=0)return 'انبار';
+if(u.indexOf('ادار')>=0)return 'اداری';
+if(u.indexOf('فن')>=0)return 'فنی';
+for(var i=0;i<units.length;i++)if(units[i].n===u)return u;
+return 'تولید';
 }
-function spawnFloat(txt,isMinus){
-var cont=document.getElementById('three-container');if(!cont)return;
-var d=document.createElement('div');d.className='float-plus'+(isMinus?' float-minus':'');d.textContent=txt;
-d.style.left=(38+Math.random()*24)+'%';cont.appendChild(d);
-requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add('show')})});
-setTimeout(function(){try{d.remove()}catch(e){}},900);
+function getDriverColors(){
+var uv=normalizeUnitName((me&&me.unit)||document.getElementById('inUnit').value);
+for(var i=0;i<units.length;i++)if(units[i].n===uv)return{shirt:units[i].shirt,second:units[i].second};
+return{shirt:'#1e3260',second:'#f5731a'};
 }
-function showPop(t){var el=document.getElementById('comboPop');if(!el)return;el.textContent=t;el.style.opacity='1';clearTimeout(el._tm);el._tm=setTimeout(function(){el.style.opacity='0'},650);}
-function initThree(){
-if(threeReady&&renderer){updateThreeSize();return;}
-var cont=document.getElementById('three-container');if(!cont)throw new Error('no container');
-scene=new THREE.Scene();scene.background=new THREE.Color(0x0b0d12);scene.fog=new THREE.FogExp2(0x0b0d12,0.018);
-camera=new THREE.PerspectiveCamera(68,1,0.1,300);camera.position.set(0,5.2,9.0);camera.lookAt(0,1.2,-12);
-renderer=new THREE.WebGLRenderer({antialias:true});renderer.setClearColor(0x0b0d12,1);renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-var old=cont.querySelector('canvas');if(old)old.remove();cont.appendChild(renderer.domElement);updateThreeSize();
-scene.add(new THREE.AmbientLight(0x8a9bb5,0.65));scene.add(new THREE.HemisphereLight(0x3a4a6a,0x1a1205,0.65));
-var moon=new THREE.DirectionalLight(0xbfd4ff,0.9);moon.position.set(-12,22,8);moon.castShadow=true;scene.add(moon);
-var head=new THREE.SpotLight(0xfff2c0,1.5,60,0.55,0.4);head.position.set(0,3,6);head.target.position.set(0,0,-20);scene.add(head);scene.add(head.target);
+function getUnitMainColor(){
+var uv=normalizeUnitName((me&&me.unit)||document.getElementById('inUnit').value);
+for(var i=0;i<units.length;i++)if(units[i].n===uv)return units[i].c;
+return '#f5731a';
+}
+function updateDriverColor(){
+var cc=getDriverColors();
+if(driverShirtMat)driverShirtMat.color.set(cc.shirt);
+if(driverSecondMat)driverSecondMat.color.set(cc.second);
+}
+function updateCarColor(){if(carBodyMat)carBodyMat.color.set(getUnitMainColor());}
+function makeLogoTexture(){
+var cv=document.createElement('canvas');cv.width=cv.height=256;
+var g=cv.getContext('2d');
+g.fillStyle='#111';g.fillRect(0,0,256,256);
+g.beginPath();g.arc(128,128,110,0,7);g.fillStyle='#0a0a0a';g.fill();
+g.lineWidth=18;g.strokeStyle='#333';g.stroke();
+g.lineWidth=10;g.strokeStyle='#f5731a';g.beginPath();g.arc(128,128,88,0,7);g.stroke();
+g.fillStyle='#fff';g.font='bold 34px Tahoma';g.textAlign='center';
+g.fillText('YAZD',128,120);g.fillText('TIRE',128,160);
+return new THREE.CanvasTexture(cv);
+}
+var logoTex=null;
+function getGameSize(){var c=document.getElementById('three-container');return{w:(c.clientWidth||360),h:480};}
+function updateThreeSize(){if(!renderer||!camera)return;var s=getGameSize();renderer.setSize(s.w,s.h);camera.aspect=s.w/s.h;camera.updateProjectionMatrix();}
+function ensureThree(){
+if(threeInit)return true;
+if(typeof THREE==='undefined'){document.getElementById('three-container').innerHTML='خطا در لود Three.js - اینترنت را بررسی کن';return false;}
 logoTex=makeLogoTexture();
-var sand=new THREE.Mesh(new THREE.PlaneGeometry(400,400),new THREE.MeshStandardMaterial({color:0x1a1410,roughness:1}));sand.rotation.x=-Math.PI/2;sand.position.y=-0.15;sand.receiveShadow=true;scene.add(sand);
-var road=new THREE.Mesh(new THREE.PlaneGeometry(11.5,220),new THREE.MeshStandardMaterial({color:0x1c212b,roughness:0.9}));road.rotation.x=-Math.PI/2;road.position.z=-90;road.receiveShadow=true;scene.add(road);
-var edgeMat=new THREE.MeshBasicMaterial({color:0xFFC400});
-[-5.9,5.9].forEach(function(ex){var e=new THREE.Mesh(new THREE.PlaneGeometry(0.28,220),edgeMat);e.rotation.x=-Math.PI/2;e.position.set(ex,0.03,-90);scene.add(e);});
-roadLines=[];var lineMat=new THREE.MeshBasicMaterial({color:0xe8eef5});
-for(var k=0;k<22;k++){[-1.55,1.55].forEach(function(lx){var d=new THREE.Mesh(new THREE.PlaneGeometry(0.18,2.4),lineMat);d.rotation.x=-Math.PI/2;d.position.set(lx,0.03,10-k*10);scene.add(d);roadLines.push(d);});}
-var sg=new THREE.BufferGeometry(),sp=[];for(var i=0;i<450;i++)sp.push((Math.random()-0.5)*300,20+Math.random()*80,-150+Math.random()*150);sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:0.6})));
-var mMat=new THREE.MeshStandardMaterial({color:0x141b29,roughness:1});
-for(var mi=0;mi<8;mi++){var m=new THREE.Mesh(new THREE.ConeGeometry(18+Math.random()*18,18+Math.random()*14,5),mMat);m.position.set((Math.random()<0.5?-1:1)*(35+Math.random()*60),0,-140+Math.random()*140);scene.add(m);}
-poleMeshes=[];for(var pi=0;pi<10;pi++){var g=new THREE.Group(),pole=new THREE.Mesh(new THREE.CylinderGeometry(0.12,0.16,7,8),new THREE.MeshStandardMaterial({color:0x2a3040}));pole.position.y=3.5;g.add(pole);var lamp=new THREE.Mesh(new THREE.SphereGeometry(0.34,12,12),new THREE.MeshBasicMaterial({color:0xffd76a}));lamp.position.set(1.6,6.6,0);g.add(lamp);var pl=new THREE.PointLight(0xffd76a,0.7,18);pl.position.set(1.6,6.4,0);g.add(pl);var side=pi%2===0?-1:1;g.position.set(side*8.5,0,10-pi*20);scene.add(g);poleMeshes.push(g);}
-buildLambo();
-threeReady=true;updateThreeSize();
-if(!animStarted){animStarted=true;lastT=performance.now();requestAnimationFrame(animate3D);}
+scene=new THREE.Scene();scene.background=new THREE.Color(0x0e1420);scene.fog=new THREE.Fog(0x0e1420,20,80);
+var s=getGameSize();
+camera=new THREE.PerspectiveCamera(70,s.w/s.h,0.1,200);
+camera.position.set(0,5.2,7.5);camera.lookAt(0,0.5,-6);
+renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+renderer.setSize(s.w,s.h);
+document.getElementById('three-container').appendChild(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xffffff,0x223344,0.95));
+var dl=new THREE.DirectionalLight(0xffffff,0.8);dl.position.set(5,10,5);scene.add(dl);
+var ground=new THREE.Mesh(new THREE.PlaneGeometry(40,140),new THREE.MeshLambertMaterial({color:0x14301c}));
+ground.rotation.x=-Math.PI/2;ground.position.z=-40;scene.add(ground);
+var road=new THREE.Mesh(new THREE.PlaneGeometry(9.5,140),new THREE.MeshLambertMaterial({color:0x2b2f36}));
+road.rotation.x=-Math.PI/2;road.position.z=-40;scene.add(road);
+for(var i=0;i<16;i++){
+for(var k=0;k<2;k++){
+var d=new THREE.Mesh(new THREE.BoxGeometry(0.22,0.02,1.4),new THREE.MeshBasicMaterial({color:0xffffff}));
+d.position.set(k===0?-1.55:1.55,0.02,-70+i*9);scene.add(d);dashes.push(d);
+}}
+car=buildLambo();car.position.set(0,0,2);scene.add(car);
+for(var ci=0;ci<7;ci++){var cg=buildCoin();scene.add(cg);coins.push(cg);}
+for(var oi=0;oi<5;oi++){var ob=buildObstacle();scene.add(ob);obstacles.push(ob);}
+resetPositions();
+threeInit=true;updateThreeSize();return true;
 }
-/* لامبورگینی زرد */
 function buildLambo(){
-car=new THREE.Group();
-var yellow=new THREE.MeshStandardMaterial({color:0xFFC400,metalness:0.75,roughness:0.26});
-var yellowDark=new THREE.MeshStandardMaterial({color:0xC78E00,metalness:0.7,roughness:0.35});
-var black=new THREE.MeshStandardMaterial({color:0x0C0D10,roughness:0.55,metalness:0.3});
-var carbon=new THREE.MeshStandardMaterial({color:0x14161A,roughness:0.4,metalness:0.5});
-var glassMat=new THREE.MeshStandardMaterial({color:0x0A1828,metalness:0.95,roughness:0.08});
-var body=new THREE.Mesh(new THREE.BoxGeometry(2.3,0.5,4.4),yellow);body.position.y=0.72;body.castShadow=true;car.add(body);
-var nose=new THREE.Mesh(new THREE.BoxGeometry(2.0,0.32,0.9),yellow);nose.position.set(0,0.58,-2.35);nose.rotation.x=0.12;car.add(nose);
-var splitter=new THREE.Mesh(new THREE.BoxGeometry(2.45,0.16,0.55),black);splitter.position.set(0,0.32,-2.55);car.add(splitter);
-var finL=new THREE.Mesh(new THREE.BoxGeometry(0.08,0.1,1.6),black);finL.position.set(-0.55,0.99,-1.6);finL.rotation.y=0.22;car.add(finL);
-var finR=finL.clone();finR.position.x=0.55;finR.rotation.y=-0.22;car.add(finR);
-var hoodV=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.03,1.3),black);hoodV.position.set(0,0.99,-1.7);car.add(hoodV);
-var cabin=new THREE.Mesh(new THREE.BoxGeometry(1.45,0.5,1.7),glassMat);cabin.position.set(0,1.18,0.3);cabin.castShadow=true;car.add(cabin);
-carGlass=cabin;
-var roof=new THREE.Mesh(new THREE.BoxGeometry(1.2,0.08,0.9),carbon);roof.position.set(0,1.46,0.45);car.add(roof);
-var intakeL=new THREE.Mesh(new THREE.BoxGeometry(0.28,0.45,1.1),black);intakeL.position.set(-1.2,0.85,0.6);car.add(intakeL);
-var intakeR=intakeL.clone();intakeR.position.x=1.2;car.add(intakeR);
-var skirtL=new THREE.Mesh(new THREE.BoxGeometry(0.18,0.22,2.6),carbon);skirtL.position.set(-1.2,0.36,0.2);car.add(skirtL);
-var skirtR=skirtL.clone();skirtR.position.x=1.2;car.add(skirtR);
-function yLight(sx){
-var grp=new THREE.Group();
-var m1=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.1,0.08),new THREE.MeshBasicMaterial({color:0xFFFBEA}));m1.position.set(0,0,0);m1.rotation.z=sx*0.35;grp.add(m1);
-var m2=new THREE.Mesh(new THREE.BoxGeometry(0.32,0.08,0.08),new THREE.MeshBasicMaterial({color:0xFFFBEA}));m2.position.set(sx*0.1,-0.14,0);m2.rotation.z=sx*-0.5;grp.add(m2);
-grp.position.set(sx*0.72,0.72,-2.62);return grp;
+var g=new THREE.Group();
+carBodyMat=M(0xf5731a);var yellow=carBodyMat;
+var body=new THREE.Mesh(new THREE.BoxGeometry(2.2,0.6,4.2),yellow);body.position.y=0.7;g.add(body);
+var nose=new THREE.Mesh(new THREE.BoxGeometry(1.8,0.4,1),yellow);nose.position.set(0,0.5,-2.4);g.add(nose);
+driverShirtMat=M(0x1e3260);driverSecondMat=M(0xf5731a);
+var seatD=new THREE.Mesh(new THREE.BoxGeometry(0.8,0.8,0.4),M(0x111111));seatD.position.set(0,1,0.7);g.add(seatD);
+var torso=new THREE.Mesh(new THREE.BoxGeometry(0.62,0.62,0.4),driverShirtMat);torso.position.set(0,1.25,0.2);g.add(torso);
+var belt=new THREE.Mesh(new THREE.BoxGeometry(0.64,0.12,0.42),M(0x000000));belt.position.set(0,1.25,0.2);g.add(belt);
+var shoulder=new THREE.Mesh(new THREE.BoxGeometry(0.7,0.18,0.42),driverSecondMat);shoulder.position.set(0,1.5,0.2);g.add(shoulder);
+var armL=new THREE.Mesh(new THREE.CylinderGeometry(0.11,0.11,0.7,10),driverShirtMat);armL.position.set(-0.35,1.2,-0.3);armL.rotation.x=1.1;g.add(armL);
+var armR=armL.clone();armR.position.x=0.35;g.add(armR);
+var swheel=new THREE.Mesh(new THREE.TorusGeometry(0.28,0.06,10,20),M(0x111111));swheel.position.set(0,1.15,-0.45);g.add(swheel);
+var head=new THREE.Mesh(new THREE.SphereGeometry(0.26,16,16),M(0xffcc99));head.position.set(0,1.85,0.25);g.add(head);
+var helmet=new THREE.Mesh(new THREE.SphereGeometry(0.31,16,16,0,Math.PI*2,0,Math.PI/1.7),driverShirtMat);helmet.position.set(0,1.9,0.25);g.add(helmet);
+var visor=new THREE.Mesh(new THREE.BoxGeometry(0.4,0.14,0.1),new THREE.MeshPhongMaterial({color:0x000000}));visor.position.set(0,1.86,-0.02);g.add(visor);
+var cabin=new THREE.Mesh(new THREE.BoxGeometry(1.4,0.62,1.9),new THREE.MeshPhongMaterial({color:0x99d4ff,transparent:true,opacity:0.55,shininess:100}));
+cabin.position.set(0,1.3,-0.1);g.add(cabin);
+var wg=new THREE.CylinderGeometry(0.42,0.42,0.35,16);wg.rotateZ(Math.PI/2);
+var wm=M(0x111111);
+[[-1.1,0.4,1.4],[1.1,0.4,1.4],[-1.1,0.4,-1.4],[1.1,0.4,-1.4]].forEach(function(p){
+var w=new THREE.Mesh(wg,wm);w.position.set(p[0],p[1],p[2]);g.add(w);wheels.push(w);});
+var sp=new THREE.Mesh(new THREE.BoxGeometry(2,0.12,0.5),M(0x111111));sp.position.set(0,1.15,2);g.add(sp);
+return g;
 }
-car.add(yLight(-1));car.add(yLight(1));
-var tail=new THREE.Mesh(new THREE.BoxGeometry(1.9,0.14,0.08),new THREE.MeshBasicMaterial({color:0xFF1E2D}));tail.position.set(0,0.88,2.22);car.add(tail);
-var exhaustM=new THREE.MeshStandardMaterial({color:0x555A60,metalness:0.9,roughness:0.3});
-[-0.25,0.25].forEach(function(ex){var exm=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.09,0.3,12),exhaustM);exm.rotation.x=Math.PI/2;exm.position.set(ex,0.48,2.25);car.add(exm);});
-var diff=new THREE.Mesh(new THREE.BoxGeometry(2.0,0.28,0.4),black);diff.position.set(0,0.32,2.15);car.add(diff);
-for(var fi=-1.5;fi<=1.5;fi++){var fin=new THREE.Mesh(new THREE.BoxGeometry(0.06,0.28,0.38),carbon);fin.position.set(fi*0.25,0.32,2.15);car.add(fin);}
-var wing=new THREE.Mesh(new THREE.BoxGeometry(2.4,0.1,0.55),carbon);wing.position.set(0,1.55,1.9);wing.castShadow=true;car.add(wing);carWing=wing;
-var plateM=new THREE.MeshStandardMaterial({color:0xFFC400,metalness:0.6,roughness:0.3});
-[-1.2,1.2].forEach(function(px){var plate=new THREE.Mesh(new THREE.BoxGeometry(0.08,0.42,0.6),plateM);plate.position.set(px,1.35,1.9);car.add(plate);});
-[-0.7,0.7].forEach(function(px){var neck=new THREE.Mesh(new THREE.BoxGeometry(0.12,0.45,0.25),black);neck.position.set(px,1.2,1.9);car.add(neck);});
-var badge=new THREE.Mesh(new THREE.BoxGeometry(0.32,0.14,0.03),black);badge.position.set(0,0.72,-2.82);car.add(badge);
-wheels=[];var tireGeo=new THREE.CylinderGeometry(0.46,0.46,0.42,20);tireGeo.rotateZ(Math.PI/2);
-var tireMat=new THREE.MeshStandardMaterial({color:0x07080A,roughness:0.9});
-var spokeMat=new THREE.MeshStandardMaterial({color:0x17181C,metalness:0.7,roughness:0.35});
-var lockMat=new THREE.MeshStandardMaterial({color:0xFFC400,metalness:0.8,roughness:0.3});
-[[-1.15,-1.45],[1.15,-1.45],[-1.15,1.45],[1.15,1.45]].forEach(function(p){
-var w=new THREE.Group();w.position.set(p[0],0.46,p[1]);
-var tire=new THREE.Mesh(tireGeo,tireMat);tire.castShadow=true;w.add(tire);
-for(var si=0;si<5;si++){var spk=new THREE.Mesh(new THREE.BoxGeometry(0.44,0.12,0.14),spokeMat);spk.rotation.x=si*Math.PI/5;w.add(spk);}
-var lock=new THREE.Mesh(new THREE.CylinderGeometry(0.1,0.1,0.46,10),lockMat);lock.rotation.z=Math.PI/2;w.add(lock);
-car.add(w);wheels.push(w);
-});
-var glow=new THREE.PointLight(0xFFC400,0.8,7);glow.position.set(0,0.3,0);car.add(glow);
-headLight=new THREE.SpotLight(0xFFF3C4,1.2,25,0.6,0.4);headLight.position.set(0,1,-2.5);headLight.target.position.set(0,0,-15);car.add(headLight);car.add(headLight.target);
-var shadow=new THREE.Mesh(new THREE.PlaneGeometry(3.6,5.4),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:0.42}));shadow.rotation.x=-Math.PI/2;shadow.position.y=0.02;car.add(shadow);
-car.position.set(0,0,2.5);scene.add(car);
+function buildCoin(){
+var gr=new THREE.Group();
+var cyl=new THREE.Mesh(new THREE.CylinderGeometry(0.55,0.55,0.18,24),new THREE.MeshPhongMaterial({color:0xffc400,shininess:90}));
+cyl.rotation.x=Math.PI/2;gr.add(cyl);
+var pm=new THREE.MeshBasicMaterial({map:logoTex,transparent:true});
+var f=new THREE.Mesh(new THREE.PlaneGeometry(0.9,0.9),pm);f.position.z=0.1;gr.add(f);
+var b=f.clone();b.rotation.y=Math.PI;b.position.z=-0.1;gr.add(b);
+gr.position.set(LANES[Math.floor(Math.random()*3)],0.8,-20-Math.random()*50);
+return gr;
 }
-function spawnCoin3D(l){var g=new THREE.Group();var tire=new THREE.Mesh(new THREE.TorusGeometry(0.62,0.30,14,26),new THREE.MeshStandardMaterial({color:0x17181c,roughness:0.7}));tire.castShadow=true;g.add(tire);var hub=new THREE.Mesh(new THREE.CylinderGeometry(0.48,0.48,0.35,24),new THREE.MeshStandardMaterial({map:logoTex,roughness:0.35}));hub.rotation.x=Math.PI/2;g.add(hub);var ring=new THREE.Mesh(new THREE.TorusGeometry(0.62,0.05,8,26),new THREE.MeshBasicMaterial({color:0xFFC400}));g.add(ring);g.position.set(LANES[l],1.15,-95);scene.add(g);coinMeshes.push(g);}
-function spawnObs3D(l){var g=new THREE.Group();var cone=new THREE.Mesh(new THREE.ConeGeometry(0.5,1.4,18),new THREE.MeshStandardMaterial({color:0xFF3D2E,roughness:0.5,emissive:0x550000,emissiveIntensity:0.5}));cone.position.y=0.8;cone.castShadow=true;g.add(cone);var st=new THREE.Mesh(new THREE.CylinderGeometry(0.36,0.42,0.28,18),new THREE.MeshBasicMaterial({color:0xffffff}));st.position.y=0.85;g.add(st);g.position.set(LANES[l],0,-95);scene.add(g);obsMeshes.push(g);}
+function buildObstacle(){
+var gr=new THREE.Group();
+var base=new THREE.Mesh(new THREE.BoxGeometry(1,0.2,1),M(0x111111));base.position.y=0.1;gr.add(base);
+var cone=new THREE.Mesh(new THREE.ConeGeometry(0.62,1.4,16),M(0xff5a00));cone.position.y=1;gr.add(cone);
+var band=new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.48,0.32,16),M(0xffffff));band.position.y=0.85;gr.add(band);
+gr.position.set(LANES[Math.floor(Math.random()*3)],0,-15-Math.random()*55);
+return gr;
+}
+function resetPositions(){
+coins.forEach(function(c,i){c.position.set(LANES[Math.floor(Math.random()*3)],0.8,-12-i*11-Math.random()*5);c.visible=true;});
+obstacles.forEach(function(o,i){o.position.set(LANES[Math.floor(Math.random()*3)],0,-25-i*14-Math.random()*6);o.visible=true;});
+}
+function move(d){
+laneIndex=Math.max(0,Math.min(2,laneIndex+d));targetX=LANES[laneIndex];
+try{if(navigator.vibrate)navigator.vibrate(10)}catch(e){}
+}
+function toggleMusic(e){
+if(e&&e.stopPropagation)e.stopPropagation();
+if(e&&e.preventDefault)e.preventDefault();
+musicOn=!musicOn;
+var a=document.getElementById('bgm');
+try{if(musicOn){a.play().catch(function(){});}else{a.pause();}}catch(err){}
+var t=musicOn?'🔊':'🔇';
+document.getElementById('musicBtn').textContent=t+' موسیقی';
+document.getElementById('musicBtnInGame').textContent=t;
+}
+function toggleVoice(){voiceOn=!voiceOn;document.getElementById('voiceBtn').textContent=voiceOn?'🎙 گفتار: روشن':'🎙 گفتار: خاموش';}
+function speakCoin(){
+if(!voiceOn)return;
+if(coinCount%10!==0)return;
+try{
+var u=new SpeechSynthesisUtterance(faWords[Math.floor(Math.random()*faWords.length)]);
+u.lang='fa-IR';speechSynthesis.speak(u);
+}catch(e){}
+}
+function syncHUD(){
+document.getElementById('oScore').textContent=Math.floor(score);
+document.getElementById('oCoin').textContent=coinCount;
+document.getElementById('oTime').textContent=Math.ceil(timeLeft);
+document.getElementById('time-bar').style.width=(timeLeft/60*100)+'%';
+document.getElementById('comboTag').textContent=combo>=2?('کمبو ×'+combo):'';
+var sp=Math.round(120+(60-timeLeft)*1.5+coinCount*2);
+document.getElementById('speedTag').textContent=sp+' km/h';
+}
+function pop(txt){
+var el=document.getElementById('comboPop');el.textContent=txt;el.style.opacity=1;
+setTimeout(function(){el.style.opacity=0},600);
+}
+function floatPlus(txt){
+var c=document.getElementById('three-container');
+var d=document.createElement('div');d.className='float-plus';d.textContent=txt;
+d.style.left='45%';d.style.top='55%';c.appendChild(d);
+setTimeout(function(){d.remove()},800);
+}
 function startGame(){
-if(!me){document.getElementById('loginModal').classList.remove('hidden');return}
-document.getElementById('resultModal').classList.add('hidden');show('game');
-var loadEl=document.getElementById('three-loading');if(loadEl)loadEl.style.display='flex';
-setTimeout(function(){
-ensureThree(function(ok){
-if(!ok){if(loadEl)loadEl.innerHTML='⚠️ موتور سه‌بعدی لود نشد<br>اینترنت را چک کن';return;}
-try{initThree();}catch(err){if(loadEl)loadEl.innerHTML='⚠️ WebGL خاموش است<br>با کروم یا بله جدید تست کن';return;}
-updateThreeSize();setTimeout(updateThreeSize,250);
-try{coinMeshes.forEach(function(c){scene.remove(c)});obsMeshes.forEach(function(o){scene.remove(o)});}catch(e){}
-coinMeshes=[];obsMeshes=[];
-score=0;coins=0;combo=1;timeLeft=60;lane=1;targetX=0;elapsed=0;inv=0;shake=0;speed=32;spawnT=0;
+var nm=document.getElementById('inUnit').value;
+var nn=document.getElementById('inName').value||'کارمند یزدتایر';
+me={name:nn,unit:normalizeUnitName(nm),best:(me&&me.best)||0};
+try{localStorage.setItem('yazd_me',JSON.stringify(me))}catch(e){}
+if(!ensureThree())return;
+updateDriverColor();updateCarColor();
+document.getElementById('home').style.display='none';
+document.getElementById('game-screen').style.display='block';
+updateThreeSize();
+laneIndex=1;targetX=0;score=0;coinCount=0;timeLeft=60;combo=0;
+resetPositions();
 if(car)car.position.x=0;
-if(loadEl)loadEl.style.display='none';
-running=true;clearInterval(timer);syncHUD();
-timer=setInterval(function(){timeLeft--;syncHUD();if(timeLeft<=0)endGame(false)},1000);
-haptic('heavy');startMusicForce();try{if('speechSynthesis' in window)window.speechSynthesis.cancel();}catch(e){}
-});
-},60);
+running=true;lastTime=performance.now();
+if(musicOn){var a=document.getElementById('bgm');try{a.currentTime=0;a.play().catch(function(){});}catch(e){}}
+requestAnimationFrame(loop);
 }
-function animate3D(){
-requestAnimationFrame(animate3D);if(!threeReady||!renderer||!scene||!camera)return;
-var now=performance.now(),dt=Math.min(0.05,(now-lastT)/1000);lastT=now;
-if(!running){try{roadLines.forEach(function(d){d.position.z+=8*dt;if(d.position.z>12)d.position.z-=230;});if(car)car.position.y=Math.sin(now*0.003)*0.03;renderer.render(scene,camera);}catch(e){}return;}
-elapsed+=dt;speed=Math.min(62,32+elapsed*0.7);spawnT-=dt;
-if(spawnT<=0){spawnT=0.55-Math.min(0.25,elapsed*0.006);var l=Math.floor(Math.random()*3);if(Math.random()<0.58)spawnCoin3D(l);else spawnObs3D(l);if(Math.random()<0.25)spawnCoin3D(Math.floor(Math.random()*3));}
-roadLines.forEach(function(d){d.position.z+=speed*dt;if(d.position.z>12)d.position.z-=230;});
-poleMeshes.forEach(function(p){p.position.z+=speed*dt;if(p.position.z>15)p.position.z-=200;});
+function loop(now){
+if(!running)return;
+var dt=(now-lastTime)/1000;lastTime=now;if(dt>0.05)dt=0.05;if(dt<0)dt=0;
+var speed=14+(60-timeLeft)*0.18+coinCount*0.06;
 car.position.x+=(targetX-car.position.x)*Math.min(1,dt*10);
-car.rotation.y=(targetX-car.position.x)*-0.14;
-car.rotation.z=(targetX-car.position.x)*-0.09;
-car.position.y=Math.sin(elapsed*18)*0.03;
-if(carWing)carWing.rotation.x=Math.sin(elapsed*6)*0.03;
-wheels.forEach(function(w){w.rotation.x+=speed*dt*1.9;});
-if(inv>0)inv-=dt;
-coinMeshes.forEach(function(c){c.position.z+=speed*dt;c.rotation.y+=dt*3.2;});
-obsMeshes.forEach(function(o){o.position.z+=speed*dt;});
-for(var i=coinMeshes.length-1;i>=0;i--){var c=coinMeshes[i];if(c.position.z>12){scene.remove(c);coinMeshes.splice(i,1);continue;}
-if(Math.abs(c.position.z-2.5)<1.5&&Math.abs(c.position.x-car.position.x)<1.3){
-var gain=50*combo;scene.remove(c);coinMeshes.splice(i,1);coins++;score+=gain;combo=Math.min(5,combo+1);
-playCoinDing();speakCoin(coins);haptic('light');
-spawnFloat('+'+fa(gain),false);
-if(combo>=3)showPop('کمبو ×'+fa(combo)+'! 🔥');
-syncHUD();
-}}
-for(var j=obsMeshes.length-1;j>=0;j--){var o=obsMeshes[j];if(o.position.z>12){scene.remove(o);obsMeshes.splice(j,1);continue;}
-if(Math.abs(o.position.z-2.5)<1.35&&Math.abs(o.position.x-car.position.x)<1.25&&inv<=0){
-score=Math.max(0,score-50);combo=1;inv=1.2;shake=0.7;playWarning();flash();
-spawnFloat('‎−۵۰',true);showPop('💥 برخورد!');syncHUD();
-}}
-score+=dt*8;syncHUD();
-if(shake>0)shake-=dt;
-var shx=shake>0?(Math.random()-0.5)*shake:0;
-camera.position.x=car.position.x*0.45+shx;camera.position.y=5.2;camera.position.z=9.0;
-camera.lookAt(car.position.x*0.6,1.2,-12);
-camera.fov=68+(speed-32)*0.35;camera.updateProjectionMatrix();
-renderer.render(scene,camera);
+wheels.forEach(function(w){w.rotation.x+=speed*dt*2.2;});
+dashes.forEach(function(d){d.position.z+=speed*dt;if(d.position.z>9)d.position.z=-75;});
+coins.forEach(function(c){
+c.rotation.y+=dt*3;c.position.z+=speed*dt;
+if(c.position.z>9){c.position.z=-70-Math.random()*10;c.position.x=LANES[Math.floor(Math.random()*3)];}
+if(Math.abs(c.position.z-2)<1.2&&Math.abs(c.position.x-car.position.x)<1.2){
+c.position.z=-70-Math.random()*10;c.position.x=LANES[Math.floor(Math.random()*3)];
+score+=100+combo*10;coinCount++;combo++;
+floatPlus('+'+(100+(combo-1)*10));if(combo>=3)pop('کمبو ×'+combo);
+speakCoin();try{if(navigator.vibrate)navigator.vibrate(20)}catch(e){}
+}});
+obstacles.forEach(function(o){
+o.position.z+=speed*dt;
+if(o.position.z>9){o.position.z=-75-Math.random()*10;o.position.x=LANES[Math.floor(Math.random()*3)];}
+if(Math.abs(o.position.z-2)<1.3&&Math.abs(o.position.x-car.position.x)<1.2){
+o.position.z=-75-Math.random()*10;o.position.x=LANES[Math.floor(Math.random()*3)];
+score=Math.max(0,score-200);combo=0;pop('💥');
+try{if(navigator.vibrate)navigator.vibrate(120)}catch(e){}
+}});
+timeLeft-=dt;syncHUD();
+if(timeLeft<=0){endGame();return;}
+requestAnimationFrame(loop);
 }
-function flash(){var f=document.createElement('div');f.style.cssText='position:fixed;inset:0;background:rgba(255,61,46,.35);pointer-events:none;z-index:40';document.body.appendChild(f);setTimeout(function(){f.remove()},120)}
-function endGame(manual){if(!running)return;running=false;clearInterval(timer);try{if('speechSynthesis' in window)window.speechSynthesis.cancel();}catch(e){}var s=Math.floor(score+coins*10);if(me){me.games=(me.games||0)+1;me.coins=(me.coins||0)+coins;if(s>(me.best||0))me.best=s;me.total=(me.total||0)+s;for(var i=0;i<units.length;i++){if(units[i].n===me.unit)units[i].s+=s;}try{localStorage.setItem('yazd_me',JSON.stringify(me))}catch(e){}refresh();}document.getElementById('resScore').textContent=fa(s);document.getElementById('resCoin').textContent=fa(coins);if(me)document.getElementById('resDesc').textContent=me.name+' از واحد '+me.unit+' • '+s+' امتیاز • سطح: '+levelFor(me.total);document.getElementById('resEmoji').textContent=s>2000?'🏆':s>1000?'🥈':'🛞';document.getElementById('resultModal').classList.remove('hidden');confetti();haptic('heavy');show('home')}
-function closeResult(){document.getElementById('resultModal').classList.add('hidden')}
-function confetti(){var c=document.getElementById('confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;var p=[];for(var i=0;i<120;i++)p.push({x:Math.random()*c.width,y:-20-Math.random()*200,v:2+Math.random()*4,s:4+Math.random()*6,c:['#FFC400','#FF3D2E','#22E584','#4DA3FF','#fff'][i%5],r:Math.random()*6});var n=0;(function a(){x.clearRect(0,0,c.width,c.height);p.forEach(function(o){o.y+=o.v;o.r+=.1;x.save();x.translate(o.x,o.y);x.rotate(o.r);x.fillStyle=o.c;x.fillRect(0,0,o.s,o.s*0.6);x.restore()});if(n++<120)requestAnimationFrame(a);else x.clearRect(0,0,c.width,c.height)})()}
-document.addEventListener('visibilitychange',function(){try{if(document.hidden&&running)endGame(true)}catch(e){}});
-var splashDone=false;
-function hideSplash(){if(splashDone)return;splashDone=true;var s=document.getElementById('splash');if(s){s.style.opacity='0';setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},650)}try{renderBoards()}catch(e){}if(!me){try{document.getElementById('loginModal').classList.remove('hidden')}catch(e){}}else{try{refresh()}catch(e){}}}
-document.addEventListener('DOMContentLoaded',function(){renderBoards();try{initSlideshow();}catch(e){}setTimeout(hideSplash,1300);});
-setTimeout(hideSplash,3500);
+function endGame(){
+if(running)running=false;
+var fs=Math.floor(score);
+if(me){if(fs>((me&&me.best)||0))me.best=fs;try{localStorage.setItem('yazd_me',JSON.stringify(me))}catch(e){}}
+document.getElementById('game-screen').style.display='none';
+document.getElementById('home').style.display='block';
+var r=document.getElementById('result');r.style.display='block';
+r.innerHTML='🏁 مسابقه تمام شد!<br>امتیاز: <b>'+fs+'</b> | سکه: <b>'+coinCount+'</b> | واحد: <b>'+(me?me.unit:'')+'</b>';
+renderLeague();
+window.scrollTo(0,0);
+}
+function renderLeague(){
+var arr=units.slice().sort(function(a,b){return b.p-a.p;});
+var h='<table><tr><th>واحد</th><th>امتیاز</th></tr>';
+arr.forEach(function(u){
+var cls=(me&&normalizeUnitName(me.unit)===u.n)?' class="me"':'';
+var sc=u.p+(((me&&normalizeUnitName(me.unit)===u.n)&&(me.best||0)>0)?'<br><small>+'+me.best+' شما</small>':'');
+h+='<tr'+cls+'><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:'+u.c+'"></span> '+u.n+'</td><td>'+sc+'</td></tr>';
+});
+h+='</table>';document.getElementById('league').innerHTML=h;
+}
+window.addEventListener('resize',updateThreeSize);
+document.addEventListener('visibilitychange',function(){
+var a=document.getElementById('bgm');
+if(document.hidden){try{a.pause()}catch(e){}}
+else{if(musicOn&&running){try{a.play().catch(function(){})}catch(e){}}}
+});
+window.addEventListener('keydown',function(e){if(document.getElementById('game-screen').style.display==='none')return;if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1);});
+(function(){
+if(me){document.getElementById('inName').value=me.name||'';document.getElementById('inUnit').value=me.unit||'تولید';}
+renderLeague();
+var si=1;setInterval(function(){si++;if(si>30)si=1;var im=document.getElementById('slideImg');im.src='slide'+si+'.jpg';},3000);
+var tc=null,sx=0;
+var c=document.getElementById('three-container');
+c.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+c.addEventListener('touchend',function(e){
+var dx=e.changedTouches[0].clientX-sx;
+if(Math.abs(dx)>30)move(dx>0?1:-1);
+},{passive:true});
+})();
 </script>
 </body>
 </html>
