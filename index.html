@@ -2,198 +2,331 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>آرکید یزدتایر | ۵ بازی رکوردی</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>پیست یزدتایر پرو | لیگ کارکنان</title>
+<script src="https://tapi.bale.ai/miniapp.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;font-family:Tahoma,sans-serif;background:#07090e;color:#fff;min-height:100vh;padding-bottom:30px}
-header{position:sticky;top:0;z-index:10;background:#0b0e14ee;border-bottom:1px solid #ffffff22;padding:11px 14px;display:flex;align-items:center;gap:10px}
-.logo{width:40px;height:40px;border-radius:50%;background:#1a1a1a;border:3px solid #2b2f3a;display:grid;place-items:center;font-size:20px;box-shadow:0 0 0 2px #ffc40066}
-main{max-width:480px;margin:auto;padding:12px}
-.card{background:#ffffff0d;border:1px solid #ffffff1e;border-radius:18px;padding:14px;margin-bottom:11px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.gcard{background:#0008;border:1px solid #ffffff22;border-radius:16px;padding:11px;text-align:center}
-.gcard b{font-size:13px;display:block;margin:5px 0 2px}
-.gcard span{font-size:11px;color:#aab4c5;display:block;min-height:30px;line-height:1.7}
-.gcard .best{font-size:11px;color:#ffc400;margin:4px 0}
-.btn{width:100%;border:0;border-radius:13px;padding:12px;font-family:inherit;font-weight:900;font-size:14px;cursor:pointer}
-.btn-gold{background:linear-gradient(135deg,#ffc400,#ff8a00);color:#14100a}
-.btn-ghost{background:#ffffff14;color:#fff;border:1px solid #ffffff2a;margin-top:7px;font-size:13px}
-#cv{width:100%;height:480px;background:#0a0d13;border:1px solid #ffc40066;border-radius:16px;touch-action:none;display:block}
-.hud{display:flex;gap:7px;margin:9px 0}
-.hud div{flex:1;background:#141927;border:1px solid #ffffff1e;border-radius:11px;padding:7px;text-align:center;font-size:11px}
-.hud b{display:block;font-size:16px;color:#ffc400;margin-top:2px}
-.ctl{margin-top:9px}
-.ctl button{font-family:inherit}
-#actBtn{width:100%;padding:15px;border-radius:14px;border:0;background:linear-gradient(135deg,#ffc400,#ff8a00);font-weight:900;font-size:16px}
-#holdBtn{width:100%;padding:18px;border-radius:14px;border:2px solid #22e584;background:#0e2118;color:#fff;font-weight:900;font-size:16px;touch-action:none;user-select:none}
-.dpad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-width:230px;margin:auto}
-.dpad button{padding:14px;border-radius:13px;border:1px solid #ffffff2a;background:#232c42;color:#fff;font-size:19px}
-.lr{display:flex;gap:9px}.lr button{flex:1;padding:16px;border-radius:14px;border:1px solid #ffffff2a;background:#232c42;color:#fff;font-size:24px;touch-action:none}
-.pads{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.pads button{padding:22px;border-radius:15px;border:2px solid #ffffff2a;background:#1a2030;color:#fff;font-size:26px;font-weight:900;transition:.15s}
-.pads button.lit{background:#ffc400;color:#111;box-shadow:0 0 22px #ffc400;transform:scale(1.05)}
-.hidden{display:none!important}
+:root{--bg:#07090e;--card:rgba(255,255,255,.07);--line:rgba(255,255,255,.12);--gold:#ffc400;--gold2:#ff8a00;--green:#22e584;--blue:#4da3ff;--muted:#9aa3b2;--red:#ff3d5e}
+body{margin:0;font-family:Vazirmatn,Tahoma,sans-serif;background:radial-gradient(1100px 600px at 50% -10%,#26314a,#07090e 60%) fixed;color:#fff;min-height:100vh;padding-bottom:96px}
+.bg-road{position:fixed;inset:0;pointer-events:none;opacity:.5;background:repeating-linear-gradient(-45deg,transparent 0 26px,rgba(255,255,255,.025) 26px 28px)}
+header{position:sticky;top:0;z-index:20;background:rgba(7,9,14,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px 15px;display:flex;align-items:center;gap:12px}
+.logo-tire{width:44px;height:44px;border-radius:50%;background:conic-gradient(#1a1a1a 0 18%,#5a5a5a 18% 36%,#1a1a1a 36% 54%,#5a5a5a 54% 72%,#1a1a1a 72%);border:3px solid #2b2f3a;display:grid;place-items:center;font-size:22px;box-shadow:0 0 0 2px #ffc40055,0 6px 18px #000;animation:spin 7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.h-title{flex:1}.h-title b{display:block;font-size:15px}.h-title span{font-size:11px;color:var(--muted)}
+.pill{font-size:11px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#14100a;font-weight:900;padding:7px 12px;border-radius:99px;box-shadow:0 4px 16px #ffc40044}
+main{max-width:530px;margin:auto;padding:14px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:22px;padding:15px;margin-bottom:12px;backdrop-filter:blur(12px);box-shadow:0 10px 30px #0006}
+.hero{border-color:#ffc40066;background:linear-gradient(135deg,#161d2e,#0e1420 45%,#2e2106);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,#ffffff18 50%,transparent 60%);animation:shine 3.8s infinite}
+@keyframes shine{0%{transform:translateX(60%)}100%{transform:translateX(-60%)}}
+.hero h2{margin:8px 0;font-size:20px}
+.hero p{margin:0;color:#d6dce6;font-size:13px;line-height:2}
+.badge{display:inline-block;background:#22e5841e;color:var(--green);border:1px solid #22e58455;padding:4px 11px;border-radius:99px;font-size:11px;margin:2px}
+.badge.blue{background:#4da3ff1e;color:#8fc2ff;border-color:#4da3ff55}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.mode{border-radius:18px;padding:13px;border:1px solid var(--line);background:#0006;position:relative;overflow:hidden}
+.mode.gold{border-color:#ffc40077;background:linear-gradient(135deg,#2a2108,#14161f)}
+.mode.blue{border-color:#4da3ff66;background:linear-gradient(135deg,#0d1c33,#14161f)}
+.mode b{font-size:13px;display:block;margin:6px 0 4px}
+.mode span{font-size:11px;color:#c6cfdb;line-height:1.9;display:block;min-height:42px}
+.mode .ico{font-size:30px}
+.btn{width:100%;border:0;border-radius:15px;padding:13px;font-family:inherit;font-weight:900;font-size:14px;cursor:pointer;transition:.2s}
+.btn:active{transform:scale(.98)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#14100a;box-shadow:0 6px 20px #ffc40044}
+.btn-blue{background:linear-gradient(135deg,#5eb2ff,#2456ff);color:#fff;box-shadow:0 6px 20px #4da3ff44;margin-top:8px}
+.btn-ghost{background:#ffffff0d;color:#fff;border:1px solid var(--line);margin-top:8px;font-size:13px}
+.row{display:flex;gap:8px}.row>div{flex:1}
+.stat{background:#0006;border:1px solid var(--line);border-radius:15px;padding:10px;text-align:center}
+.stat b{font-size:17px;color:var(--gold);display:block}.stat.blue b{color:#8fc2ff}
+.stat span{font-size:11px;color:var(--muted)}
+.small{font-size:12px;color:var(--muted);line-height:1.9}
+.unit{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px dashed #ffffff1e}.unit:last-child{border:0}
+.dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.bar{flex:1;height:8px;background:#ffffff15;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;border-radius:99px}
+.u-name{font-size:12px;min-width:105px}.u-score{font-size:12px;color:var(--gold);min-width:52px;text-align:left}
+.tabs{display:flex;background:#0006;border:1px solid var(--line);border-radius:13px;padding:4px;margin-bottom:10px}
+.tabs button{flex:1;border:0;background:transparent;color:var(--muted);font-family:inherit;font-weight:700;padding:9px;border-radius:9px}
+.tabs button.on{background:var(--gold);color:#111}
+.p-row{display:flex;align-items:center;gap:9px;padding:8px;border-radius:13px;background:#ffffff07;border:1px solid #ffffff0c;margin-bottom:7px}
+.rank{width:28px;height:28px;border-radius:9px;background:#1e2534;display:grid;place-items:center;font-weight:800}
+.rank.first{background:linear-gradient(135deg,#ffd700,#ff8a00);color:#111}
+.avatar{width:35px;height:35px;border-radius:50%;background:linear-gradient(135deg,#3a435c,#171c28);display:grid;place-items:center;font-weight:800}
+#three-container{width:100%;height:480px;border-radius:20px;background:#0a0d13;border:1px solid #ffc40055;overflow:hidden;position:relative;touch-action:none;box-shadow:0 12px 40px #000,inset 0 0 60px #000}
+#three-container canvas{display:block;width:100%!important;height:480px!important}
+#three-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:#0a0d13;z-index:20;color:var(--gold);font-size:13px;text-align:center;padding:18px}
+#time-bar-wrap{position:absolute;top:0;right:0;left:0;height:6px;background:#ffffff22;z-index:12}
+#time-bar{height:100%;width:100%;background:linear-gradient(90deg,#22e584,#ffc400,#ff8a00)}
+#time-bar.danger{background:#ff3d2e;animation:blink .6s infinite alternate}
+@keyframes blink{to{opacity:.5}}
+#hud-top{position:absolute;top:14px;right:8px;left:8px;display:flex;gap:6px;z-index:11;pointer-events:none}
+.hud-chip{flex:1;background:rgba(5,7,11,.78);border:1px solid #ffc40077;border-radius:13px;padding:6px 3px;text-align:center;backdrop-filter:blur(8px)}
+.hud-chip.big{flex:1.35}.hud-chip.big b{font-size:23px}.hud-chip b{display:block;font-size:19px;color:var(--gold)}.hud-chip span{font-size:10px;color:#cfd7e3}
+#hud-bottom{position:absolute;bottom:10px;right:10px;left:10px;display:flex;justify-content:space-between;align-items:center;z-index:11;pointer-events:none}
+#comboTag{background:#ffc400e8;color:#111;font-weight:900;border-radius:99px;padding:6px 13px;font-size:12px}
+#livesTag{background:#000b;border:1px solid #ffffff33;border-radius:99px;padding:6px 12px;font-size:13px}
+#speedTag{background:#000b;border:1px solid #ffffff33;border-radius:99px;padding:6px 11px;font-size:11px}#speedTag b{color:var(--gold)}
+#comboPop{position:absolute;top:76px;left:50%;transform:translateX(-50%);font-size:21px;font-weight:900;color:var(--gold);text-shadow:0 2px 14px #000;opacity:0;transition:.3s;z-index:13;white-space:nowrap}
+.float-plus{position:absolute;top:42%;font-weight:900;font-size:20px;color:#ffe45c;text-shadow:0 2px 10px #000;z-index:13;pointer-events:none;opacity:0;transform:translateY(10px) scale(.8);transition:all .8s}
+.float-plus.show{opacity:1;transform:translateY(-44px) scale(1.1)}.float-minus{color:#ff6b5e!important}
+.hud{display:flex;gap:7px;margin:10px 0}.hud div{flex:1;background:#141927;border:1px solid var(--line);border-radius:13px;padding:8px;text-align:center;font-size:11px}.hud b{display:block;font-size:16px;color:var(--gold);margin-top:3px}
+.controls{display:flex;gap:9px;margin-top:9px}.controls button{flex:1;padding:15px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(180deg,#232c42,#151b2a);color:#fff;font-size:24px;font-family:inherit;box-shadow:0 6px 18px #000}
+#snake-wrap{width:100%;height:480px;border-radius:20px;background:#0d1210;border:1px solid #22e58466;overflow:hidden;position:relative;touch-action:none;display:none;box-shadow:0 12px 40px #000}
+#snakeCanvas{display:block;width:100%!important;height:480px!important}
+#snakeControls{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-width:240px;margin:9px auto}
+#snakeControls button{padding:14px;border-radius:13px;border:1px solid var(--line);background:linear-gradient(180deg,#232c42,#151b2a);color:#fff;font-size:19px;font-family:inherit}
+nav{position:fixed;bottom:10px;right:12px;left:12px;z-index:30;background:rgba(11,13,18,.92);border:1px solid var(--line);display:flex;padding:7px;border-radius:20px;backdrop-filter:blur(14px);box-shadow:0 10px 30px #000}
+nav button{flex:1;border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px;border-radius:14px}
+nav button.on{color:var(--gold);background:#ffc40014}nav i{font-size:20px;font-style:normal}
 .modal{position:fixed;inset:0;z-index:50;background:#000c;display:flex;align-items:center;justify-content:center;padding:18px}
-.box{width:100%;max-width:380px;background:#141927;border:1px solid #ffc40066;border-radius:18px;padding:18px;text-align:center}
-.small{font-size:12px;color:#9aa3b2;line-height:1.9}
+.box{width:100%;max-width:420px;background:#141927;border:1px solid #ffc40066;border-radius:22px;padding:20px;text-align:center;box-shadow:0 20px 60px #000}
+.box input,.box select{width:100%;margin:8px 0;padding:12px;border-radius:13px;border:1px solid var(--line);background:#0e1320;color:#fff;font-family:inherit;font-size:14px}
+.slide-arrow{border:1px solid #ffffff66;background:#05070bd9;color:#fff;border-radius:50%;width:34px;height:34px;font-size:15px}
+.slide-dot{width:7px;height:7px;border-radius:50%;background:#ffffff77;border:0;padding:0}
+.slide-dot.active{width:19px;border-radius:8px;background:#ffc400}
+.ad-edit{border:1px solid #ffffff22;background:#ffffff08;border-radius:14px;padding:10px;margin:9px 0}
+.ad-edit input,.ad-edit select{width:100%;margin:5px 0;padding:10px;border-radius:10px;border:1px solid #ffffff22;background:#0e1320;color:#fff;font-family:inherit}
+.ad-edit .ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.ad-preview{height:78px;border-radius:9px;background:#101521;display:grid;place-items:center;color:#ffc400;margin:6px 0;overflow:hidden}
+.ad-preview img{max-width:100%;max-height:100%;object-fit:contain}
+#splash{position:fixed;inset:0;z-index:100;background:radial-gradient(600px 400px at 50% 30%,#1d253a,#07090e);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .5s}
+.tire-big{font-size:88px;animation:spin 1.4s linear infinite;filter:drop-shadow(0 0 24px #ffc40066)}
+.hidden{display:none!important}#confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
 </style>
 </head>
 <body>
-<header><div class="logo">🛞</div><div style="flex:1"><b style="font-size:14px">آرکید یزدتایر</b><div class="small">۵ بازی رکوردی • تست مجموعه</div></div><div style="font-size:11px;background:#ffc400;color:#111;font-weight:900;padding:6px 11px;border-radius:99px">فصل ۱</div></header>
+<div class="bg-road"></div><canvas id="confetti"></canvas>
+<div id="splash"><div class="tire-big">🛞</div><b style="font-size:18px">پیست یزدتایر پرو</b><span class="small">نسخه حرفه‌ای لیگ کارکنان • در حال آماده‌سازی پیست...</span></div>
+<header><div class="logo-tire">🛞</div><div class="h-title"><b>پیست یزدتایر پرو</b><span>جام واحدها • فصل اول • مجتمع یزدتایر</span></div><div class="pill">فصل ۱</div></header>
 <main>
-<div id="menu">
-<div class="card" style="text-align:center;border-color:#ffc40066"><b>🏁 مجموعه رکوردی یزدتایر</b><div class="small">هر بازی رکورد جدا دارد. مجموع فصل = جمع بهترین‌ها</div><div class="small" id="totalLine">مجموع فصل: ۰</div></div>
-<div class="grid">
-<div class="gcard"><div style="font-size:30px">🏗</div><b>برج لاستیک</b><span>تپ دقیق، برج بالاتر، کمبو Perfect</span><div class="best" id="best-tower">رکورد: ۰</div><button class="btn btn-gold" onclick="openGame('tower')">بازی</button></div>
-<div class="gcard"><div style="font-size:30px">🔧</div><b>پیت‌استاپ</b><span>ترتیب پیچ‌ها را تکرار کن</span><div class="best" id="best-pit">رکورد: ۰</div><button class="btn btn-gold" onclick="openGame('pit')">بازی</button></div>
-<div class="gcard"><div style="font-size:30px">🐍</div><b>مار انبار</b><span>لوگو بخور، به قفسه نزن</span><div class="best" id="best-snake">رکورد: ۰</div><button class="btn btn-gold" onclick="openGame('snake')">بازی</button></div>
-<div class="gcard"><div style="font-size:30px">🎈</div><b>فشار باد</b><span>عقربه را سبز نگه دار</span><div class="best" id="best-pressure">رکورد: ۰</div><button class="btn btn-gold" onclick="openGame('pressure')">بازی</button></div>
-<div class="gcard" style="grid-column:1/-1"><div style="font-size:30px">🌀</div><b>دریفت یزد</b><span>حلقه دریفت، سکه و نزدیک‌شدن به دیوار = امتیاز بیش‌تر • ۳ جان</span><div class="best" id="best-drift">رکورد: ۰</div><button class="btn btn-gold" onclick="openGame('drift')">بازی</button></div>
+<div id="scr-home">
+<div class="card" style="text-align:center;border-color:#ffc40055"><div style="font-size:40px">🏁 🛞 🏁</div><b>لیگ کارکنان یزدتایر</b><div class="small">دو حالت مسابقه • رکوردت را جاودانه کن</div><div style="margin-top:6px"><span class="badge">🏆 جدول زنده واحدها</span><span class="badge blue">🐍 مار انبار اضافه شد</span></div></div>
+<div class="card" style="padding:10px;overflow:hidden"><div style="height:198px;border-radius:15px;overflow:hidden;position:relative;background:#101521;display:grid;place-items:center"><img id="slideImage" src="slide1.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" alt="یزدتایر"><div id="slideFallback" style="position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:20px;background:linear-gradient(135deg,#182337,#44300b)"><div><div style="font-size:44px">🏁 🛞</div><b id="slideFallbackTitle">یزدتایر؛ قدرت حرکت</b><div class="small">تصاویر slide1.jpg تا slide12.jpg را کنار فایل قرار بده</div></div></div><div style="position:absolute;bottom:9px;right:12px;left:12px;display:flex;align-items:center;justify-content:space-between;z-index:2"><button class="slide-arrow" onclick="changeSlide(-1)">❯</button><div id="slideDots" style="display:flex;gap:5px;justify-content:center;flex:1"></div><button class="slide-arrow" onclick="changeSlide(1)">❮</button></div></div></div>
+<div class="card hero"><span class="badge">🔥 هر سه حالت امروز باز است</span><h2>راننده، مسیرت را انتخاب کن</h2><p>شیفت ۶۰ ثانیه‌ای برای جمع لوگو و امتیاز، یا جاده بی‌پایان رکوردی با ۳ جان برای ثبت بیش‌ترین مسافت، یا مار انبار برای رکورد طول و امتیاز. سرعت در حالت رکوردی مدام بیش‌تر می‌شود.</p><div class="modes"><div class="mode gold"><div class="ico">🏁</div><b>شیفت ۶۰ ثانیه‌ای</b><span>۶۰ ثانیه فرصت، کمبو تا ×۵، مناسب رکورد امتیازی</span><button class="btn btn-gold" onclick="startGame('shift')">شروع شیفت</button></div><div class="mode blue"><div class="ico">♾️</div><b>جاده رکورد</b><span>بی‌پایان با ۳ جان ❤️ • هر برخورد یک جان کم می‌کند</span><button class="btn btn-blue" onclick="startGame('record')">شروع رکورد</button></div><div class="mode" style="grid-column:1/-1;border-color:#22e58477;background:linear-gradient(135deg,#0d2818,#14161f)"><div class="ico">🐍</div><b>مار انبار</b><span>لوگوی زرد بخور و بزرگ شو • به قفسه و خودت نزن • هر ۵ لوگو سرعت بیش‌تر</span><button class="btn btn-gold" onclick="startGame('snake')">شروع مار انبار</button></div></div><button class="btn btn-ghost" onclick="show('league')">مشاهده جدول لیگ واحدها</button><button class="btn btn-ghost" id="musicBtn" onclick="toggleMusic()">🔊 موسیقی: روشن</button><button class="btn btn-ghost" id="voiceBtnHome" onclick="toggleVoice()">🔊 شمارش صوتی سکه: روشن</button><button class="btn btn-ghost" onclick="openAdmin()">⚙️ پنل مدیریت تبلیغات</button></div>
+<div class="card"><div class="row"><div class="stat"><b id="myBest">۰</b><span>بهترین شیفت</span></div><div class="stat blue"><b id="myRecord">۰</b><span>رکورد مسافت</span></div><div class="stat"><b id="myTotal">۰</b><span>مجموع فصل</span></div></div><div style="height:8px"></div><div class="row"><div class="stat"><b id="mySnake">۰</b><span>رکورد مار</span></div><div class="stat blue"><b id="mySnakeLen">۰</b><span>طول مار</span></div></div><div style="height:9px"></div><div class="small" id="meLine">واحد: —</div><div class="small" id="myLevelLine">سطح: تازه‌کار</div></div>
+<div class="card"><b>🏆 لیگ واحدها</b><div id="unitsHome"></div></div>
+<div class="card"><b>🥇 سه نفر برتر</b><div id="top3"></div></div>
 </div>
-<div class="card small">نکته تست: رکوردها در حافظه گوشی ذخیره می‌شود. با دکمه بازگشت به منو برگرد. کنترل‌ها: لمس، نگه‌داشتن، سوایپ و کیبورد.</div>
+<div id="scr-game" class="hidden">
+<div id="three-container"><div id="time-bar-wrap"><div id="time-bar"></div></div>
+<div id="hud-top"><div class="hud-chip big"><span id="oScoreLabel">⭐ امتیاز زنده</span><b id="oScore">۰</b></div><div class="hud-chip"><span>🛞 لوگو</span><b id="oCoin">۰</b></div><div class="hud-chip"><span id="oTimeLabel">⏱ زمان</span><b id="oTime">۶۰</b></div></div>
+<div id="comboPop"></div>
+<div id="hud-bottom"><div id="comboTag">🔥 ×۱</div><div id="livesTag">❤️❤️❤️</div><div id="speedTag"><b>۰</b> km/h</div></div>
+<div id="three-loading">🛞 آماده‌سازی پیست حرفه‌ای...<span class="small">گرافیک بالا در حال بارگذاری است</span></div></div>
+<div id="snake-wrap"><canvas id="snakeCanvas" width="360" height="480"></canvas></div>
+<div class="hud"><div>🏁 حالت<b id="hMode">شیفت</b></div><div>📏 مسافت<b id="hDist">۰</b></div><div>🛞 لوگو<b id="hCoin">۰</b></div><div>🔥 کمبو<b id="hCombo">×۱</b></div></div>
+<div class="controls" id="shiftControls"><button onclick="move(-1)">◀</button><button onclick="move(1)">▶</button></div>
+<div id="snakeControls" class="hidden"><span></span><button onclick="snakeDir(0,-1)">▲</button><span></span><button onclick="snakeDir(-1,0)">◀</button><button onclick="snakeDir(0,1)">▼</button><button onclick="snakeDir(1,0)">▶</button></div>
+<button class="btn btn-ghost" onclick="endGame(true)">🏳️ پایان مسابقه</button>
 </div>
-<div id="stage" class="hidden">
-<div class="card">
-<h3 id="gTitle" style="margin:0 0 4px">بازی</h3>
-<div class="small" id="gDesc"></div>
-<div class="hud"><div>⭐ امتیاز<b id="hScore">۰</b></div><div>🏆 رکورد<b id="hBest">۰</b></div><div>📊 وضعیت<b id="hInfo">آماده</b></div></div>
-<canvas id="cv" width="360" height="480"></canvas>
-<div id="ctl-tower" class="ctl hidden"><button id="actBtn">بذار! 🛞</button></div>
-<div id="ctl-snake" class="ctl hidden"><div class="dpad"><span></span><button onclick="snakeDir(0,-1)">▲</button><span></span><button onclick="snakeDir(-1,0)">◀</button><button onclick="snakeDir(0,1)">▼</button><button onclick="snakeDir(1,0)">▶</button></div></div>
-<div id="ctl-pressure" class="ctl hidden"><button id="holdBtn">نگه دار برای باد 🎈</button><div class="small" style="text-align:center">انگشت را نگه دار تا باد بالا برود، ول کن تا پایین بیاید</div></div>
-<div id="ctl-drift" class="ctl hidden"><div class="lr"><button id="leftBtn">◀</button><button id="rightBtn">▶</button></div></div>
-<div id="ctl-pit" class="ctl hidden"><div class="pads"><button id="pad0" onclick="pitTap(0)">۱ 🔩</button><button id="pad1" onclick="pitTap(1)">۲ 🔩</button><button id="pad2" onclick="pitTap(2)">۳ 🔩</button><button id="pad3" onclick="pitTap(3)">۴ 🔩</button></div><div class="small" id="pitMsg" style="text-align:center;margin-top:6px">دنبال کن...</div></div>
-<button class="btn btn-ghost" onclick="backToMenu()">بازگشت به منو</button>
-<button class="btn btn-ghost" id="restartBtn" onclick="restartGame()">شروع دوباره 🔁</button>
-</div>
-</div>
+<div id="scr-league" class="hidden"><div class="card"><div class="tabs"><button id="tabInd" class="on" onclick="tab('ind')">نفرات برتر</button><button id="tabUnit" onclick="tab('unit')">واحدها</button></div><div id="leagueInd"></div><div id="leagueUnit" class="hidden"></div></div></div>
+<div id="scr-profile" class="hidden"><div class="card" style="text-align:center"><div class="avatar" style="width:64px;height:64px;font-size:24px;margin:auto" id="pfAvatar">ی</div><h3 id="pfName" style="margin:8px 0 2px">راننده یزدتایر</h3><div class="small" id="pfUnit">واحد تولید</div><div class="row"><div class="stat"><b id="pfGames">۰</b><span>مسابقه</span></div><div class="stat"><b id="pfCoins">۰</b><span>لوگو</span></div><div class="stat"><b id="pfRank">#۰</b><span>رتبه من</span></div></div><div style="height:8px"></div><div class="row"><div class="stat"><b id="pfBest">۰</b><span>بهترین شیفت</span></div><div class="stat blue"><b id="pfDist">۰</b><span>رکورد مسافت</span></div></div><div style="height:8px"></div><div class="row"><div class="stat"><b id="pfSnake">۰</b><span>رکورد مار</span></div><div class="stat blue"><b id="pfSnakeLen">۰</b><span>طول مار</span></div></div><div style="height:9px"></div><button class="btn btn-gold" onclick="sendToBale()">ارسال امتیاز به بله</button><button class="btn btn-ghost" onclick="resetMe()">تغییر نام / واحد</button></div></div>
 </main>
-<div id="resultModal" class="modal hidden"><div class="box"><div style="font-size:48px" id="rEmoji">🏆</div><h2 id="rTitle">تمام شد!</h2><p class="small" id="rDesc"></p><div class="hud"><div>⭐ امتیاز<b id="rScore">۰</b></div><div>🏆 رکورد<b id="rBest">۰</b></div></div><div id="rNew" class="small" style="color:#ffc400;font-weight:900"></div><button class="btn btn-gold" onclick="closeResult()">ادامه</button><button class="btn btn-ghost" onclick="retryFromResult()">تلاش مجدد 🔁</button></div></div>
+<nav><button id="n-home" class="on" onclick="show('home')"><i>🏠</i>خانه</button><button id="n-game" onclick="startGame('shift')"><i>🏁</i>شیفت</button><button id="n-record" onclick="startGame('record')"><i>♾️</i>رکورد</button><button id="n-snake" onclick="startGame('snake')"><i>🐍</i>مار</button><button id="n-league" onclick="show('league')"><i>🏆</i>لیگ</button><button id="n-profile" onclick="show('profile')"><i>👤</i>پروفایل</button></nav>
+<audio id="bgm" loop preload="none" playsinline><source src="music.mp3" type="audio/mpeg"></audio>
+<div id="loginModal" class="modal hidden"><div class="box"><div style="font-size:48px">🛞</div><h3>ورود به پیست یزدتایر</h3><div class="small">نام و واحد را انتخاب کن تا رکوردت ثبت شود</div><input id="inName" placeholder="نام و نام خانوادگی" maxlength="30"><select id="inUnit"><option>تولید</option><option>کنترل کیفیت</option><option>فنی و نگه‌داری</option><option>انبار و لجستیک</option><option>فروش و بازاریابی</option><option>اداری و مالی</option></select><input id="inCode" inputmode="numeric" placeholder="کد پرسنلی"><button class="btn btn-gold" onclick="doLogin()">ورود به پیست 🏁</button></div></div>
+<div id="adminModal" class="modal hidden"><div class="box" style="max-width:520px;max-height:88vh;overflow:auto;text-align:right"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><h3 style="margin:0">⚙️ مدیریت تبلیغات</h3><button class="btn btn-ghost" style="width:auto;margin:0;padding:7px 12px" onclick="closeAdmin()">بستن</button></div><p class="small">تابلوهای کنار پیست را ویرایش کن. روی همین دستگاه ذخیره می‌شود.</p><div id="adsEditor"></div><button class="btn btn-ghost" onclick="addAd()">➕ افزودن تبلیغ جدید</button><button class="btn btn-gold" onclick="saveAds()">💾 ذخیره و اعمال</button><div class="small">رمز نمایشی: ۱۲۳۴</div></div></div>
+<div id="resultModal" class="modal hidden"><div class="box"><div style="font-size:52px" id="resEmoji">🏆</div><h2 id="resTitle">مسابقه تمام شد!</h2><p class="small" id="resDesc"></p><div class="row"><div class="stat"><b id="resScore">۰</b><span>امتیاز</span></div><div class="stat"><b id="resCoin">۰</b><span>لوگو</span></div><div class="stat blue"><b id="resDist">۰</b><span>مسافت (متر)</span></div></div><div style="height:9px"></div><button class="btn btn-gold" onclick="closeResult()">بازگشت به خانه</button><button class="btn btn-ghost" onclick="retryGame()">تلاش مجدد 🔁</button></div></div>
 <script>
-var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
-function fa(n){try{return Number(Math.floor(n)).toLocaleString('fa-IR')}catch(e){return n}}
-function gb(k){return Number(localStorage.getItem('yazd_'+k)||0)}
-function sb(k,v){try{localStorage.setItem('yazd_'+k,v)}catch(e){}}
-var KEYS={tower:'best_tower',pit:'best_pit',snake:'best_snake',pressure:'best_pressure',drift:'best_drift'};
-var current=null,running=false,raf=null,sInt=null,score=0;
-var hScore=document.getElementById('hScore'),hBest=document.getElementById('hBest'),hInfo=document.getElementById('hInfo');
-var audioCtx=null;function tone(f,d){try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();var o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.value=f;g.gain.value=.1;g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+d);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+d)}catch(e){}}
-function updateMenu(){var t=0;['tower','pit','snake','pressure','drift'].forEach(function(k){var v=gb(KEYS[k]);t+=v;var el=document.getElementById('best-'+k);if(el)el.textContent='رکورد: '+fa(v)});document.getElementById('totalLine').textContent='مجموع فصل: '+fa(t)}
-function hideCtls(){['tower','snake','pressure','drift','pit'].forEach(function(k){document.getElementById('ctl-'+k).classList.add('hidden')})}
-function stopAll(){running=false;if(raf)cancelAnimationFrame(raf);raf=null;if(sInt){clearInterval(sInt);sInt=null}}
-var TITLES={tower:['🏗 برج لاستیک','تپ کن تا لاستیک دقیق روی قبلی بنشیند. وسط‌چین = Perfect و کمبو. خطا = پایان.'],pit:['🔧 پیت‌استاپ برق‌آسا','ترتیب روشن‌شدن پیچ‌ها را با دکمه‌های ۱ تا ۴ تکرار کن. هر مرحله یک قدم بیش‌تر و سریع‌تر.'],snake:['🐍 مار انبار','لوگوی زرد بخور و بزرگ شو. به دیوار و خودت نزن. هر ۵ لوگو سرعت بیش‌تر می‌شود.'],pressure:['🎈 فشار باد','دکمه را نگه دار و ول کن تا عقربه در سبز بماند. سبز هر ۱۰ ثانیه کوچک‌تر می‌شود. بیش از ۱ ثانیه بیرون = ترکیدن.'],drift:['🌀 دریفت یزد','با ◀ ▶ شعاع چرخش را تنظیم کن. سکه بگیر، به مانع نزن. نزدیک دیوار = امتیاز دریفت ×۲. ۳ جان داری.']};
-function openGame(id){stopAll();current=id;document.getElementById('menu').classList.add('hidden');document.getElementById('stage').classList.remove('hidden');hideCtls();document.getElementById('ctl-'+id).classList.remove('hidden');document.getElementById('gTitle').textContent=TITLES[id][0];document.getElementById('gDesc').textContent=TITLES[id][1];hBest.textContent=fa(gb(KEYS[id]));hScore.textContent=fa(0);hInfo.textContent='آماده';window.scrollTo(0,0);startNow(id)}
-function backToMenu(){stopAll();document.getElementById('stage').classList.add('hidden');document.getElementById('menu').classList.remove('hidden');updateMenu()}
-function restartGame(){if(current)openGame(current)}
-function closeResult(){document.getElementById('resultModal').classList.add('hidden');backToMenu()}
-function retryFromResult(){document.getElementById('resultModal').classList.add('hidden');if(current)openGame(current)}
-function gameOver(s,extra){if(!running&&score===0&&s===0){}stopAll();var key=KEYS[current],old=gb(key),isNew=s>old;if(isNew)sb(key,s);hScore.textContent=fa(s);hBest.textContent=fa(Math.max(old,s));document.getElementById('rScore').textContent=fa(s);document.getElementById('rBest').textContent=fa(Math.max(old,s));document.getElementById('rTitle').textContent=TITLES[current][0];document.getElementById('rDesc').textContent=extra||'';document.getElementById('rEmoji').textContent=isNew?'🏆':(s>0?'🥈':'🛞');document.getElementById('rNew').textContent=isNew?'✨ رکورد جدید! آفرین!':'';tone(isNew?880:320,.25);setTimeout(function(){document.getElementById('resultModal').classList.remove('hidden')},350);updateMenu()}
-/* ---- TOWER ---- */
-var TW=null;
-function startTower(){TW={blocks:[{x:45,w:270}],cur:{x:0,w:270,dir:1},speed:150,score:0,combo:0,flash:''};score=0;running=true;hInfo.textContent='طبقه ۱';loopTower()}
-function placeTower(){if(!running||current!=='tower')return;var prev=TW.blocks[TW.blocks.length-1],cur=TW.cur;L=Math.max(prev.x,cur.x);R=Math.min(prev.x+prev.w,cur.x+cur.w);nw=R-L;if(nw<=4){gameOver(TW.score,'برج فرو ریخت! طبقه '+fa(TW.score));return}if(Math.abs(cur.x-prev.x)<8){TW.combo++;TW.flash='PERFECT ×'+TW.combo+'!';cur.x=prev.x;nw=prev.w;TW.score+=2+TW.combo;tone(1200,.12)}else{TW.combo=0;TW.score+=1;tone(600,.08)}TW.blocks.push({x:L,w:nw});TW.speed+=9;TW.cur={x:(TW.blocks.length%2?0:360-nw),w:nw,dir:(TW.blocks.length%2?1:-1)};score=TW.score;hScore.textContent=fa(score);hInfo.textContent='طبقه '+fa(score)}
-document.getElementById('actBtn').onclick=placeTower;
-cv.onclick=function(){if(current==='tower')placeTower()};
-function loopTower(){if(!running||current!=='tower')return;var dt=.016;TW.cur.x+=TW.cur.dir*TW.speed*dt;if(TW.cur.x<=0){TW.cur.x=0;TW.cur.dir=1}if(TW.cur.x+TW.cur.w>=360){TW.cur.x=360-TW.cur.w;TW.cur.dir=-1}
-ctx.fillStyle='#0a0d13';ctx.fillRect(0,0,360,480);ctx.fillStyle='#ffffff08';for(var i=0;i<8;i++){ctx.fillRect(0,i*60,360,1)}
-var cam=Math.max(0,TW.blocks.length*22-300);ctx.fillStyle='#ffc400';ctx.font='bold 13px Tahoma';ctx.textAlign='center';ctx.fillText('🏗 ارتفاع: '+fa(TW.score)+' طبقه',180,22);
-for(var b=0;b<TW.blocks.length;b++){var bl=TW.blocks[b],y=440-b*22+cam-((TW.blocks.length*22>300)?(TW.blocks.length*22-300):0);if(y<-30||y>480)continue;ctx.fillStyle=b===0?'#2a2108':'#1a2030';ctx.fillRect(bl.x,y-22,bl.w,20);ctx.fillStyle=b===0?'#ffc400':(bl.w<60?'#ff5c5a':'#ffc400');ctx.fillRect(bl.x,y-22,bl.w,4);ctx.strokeStyle='#ffc40088';ctx.strokeRect(bl.x,y-22,bl.w,20);ctx.fillStyle='#fff';ctx.font='9px Tahoma';if(bl.w>60)ctx.fillText('YAZD',bl.x+bl.w/2,y-8)}
-var cy=440-TW.blocks.length*22+cam-((TW.blocks.length*22>300)?(TW.blocks.length*22-300):0);ctx.fillStyle='#141518';ctx.fillRect(TW.cur.x,cy-22,TW.cur.w,20);ctx.fillStyle='#ffc400';ctx.fillRect(TW.cur.x,cy-22,TW.cur.w,4);ctx.strokeStyle='#fff';ctx.strokeRect(TW.cur.x,cy-22,TW.cur.w,20);
-if(TW.flash){ctx.fillStyle='#ffe45c';ctx.font='bold 20px Tahoma';ctx.fillText(TW.flash,180,80)}
-raf=requestAnimationFrame(loopTower)}
-/* ---- PIT ---- */
-var PIT=null;
-function startPit(){PIT={seq:[],level:0,show:false,idx:0,lock:true};score=0;running=true;nextPitLevel()}
-function nextPitLevel(){PIT.level++;PIT.seq.push(Math.floor(Math.random()*4));PIT.lock=true;hScore.textContent=fa(PIT.level-1);hInfo.textContent='مرحله '+fa(PIT.level)+' • تماشا کن';document.getElementById('pitMsg').textContent='👀 تماشا کن...';drawPit('watch');var i=0,spd=Math.max(300,560-PIT.level*35);sInt=setInterval(function(){if(i>0)unlit(PIT.seq[i-1]);if(i>=PIT.seq.length){clearInterval(sInt);sInt=null;unlit(PIT.seq[PIT.seq.length-1]);PIT.idx=0;PIT.lock=false;hInfo.textContent='نوبت تو!';document.getElementById('pitMsg').textContent='👆 حالا تو بزن!';drawPit('play');PIT.deadline=setTimeout(function(){if(!PIT.lock)failPit('⏰ وقت تمام شد!')},4000+PIT.level*700);return}lit(PIT.seq[i]);tone(400+PIT.seq[i]*150,.15);i++},spd)}
-function lit(n){document.getElementById('pad'+n).classList.add('lit')}
-function unlit(n){try{document.getElementById('pad'+n).classList.remove('lit')}catch(e){}}
-function pitTap(n){if(!running||current!=='pit'||PIT.lock)return;lit(n);setTimeout(function(){unlit(n)},180);if(n===PIT.seq[PIT.idx]){tone(700+PIT.idx*80,.1);PIT.idx++;if(PIT.idx>=PIT.seq.length){PIT.lock=true;clearTimeout(PIT.deadline);score=PIT.level;hScore.textContent=fa(score);document.getElementById('pitMsg').textContent='✅ عالی! مرحله بعد...';setTimeout(nextPitLevel,700)}}else{failPit('❌ پیچ اشتباه! مرحله '+fa(PIT.level))}}
-function failPit(msg){clearTimeout(PIT.deadline);drawPit('fail');gameOver(PIT.level-1>0?PIT.level-1:0,msg)}
-function drawPit(m){ctx.fillStyle='#0a0d13';ctx.fillRect(0,0,360,480);ctx.textAlign='center';ctx.fillStyle='#ffc400';ctx.font='bold 22px Tahoma';ctx.fillText('🔧 پیت‌استاپ',180,60);ctx.fillStyle='#9aa3b2';ctx.font='13px Tahoma';ctx.fillText(m==='watch'?'دنبال کن...':(m==='fail'?'خطا!':'نوبت توست!'),180,90);for(var k=0;k<4;k++){var x=60+(k%2)*140,y=150+Math.floor(k/2)*130;var on=PIT&&!PIT.lock?false:document.getElementById('pad'+k).classList.contains('lit');ctx.fillStyle=on?'#ffc400':'#1a2030';ctx.beginPath();ctx.roundRect?ctx.roundRect(x,y,120,100,14):ctx.rect(x,y,120,100);ctx.fill();ctx.fillStyle=on?'#111':'#fff';ctx.font='bold 20px Tahoma';ctx.fillText('🔩 '+(k+1),x+60,y+58)}ctx.fillStyle='#9aa3b2';ctx.font='12px Tahoma';ctx.fillText('مرحله '+fa(PIT?PIT.level:1)+' • سرعت در حال افزایش',180,440)}
-/* ---- SNAKE ---- */
-var SN=null;
-function startSnake(){SN={sx:[7,6,5],sy:[10,10,10],dx:1,dy:0,food:null,eat:0,speed:150};score=0;running=true;placeFood();hInfo.textContent='طول ۳';if(sInt)clearInterval(sInt);sInt=setInterval(stepSnake,SN.speed)}
-function placeFood(){while(true){var x=Math.floor(Math.random()*15),y=Math.floor(Math.random()*20),ok=true;for(var i=0;i<SN.sx.length;i++)if(SN.sx[i]===x&&SN.sy[i]===y)ok=false;if(ok){SN.food={x:x,y:y};break}}}
-function snakeDir(x,y){if(!SN)return;if(x===-SN.dx&&y===-SN.dy)return;if(x===SN.dx&&y===SN.dy)return;SN.dx=x;SN.dy=y}
-document.addEventListener('keydown',function(e){if(current!=='snake'||!running)return;if(e.key==='ArrowUp')snakeDir(0,-1);if(e.key==='ArrowDown')snakeDir(0,1);if(e.key==='ArrowLeft')snakeDir(-1,0);if(e.key==='ArrowRight')snakeDir(1,0)});
-var _tx=0,_ty=0;cv.addEventListener('touchstart',function(e){try{_tx=e.touches[0].clientX;_ty=e.touches[0].clientY}catch(_){}},{passive:true});
-cv.addEventListener('touchend',function(e){if(current!=='snake'||!running)return;try{var dx=e.changedTouches[0].clientX-_tx,dy=e.changedTouches[0].clientY-_ty;if(Math.abs(dx)>Math.abs(dy)){snakeDir(dx>0?1:-1,0)}else if(Math.abs(dy)>20){snakeDir(0,dy>0?1:-1)}}catch(_){}},{passive:true});
-function stepSnake(){if(!running||current!=='snake')return;var nx=SN.sx[0]+SN.dx,ny=SN.sy[0]+SN.dy;if(nx<0||ny<0||nx>=15||ny>=20){return gameOver(SN.eat,'به دیوار انبار خوردی! لوگو: '+fa(SN.eat))}for(var i=0;i<SN.sx.length;i++)if(SN.sx[i]===nx&&SN.sy[i]===ny)return gameOver(SN.eat,'به خودت برخورد کردی!');
+var threeContainer=document.getElementById('three-container'),threeLoading=document.getElementById('three-loading'),scrGame=document.getElementById('scr-game'),musicBtn=document.getElementById('musicBtn'),loginModal=document.getElementById('loginModal'),resultModal=document.getElementById('resultModal'),inName=document.getElementById('inName'),inUnit=document.getElementById('inUnit'),inCode=document.getElementById('inCode');
+var resScore=document.getElementById('resScore'),resCoin=document.getElementById('resCoin'),resDist=document.getElementById('resDist'),resDesc=document.getElementById('resDesc'),resEmoji=document.getElementById('resEmoji'),resTitle=document.getElementById('resTitle');
+var unitsHome=document.getElementById('unitsHome'),top3=document.getElementById('top3'),leagueInd=document.getElementById('leagueInd'),leagueUnit=document.getElementById('leagueUnit'),tabInd=document.getElementById('tabInd'),tabUnit=document.getElementById('tabUnit');
+var myBest=document.getElementById('myBest'),myRecord=document.getElementById('myRecord'),myTotal=document.getElementById('myTotal'),meLine=document.getElementById('meLine'),myLevelLine=document.getElementById('myLevelLine');
+var pfName=document.getElementById('pfName'),pfUnit=document.getElementById('pfUnit'),pfAvatar=document.getElementById('pfAvatar'),pfGames=document.getElementById('pfGames'),pfCoins=document.getElementById('pfCoins'),pfRank=document.getElementById('pfRank'),pfBest=document.getElementById('pfBest'),pfDist=document.getElementById('pfDist');
+var oScore=document.getElementById('oScore'),oCoin=document.getElementById('oCoin'),oTime=document.getElementById('oTime'),oTimeLabel=document.getElementById('oTimeLabel'),hCoin=document.getElementById('hCoin'),hCombo=document.getElementById('hCombo'),hDist=document.getElementById('hDist'),hMode=document.getElementById('hMode');
+var comboTag=document.getElementById('comboTag'),livesTag=document.getElementById('livesTag'),timeBar=document.getElementById('time-bar'),speedTag=document.getElementById('speedTag'),comboPop=document.getElementById('comboPop');
+var mySnake=document.getElementById('mySnake'),mySnakeLen=document.getElementById('mySnakeLen'),pfSnake=document.getElementById('pfSnake'),pfSnakeLen=document.getElementById('pfSnakeLen');
+var snakeWrap=document.getElementById('snake-wrap'),snakeCanvas=document.getElementById('snakeCanvas'),shiftControls=document.getElementById('shiftControls'),snakeControls=document.getElementById('snakeControls');
+var sctx=snakeCanvas?snakeCanvas.getContext('2d'):null;
+var snakeRunning=false,snakeInterval=null,SN=null,snakeScore=0,snakeEat=0;
+var WA=null;try{WA=window.Bale&&window.Bale.WebApp?window.Bale.WebApp:null;if(WA){WA.ready();try{WA.expand()}catch(e){}}}catch(e){}
+function haptic(m){try{if(WA&&WA.HapticFeedback)WA.HapticFeedback.impactOccurred(m||'medium')}catch(e){}try{if(navigator.vibrate)navigator.vibrate(20)}catch(e){}}
+function fa(n){try{return Number(n).toLocaleString('fa-IR')}catch(e){return n}}
+var bgm=document.getElementById('bgm');if(bgm)bgm.volume=.28;var musicOn=true,musicStarted=false;
+function tryPlayMusic(){if(!musicOn||!bgm)return;if(musicStarted&&!bgm.paused)return;var p=bgm.play();if(p&&p.then)p.then(function(){musicStarted=true}).catch(function(){})}
+document.addEventListener('pointerdown',tryPlayMusic);
+function toggleMusic(){if(!bgm)return;if(bgm.paused){musicOn=true;musicStarted=false;tryPlayMusic();musicBtn.textContent='🔊 موسیقی: روشن'}else{bgm.pause();musicOn=false;musicBtn.textContent='🔇 موسیقی: خاموش'}}
+var audioCtx=null;function tone(f,d,t){try{if(!window.AudioContext&&!window.webkitAudioContext)return;audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();var tm=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=t||'sine';o.frequency.setValueAtTime(f,tm);g.gain.setValueAtTime(.12,tm);g.gain.exponentialRampToValueAtTime(.001,tm+d);o.connect(g);g.connect(audioCtx.destination);o.start(tm);o.stop(tm+d)}catch(e){}}
+function playWarning(){tone(740,.15,'square');setTimeout(function(){tone(520,.18,'square')},170)}
+function playCoinDing(){tone(1250+combo*90,.11,'sine');setTimeout(function(){tone(1700,.08,'sine')},60)}
+var voiceOn=true;
+function faWords(n){n=Math.floor(n);var a=['','یک','دو','سه','چهار','پنج','شش','هفت','هشت','نه','ده','یازده','دوازده','سیزده','چهارده','پانزده','شانزده','هفده','هجده','نوزده'],t=['','','بیست','سی','چهل','پنجاه','شصت','هفتاد','هشتاد','نود'],h=['','صد','دویست','سیصد','چهارصد','پانصد','ششصد','هفتصد','هشتصد','نهصد'];if(n<20)return a[n]||'صفر';if(n<100)return t[Math.floor(n/10)]+(n%10?' و '+a[n%10]:'');if(n<1000)return h[Math.floor(n/100)]+(n%100?' و '+faWords(n%100):'');if(n<10000)return a[Math.floor(n/1000)]+' هزار'+(n%1000?' و '+faWords(n%1000):'');return String(n)}
+function speakCoin(n){try{if(!voiceOn||!('speechSynthesis' in window))return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(faWords(n));u.lang='fa-IR';u.rate=1.15;speechSynthesis.speak(u)}catch(e){}}
+function toggleVoice(){voiceOn=!voiceOn;var txt=voiceOn?'🔊 شمارش صوتی سکه: روشن':'🔇 شمارش صوتی سکه: خاموش';['voiceBtnHome'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=txt});if(!voiceOn)try{speechSynthesis.cancel()}catch(e){}}
+var units=[{n:'تولید',c:'#FFC400',s:12450},{n:'کنترل کیفیت',c:'#22E584',s:11200},{n:'فنی و نگه‌داری',c:'#4DA3FF',s:10800},{n:'انبار و لجستیک',c:'#FF8A00',s:9800},{n:'فروش و بازاریابی',c:'#FF5C7A',s:9400},{n:'اداری و مالی',c:'#B78CFF',s:8600}];
+var bots=[{n:'علی رضایی',u:'تولید',s:2450},{n:'سارا محمدی',u:'کنترل کیفیت',s:2310},{n:'حسین کریمی',u:'فنی و نگه‌داری',s:2180},{n:'مریم احمدی',u:'فروش و بازاریابی',s:2050},{n:'رضا یزدی',u:'انبار و لجستیک',s:1980},{n:'نگار حسینی',u:'اداری و مالی',s:1870},{n:'محمد طالبی',u:'تولید',s:1750},{n:'زهرا دهقانی',u:'کنترل کیفیت',s:1640},{n:'امیر صادقی',u:'فنی و نگه‌داری',s:1520},{n:'فاطمه نادری',u:'فروش و بازاریابی',s:1410}];
+var me=null;try{me=JSON.parse(localStorage.getItem('yazd_me_pro')||localStorage.getItem('yazd_me')||'null')}catch(e){}
+if(me&&me.best!=null&&!me.bestShift){me.bestShift=me.best;me.bestRecordScore=0;me.bestDist=0}
+if(me){if(me.bestSnake==null)me.bestSnake=0;if(me.bestSnakeLen==null)me.bestSnakeLen=0;if(me.bestShift==null)me.bestShift=0;if(me.bestRecordScore==null)me.bestRecordScore=0;if(me.bestDist==null)me.bestDist=0}
+function myRankScore(){if(!me)return 0;return Math.max(me.bestShift||0,me.bestRecordScore||0,me.bestSnake||0)}
+function show(t){if((running||snakeRunning)&&t!=='game')endGame(true);['home','game','league','profile'].forEach(function(k){document.getElementById('scr-'+k).classList.add('hidden')});document.getElementById('scr-'+t).classList.remove('hidden');['home','game','league','profile','record','snake'].forEach(function(k){var b=document.getElementById('n-'+k);if(b)b.classList.remove('on')});var nav=document.getElementById('n-'+t);if(nav)nav.classList.add('on');if(t==='game'){var nid='n-game';if(gameMode==='record')nid='n-record';if(gameMode==='snake')nid='n-snake';var nr=document.getElementById(nid);if(nr)nr.classList.add('on')}window.scrollTo(0,0);if(t==='game'){setTimeout(updateThreeSize,80);setTimeout(updateThreeSize,260)}}
+function tab(t){tabInd.classList.toggle('on',t==='ind');tabUnit.classList.toggle('on',t==='unit');leagueInd.classList.toggle('hidden',t!=='ind');leagueUnit.classList.toggle('hidden',t!=='unit')}
+function levelFor(x){if(x>15000)return'اسطوره یزدتایر';if(x>8000)return'قهرمان آسفالت';if(x>3000)return'راننده شیفت';if(x>800)return'کارآموز پیست';return'تازه‌کار'}
+function renderBoards(){var mx=Math.max.apply(null,units.map(function(x){return x.s}));var html=units.slice().sort(function(a,b){return b.s-a.s}).map(function(u,i){return '<div class="unit"><div class="dot" style="background:'+u.c+'"></div><div class="u-name">'+(i===0?'👑 ':'')+u.n+'</div><div class="bar"><i style="width:'+Math.round(u.s/mx*100)+'%;background:'+u.c+'"></i></div><div class="u-score">'+fa(u.s)+'</div></div>'}).join('');unitsHome.innerHTML=html;leagueUnit.innerHTML=html;var all=bots.slice();if(me)all.push({n:me.name+' (شما)',u:me.unit,s:myRankScore(),me:true});all.sort(function(a,b){return b.s-a.s});var rows=all.map(function(p,i){return '<div class="p-row"><div class="rank '+(i===0?'first':'')+'">'+fa(i+1)+'</div><div class="avatar">'+p.n.trim().charAt(0)+'</div><div style="flex:1"><b style="font-size:12px">'+p.n+'</b><div class="small">'+p.u+'</div></div><b style="color:var(--gold)">'+fa(p.s)+'</b></div>'}).join('');top3.innerHTML=all.slice(0,3).map(function(p,i){return '<div class="p-row"><div class="rank '+(i===0?'first':'')+'">'+fa(i+1)+'</div><div class="avatar">'+p.n.trim().charAt(0)+'</div><div style="flex:1"><b style="font-size:12px">'+p.n+'</b><div class="small">'+p.u+'</div></div><b style="color:var(--gold)">'+fa(p.s)+'</b></div>'}).join('');leagueInd.innerHTML=rows;if(me)pfRank.textContent='#'+fa(all.findIndex(function(x){return x.me})+1)}
+function refresh(){renderBoards();if(!me)return;myBest.textContent=fa(me.bestShift||0);myRecord.textContent=fa(me.bestDist||0)+' م';myTotal.textContent=fa(me.total||0);try{mySnake.textContent=fa(me.bestSnake||0);mySnakeLen.textContent=fa(me.bestSnakeLen||0)+' خانه'}catch(e){}myLevelLine.textContent='سطح: '+levelFor(me.total||0)+' • استریک '+fa(me.streak||1)+' روز';meLine.textContent='واحد: '+me.unit+' • شیفت: '+fa(me.bestShift||0)+' • رکورد امتیاز: '+fa(me.bestRecordScore||0)+' • مار: '+fa(me.bestSnake||0);pfName.textContent=me.name;pfUnit.textContent='واحد '+me.unit+' • کد '+(me.code||'----');pfAvatar.textContent=(me.name||'ی').trim().charAt(0);pfGames.textContent=fa(me.games||0);pfCoins.textContent=fa(me.coins||0);pfBest.textContent=fa(me.bestShift||0);pfDist.textContent=fa(me.bestDist||0)+' م';try{pfSnake.textContent=fa(me.bestSnake||0);pfSnakeLen.textContent=fa(me.bestSnakeLen||0)+' خانه'}catch(e){}}
+function saveMe(){try{localStorage.setItem('yazd_me_pro',JSON.stringify(me));localStorage.setItem('yazd_me',JSON.stringify(me))}catch(e){}}
+function doLogin(){var n=inName.value.trim(),u=inUnit.value,c=inCode.value.trim();if(n.length<2){alert('نام را کامل بنویس');return}me={name:n,unit:u,code:c||'----',bestShift:0,bestRecordScore:0,bestDist:0,bestSnake:0,bestSnakeLen:0,total:0,coins:0,games:0,streak:1};saveMe();loginModal.classList.add('hidden');refresh();musicStarted=false;tryPlayMusic()}
+function resetMe(){try{localStorage.removeItem('yazd_me');localStorage.removeItem('yazd_me_pro')}catch(e){}me=null;loginModal.classList.remove('hidden');show('profile')}
+function sendToBale(){if(!me)return;var p=JSON.stringify({name:me.name,unit:me.unit,code:me.code,bestShift:me.bestShift,bestRecord:me.bestRecordScore,bestDist:me.bestDist,bestSnake:me.bestSnake,bestSnakeLen:me.bestSnakeLen,total:me.total});try{if(WA&&WA.sendData)WA.sendData(p);else alert('نسخه نمایشی: '+p)}catch(e){}}
+var LANES=[-3.1,0,3.1];
+var scene=null,camera=null,renderer=null,car=null,carWing=null,logoTex=null,glowTex=null,wheels=[],roadLines=[],poleMeshes=[],coinMeshes=[],obsMeshes=[],adMeshes=[],buildMeshes=[];
+var running=false,lane=1,targetX=0,score=0,coins=0,combo=1,timeLeft=60,timer=null,inv=0,speed=34,spawnT=0,shake=0,elapsed=0,threeReady=false,animStarted=false,lastT=0;
+var gameMode='shift',dist=0,lives=3;
+var DEFAULT_ADS=[{title:'یزدتایر',subtitle:'قدرت • کیفیت • حرکت',color:'#FFC400',side:-1,titleSize:178,subtitleSize:82},{title:'لیگ کارکنان',subtitle:'قهرمان پیست باش',color:'#22E584',side:1,titleSize:178,subtitleSize:82},{title:'YAZD TIRE',subtitle:'RACE • DRIVE • WIN',color:'#FFFFFF',side:-1,titleSize:178,subtitleSize:82},{title:'جام واحدها',subtitle:'رکوردت را ثبت کن',color:'#FF8A00',side:1,titleSize:178,subtitleSize:82},{title:'حامی مسابقه',subtitle:'جای تبلیغ برند شما',color:'#4DA3FF',side:-1,titleSize:178,subtitleSize:82},{title:'با هم می‌سازیم',subtitle:'افتخار هم‌تیمی بودن',color:'#FF5C7A',side:1,titleSize:178,subtitleSize:82}];
+var TRACK_ADS=loadAds();
+function loadAds(){try{var v=JSON.parse(localStorage.getItem('yazd_track_ads')||'null');if(Array.isArray(v)&&v.length){return v.map(function(x){return {title:x.title,subtitle:x.subtitle,color:x.color,side:x.side,image:x.image,titleSize:Number(x.titleSize)||178,subtitleSize:Number(x.subtitleSize)||82}})}return DEFAULT_ADS.map(function(x){return {title:x.title,subtitle:x.subtitle,color:x.color,side:x.side,titleSize:x.titleSize||178,subtitleSize:x.subtitleSize||82}})}catch(e){return DEFAULT_ADS.map(function(x){return {title:x.title,subtitle:x.subtitle,color:x.color,side:x.side,titleSize:x.titleSize||178,subtitleSize:x.subtitleSize||82}})}}
+function move(d){if(!running||gameMode==='snake')return;lane=Math.max(0,Math.min(2,lane+d));targetX=LANES[lane];haptic('light')}
+function snakeDir(x,y){if(!snakeRunning||!SN)return;if(x===-SN.dx&&y===-SN.dy)return;SN.dx=x;SN.dy=y}
+var _sx=0,_sy=0;document.addEventListener('touchstart',function(e){try{_sx=e.touches[0].clientX;_sy=e.touches[0].clientY}catch(_){}},{passive:true});
+document.addEventListener('touchend',function(e){try{if(scrGame.classList.contains('hidden'))return;var dx=e.changedTouches[0].clientX-_sx,dy=e.changedTouches[0].clientY-_sy;if(gameMode==='snake'&&snakeRunning){if(Math.abs(dx)>Math.abs(dy)){if(dx>28)snakeDir(1,0);else if(dx<-28)snakeDir(-1,0)}else{if(dy>28)snakeDir(0,1);else if(dy<-28)snakeDir(0,-1)}return}if(!running)return;if(dx>28)move(1);else if(dx<-28)move(-1)}catch(_){}},{passive:true});
+document.addEventListener('keydown',function(e){if(gameMode==='snake'&&snakeRunning){if(e.key==='ArrowUp')snakeDir(0,-1);else if(e.key==='ArrowDown')snakeDir(0,1);else if(e.key==='ArrowLeft')snakeDir(-1,0);else if(e.key==='ArrowRight')snakeDir(1,0);return}if(running&&e.key==='ArrowLeft')move(-1);if(running&&e.key==='ArrowRight')move(1)});
+function ensureThree(cb){if(typeof THREE!=='undefined'){cb(true);return}var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';s.onload=function(){cb(typeof THREE!=='undefined')};s.onerror=function(){cb(false)};document.head.appendChild(s)}
+function getGameSize(){return {w:threeContainer.clientWidth||380,h:480}}
+function updateThreeSize(){if(!renderer||!camera)return;var s=getGameSize();camera.aspect=s.w/s.h;camera.updateProjectionMatrix();renderer.setSize(s.w,s.h,false);renderer.domElement.style.width='100%';renderer.domElement.style.height='480px'}
+window.addEventListener('resize',updateThreeSize);
+function makeLogoTexture(){var c=document.createElement('canvas');c.width=c.height=256;var x=c.getContext('2d');x.fillStyle='#fff';x.beginPath();x.arc(128,128,128,0,Math.PI*2);x.fill();x.textAlign='center';x.fillStyle='#0a2a6b';x.font='bold 52px Tahoma';x.fillText('YAZD',128,112);x.fillStyle='#e30613';x.font='bold 46px Tahoma';x.fillText('TIRE',128,168);x.strokeStyle='#ffc400';x.lineWidth=12;x.beginPath();x.arc(128,128,116,0,Math.PI*2);x.stroke();var t=new THREE.CanvasTexture(c);return t}
+function makeGlowTexture(){var c=document.createElement('canvas');c.width=c.height=128;var x=c.getContext('2d');var g=x.createRadialGradient(64,64,4,64,64,64);g.addColorStop(0,'rgba(255,196,0,.9)');g.addColorStop(.4,'rgba(255,150,0,.35)');g.addColorStop(1,'rgba(255,150,0,0)');x.fillStyle=g;x.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)}
+function makeWindowTexture(){var c=document.createElement('canvas');c.width=128;c.height=256;var x=c.getContext('2d');x.fillStyle='#0d1422';x.fillRect(0,0,128,256);for(var j=0;j<12;j++){for(var i=0;i<4;i++){x.fillStyle=Math.random()>.45?'#ffd76a':'#1c2638';x.fillRect(10+i*30,12+j*20,18,10)}}return new THREE.CanvasTexture(c)}
+function createTrackBillboard(ad,z){var c=document.createElement('canvas');c.width=1024;c.height=512;var x=c.getContext('2d');function drawBase(){var gr=x.createLinearGradient(0,0,1024,512);gr.addColorStop(0,'#101521');gr.addColorStop(1,'#2f2308');x.fillStyle=gr;x.fillRect(0,0,1024,512)}var tex=new THREE.CanvasTexture(c);function finish(){x.fillStyle='rgba(0,0,0,.62)';x.fillRect(18,18,988,476);x.strokeStyle=ad.color||'#FFC400';x.lineWidth=22;x.strokeRect(10,10,1004,492);x.fillStyle=ad.color||'#FFC400';x.fillRect(24,390,976,90);var tSize=Math.max(40,Math.min(260,Number(ad.titleSize)||178));var sSize=Math.max(24,Math.min(160,Number(ad.subtitleSize)||82));x.fillStyle='#ffffff';x.font='bold '+tSize+'px Tahoma';x.textAlign='center';x.textBaseline='middle';x.fillText(String(ad.title||'یزدتایر').slice(0,18),512,170);x.fillStyle='#ffffff';x.font='bold '+sSize+'px Tahoma';x.fillText(String(ad.subtitle||'').slice(0,28),512,275);x.fillStyle='#101010';x.font='bold 32px Tahoma';x.fillText('YAZD TIRE • PRO LEAGUE',512,440);tex.needsUpdate=true}
+if(ad.image){var im=new Image();im.onload=function(){try{x.drawImage(im,0,0,1024,512)}catch(e){drawBase()}finish()};im.onerror=function(){drawBase();finish()};im.src=ad.image}else{drawBase();finish()}
+var g=new THREE.Group();var board=new THREE.Mesh(new THREE.PlaneGeometry(9.2,4.6),new THREE.MeshBasicMaterial({map:tex,side:THREE.DoubleSide}));g.add(board);var pm=new THREE.MeshStandardMaterial({color:0x363b45,metalness:.6,roughness:.45});[-2.2,2.2].forEach(function(px){var post=new THREE.Mesh(new THREE.BoxGeometry(.22,3.5,.26),pm);post.position.set(px,-2.35,0);g.add(post)});g.position.set((ad.side||-1)*12.8,4.4,z);scene.add(g);adMeshes.push({mesh:g,texture:tex})}
+function syncHUD(){if(gameMode==='snake'){oScore.textContent=fa(snakeScore);oCoin.textContent=fa(snakeEat);hCoin.textContent=fa(snakeEat);hCombo.textContent='—';var _len=SN?SN.sx.length:0;hDist.textContent=fa(_len)+' خانه';hMode.textContent='مار انبار';oTimeLabel.textContent='🐍 طول';oTime.textContent=fa(_len);try{timeBar.style.width=Math.min(100,_len/30*100)+'%';timeBar.classList.remove('danger')}catch(e){}try{livesTag.style.display='none'}catch(e){}try{comboTag.textContent='🐍 مار انبار'}catch(e){}try{speedTag.innerHTML='<b>'+fa(snakeEat)+'</b> لوگو'}catch(e){}return}
+var s=Math.floor(score);oScore.textContent=fa(s);oCoin.textContent=fa(coins);hCoin.textContent=fa(coins);hCombo.textContent='×'+fa(combo);hDist.textContent=fa(Math.floor(dist))+' م';hMode.textContent=gameMode==='shift'?'شیفت ۶۰ث':'جاده رکورد';
+if(gameMode==='shift'){oTimeLabel.textContent='⏱ زمان';oTime.textContent=fa(Math.max(0,timeLeft));timeBar.style.width=Math.max(0,timeLeft)/60*100+'%';timeBar.classList.toggle('danger',timeLeft<=10);livesTag.style.display='none'}
+else{oTimeLabel.textContent='📏 مسافت';oTime.textContent=fa(Math.floor(dist));timeBar.style.width=Math.min(100,speed/95*100)+'%';timeBar.classList.toggle('danger',lives===1);livesTag.style.display='block';livesTag.textContent='❤️'.repeat(lives)+' • '+fa(Math.floor(dist))+' م'}
+comboTag.textContent='🔥 ×'+fa(combo)+(combo>=4?' • عالی!':combo>=3?' • داغ!':'');speedTag.innerHTML='<b>'+fa(Math.round(120+speed*2.4))+'</b> km/h'}
+function spawnFloat(txt,minus){var d=document.createElement('div');d.className='float-plus'+(minus?' float-minus':'');d.textContent=txt;d.style.left=(36+Math.random()*26)+'%';threeContainer.appendChild(d);requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add('show')})});setTimeout(function(){d.remove()},850)}
+function showPop(t){comboPop.textContent=t;comboPop.style.opacity=1;clearTimeout(comboPop._tm);comboPop._tm=setTimeout(function(){comboPop.style.opacity=0},650)}
+function initThree(){if(threeReady&&renderer){updateThreeSize();return}
+scene=new THREE.Scene();scene.background=new THREE.Color(0x07090e);scene.fog=new THREE.FogExp2(0x07090e,.015);
+camera=new THREE.PerspectiveCamera(70,1,.1,320);camera.position.set(0,5.4,9.4);camera.lookAt(0,1.2,-12);
+renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+if(THREE.sRGBEncoding)renderer.outputEncoding=THREE.sRGBEncoding;
+if(THREE.ACESFilmicToneMapping){renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12}
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+var old=threeContainer.querySelector('canvas');if(old&&old.id!=='confetti')old.remove();threeContainer.appendChild(renderer.domElement);updateThreeSize();
+scene.add(new THREE.AmbientLight(0x8a9bb5,.65));scene.add(new THREE.HemisphereLight(0x3d4f73,0x1a1205,.75));
+var moon=new THREE.DirectionalLight(0xbfd4ff,.85);moon.position.set(-14,24,10);moon.castShadow=true;moon.shadow.mapSize.width=1024;moon.shadow.mapSize.height=1024;moon.shadow.camera.left=-20;moon.shadow.camera.right=20;moon.shadow.camera.top=30;moon.shadow.camera.bottom=-60;scene.add(moon);
+var head=new THREE.SpotLight(0xfff0bd,1.35,70,.55,.45);head.position.set(0,4,7);head.target.position.set(0,0,-22);scene.add(head);scene.add(head.target);
+logoTex=makeLogoTexture();glowTex=makeGlowTexture();
+var ground=new THREE.Mesh(new THREE.PlaneGeometry(420,420),new THREE.MeshStandardMaterial({color:0x141310,roughness:1}));ground.rotation.x=-Math.PI/2;ground.position.y=-.18;ground.receiveShadow=true;scene.add(ground);
+var road=new THREE.Mesh(new THREE.PlaneGeometry(11.6,240),new THREE.MeshStandardMaterial({color:0x1d2230,roughness:.85,metalness:.1}));road.rotation.x=-Math.PI/2;road.position.z=-100;road.receiveShadow=true;scene.add(road);
+var edgeM=new THREE.MeshBasicMaterial({color:0xffc400});[-5.95,5.95].forEach(function(ex){var m=new THREE.Mesh(new THREE.PlaneGeometry(.3,240),edgeM);m.rotation.x=-Math.PI/2;m.position.set(ex,.03,-100);scene.add(m)});
+roadLines=[];var lm=new THREE.MeshBasicMaterial({color:0xe8eef5});for(var k=0;k<24;k++){[-1.55,1.55].forEach(function(lx){var d=new THREE.Mesh(new THREE.PlaneGeometry(.2,2.6),lm);d.rotation.x=-Math.PI/2;d.position.set(lx,.03,12-k*10);scene.add(d);roadLines.push(d)})}
+var railM=new THREE.MeshStandardMaterial({color:0x394052,metalness:.7,roughness:.35});[-7.1,7.1].forEach(function(rx){var rail=new THREE.Mesh(new THREE.BoxGeometry(.35,.35,240),railM);rail.position.set(rx,1.05,-100);scene.add(rail);for(var p=0;p<12;p++){var post=new THREE.Mesh(new THREE.BoxGeometry(.22,1.05,.22),railM);post.position.set(rx,.5,10-p*20);scene.add(post)}});
+var sg=new THREE.BufferGeometry(),sp=[];for(var si=0;si<380;si++)sp.push((Math.random()-.5)*320,22+Math.random()*90,-160+Math.random()*160);sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:.65})));
+var winTex=makeWindowTexture();for(var bi=0;bi<14;bi++){var bw=6+Math.random()*7,bh=10+Math.random()*18,side=bi%2===0?-1:1;var b=new THREE.Mesh(new THREE.BoxGeometry(bw,bh,6),new THREE.MeshStandardMaterial({color:0x0d1422,roughness:.8,emissive:0x111a2e,emissiveMap:winTex,emissiveIntensity:.7}));b.position.set(side*(20+Math.random()*28),bh/2-.2,-130+bi*18);scene.add(b);buildMeshes.push(b)}
+poleMeshes=[];for(var pi=0;pi<10;pi++){var g=new THREE.Group();var pole=new THREE.Mesh(new THREE.CylinderGeometry(.13,.17,7.4,10),new THREE.MeshStandardMaterial({color:0x2a3040,metalness:.5}));pole.position.y=3.7;g.add(pole);var lamp=new THREE.Mesh(new THREE.SphereGeometry(.32,12,12),new THREE.MeshBasicMaterial({color:0xffd76a}));lamp.position.set(1.7,7,0);g.add(lamp);var cone=new THREE.Mesh(new THREE.ConeGeometry(2.2,4.5,18,1,true),new THREE.MeshBasicMaterial({color:0xffd76a,transparent:true,opacity:.10,side:THREE.DoubleSide,depthWrite:false}));cone.position.set(1.7,4.8,0);g.add(cone);var sd=pi%2===0?-1:1;g.position.set(sd*8.8,0,12-pi*22);scene.add(g);poleMeshes.push(g)}
+adMeshes=[];for(var ai=0;ai<12;ai++)createTrackBillboard(TRACK_ADS[ai%TRACK_ADS.length],-38-ai*32);
+buildLambo();threeReady=true;updateThreeSize();if(!animStarted){animStarted=true;lastT=performance.now();requestAnimationFrame(animate3D)}}
+function buildLambo(){car=new THREE.Group();
+var yellow=new THREE.MeshStandardMaterial({color:0xffc400,metalness:.75,roughness:.28});
+var black=new THREE.MeshStandardMaterial({color:0x0b0c0f,roughness:.55});
+var carbon=new THREE.MeshStandardMaterial({color:0x17191f,metalness:.5,roughness:.4});
+var glass=new THREE.MeshStandardMaterial({color:0x0d2238,metalness:.85,roughness:.12});
+function add(m){m.castShadow=true;car.add(m);return m}
+var body=add(new THREE.Mesh(new THREE.BoxGeometry(2.32,.52,4.5),yellow));body.position.y=.74;
+var nose=add(new THREE.Mesh(new THREE.BoxGeometry(2.02,.34,.95),yellow));nose.position.set(0,.6,-2.4);
+var split=add(new THREE.Mesh(new THREE.BoxGeometry(2.5,.16,.6),black));split.position.set(0,.32,-2.6);
+var cabin=add(new THREE.Mesh(new THREE.BoxGeometry(1.48,.52,1.75),glass));cabin.position.set(0,1.2,.28);
+var roof=add(new THREE.Mesh(new THREE.BoxGeometry(1.22,.09,.95),carbon));roof.position.set(0,1.5,.42);
+[-1,1].forEach(function(s){var sk=add(new THREE.Mesh(new THREE.BoxGeometry(.2,.24,2.7),carbon));sk.position.set(s*1.22,.38,.2);var hl=new THREE.Mesh(new THREE.BoxGeometry(.52,.11,.08),new THREE.MeshBasicMaterial({color:0xfffbea}));hl.position.set(s*.72,.74,-2.68);car.add(hl);var beam=new THREE.Mesh(new THREE.ConeGeometry(.85,7,16,1,true),new THREE.MeshBasicMaterial({color:0xfff2c0,transparent:true,opacity:.13,side:THREE.DoubleSide,depthWrite:false}));beam.rotation.x=-Math.PI/2;beam.position.set(s*.72,.6,-6);car.add(beam)});
+var tail=new THREE.Mesh(new THREE.BoxGeometry(1.92,.15,.09),new THREE.MeshBasicMaterial({color:0xff1e2d}));tail.position.set(0,.9,2.27);car.add(tail);
+var tailGlow=new THREE.PointLight(0xff2030,.9,7);tailGlow.position.set(0,1,2.6);car.add(tailGlow);
+carWing=add(new THREE.Mesh(new THREE.BoxGeometry(2.45,.11,.58),carbon));carWing.position.set(0,1.58,1.92);
+var glow=new THREE.Mesh(new THREE.PlaneGeometry(4.2,6),new THREE.MeshBasicMaterial({map:glowTex,transparent:true,opacity:.55,depthWrite:false}));glow.rotation.x=-Math.PI/2;glow.position.y=.06;car.add(glow);
+wheels=[];var tg=new THREE.CylinderGeometry(.47,.47,.44,18);tg.rotateZ(Math.PI/2);var tm=new THREE.MeshStandardMaterial({color:0x07080a,roughness:.9});var rimG=new THREE.CylinderGeometry(.26,.26,.46,12);rimG.rotateZ(Math.PI/2);var rimM=new THREE.MeshStandardMaterial({color:0xffc400,metalness:.8,roughness:.3});[[-1.16,-1.48],[1.16,-1.48],[-1.16,1.48],[1.16,1.48]].forEach(function(p){var w=new THREE.Group();w.position.set(p[0],.47,p[1]);var tire=new THREE.Mesh(tg,tm);tire.castShadow=true;w.add(tire);w.add(new THREE.Mesh(rimG,rimM));car.add(w);wheels.push(w)});
+car.position.set(0,0,2.5);scene.add(car)}
+function spawnCoin3D(l){var g=new THREE.Group();var tire=new THREE.Mesh(new THREE.TorusGeometry(.62,.3,14,24),new THREE.MeshStandardMaterial({color:0x141518,roughness:.6}));g.add(tire);var hub=new THREE.Mesh(new THREE.CylinderGeometry(.48,.48,.36,22),new THREE.MeshStandardMaterial({map:logoTex,roughness:.35}));hub.rotation.x=Math.PI/2;g.add(hub);g.add(new THREE.Mesh(new THREE.TorusGeometry(.62,.055,8,26),new THREE.MeshBasicMaterial({color:0xffc400})));var spr=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,transparent:true,opacity:.75,depthWrite:false}));spr.scale.set(2.6,2.6,1);g.add(spr);g.position.set(LANES[l],1.18,-98);scene.add(g);coinMeshes.push(g)}
+function spawnObs3D(l){var g=new THREE.Group();var cone=new THREE.Mesh(new THREE.ConeGeometry(.52,1.45,18),new THREE.MeshStandardMaterial({color:0xff3d2e,emissive:0x550000,emissiveIntensity:.6}));cone.position.y=.82;cone.castShadow=true;g.add(cone);var stripe=new THREE.Mesh(new THREE.CylinderGeometry(.37,.43,.3,18),new THREE.MeshBasicMaterial({color:0xffffff}));stripe.position.y=.88;g.add(stripe);var base=new THREE.Mesh(new THREE.BoxGeometry(1.05,.14,1.05),new THREE.MeshStandardMaterial({color:0x1a1d24}));base.position.y=.07;g.add(base);var blink=new THREE.Mesh(new THREE.SphereGeometry(.13,10,10),new THREE.MeshBasicMaterial({color:0xff2030}));blink.position.y=1.68;g.add(blink);g.userData.blink=blink;g.position.set(LANES[l],0,-98);scene.add(g);obsMeshes.push(g)}
+function placeSnakeFood(){if(!SN)return;while(true){var x=Math.floor(Math.random()*15),y=Math.floor(Math.random()*20),ok=true;for(var i=0;i<SN.sx.length;i++){if(SN.sx[i]===x&&SN.sy[i]===y){ok=false;break}}if(ok){SN.food={x:x,y:y};break}}}
+function stepSnake(){if(!snakeRunning||!SN)return;var nx=SN.sx[0]+SN.dx,ny=SN.sy[0]+SN.dy;if(nx<0||ny<0||nx>=15||ny>=20){endGame(false);return}for(var i=0;i<SN.sx.length;i++){if(SN.sx[i]===nx&&SN.sy[i]===ny){endGame(false);return}}
 SN.sx.unshift(nx);SN.sy.unshift(ny);
-if(SN.food&&nx===SN.food.x&&ny===SN.food.y){SN.eat++;score=SN.eat*100+SN.sx.length*10;hScore.textContent=fa(score);hInfo.textContent='طول '+fa(SN.sx.length);tone(900,.09);placeFood();if(SN.eat%5===0){clearInterval(sInt);SN.speed=Math.max(70,SN.speed-14);sInt=setInterval(stepSnake,SN.speed)}}else{SN.sx.pop();SN.sy.pop()}
-ctx.fillStyle='#0d1210';ctx.fillRect(0,0,360,480);ctx.fillStyle='#ffffff06';for(var gx=0;gx<15;gx++)for(var gy=0;gy<20;gy++)if((gx+gy)%2===0)ctx.fillRect(gx*24,gy*24,24,24);
-ctx.strokeStyle='#ffc40055';ctx.strokeRect(2,2,356,476);
-if(SN.food){ctx.fillStyle='#141518';ctx.beginPath();ctx.arc(SN.food.x*24+12,SN.food.y*24+12,10,0,7);ctx.fill();ctx.fillStyle='#ffc400';ctx.beginPath();ctx.arc(SN.food.x*24+12,SN.food.y*24+12,10,0,7);ctx.stroke();ctx.fillStyle='#fff';ctx.font='bold 7px Tahoma';ctx.textAlign='center';ctx.fillText('TIRE',SN.food.x*24+12,SN.food.y*24+15)}
-for(var s=SN.sx.length-1;s>=0;s--){ctx.fillStyle=s===0?'#ffc400':(s%2?'#22e584':'#1a8a55');ctx.beginPath();ctx.roundRect?ctx.roundRect(SN.sx[s]*24+1,SN.sy[s]*24+1,22,22,7):ctx.rect(SN.sx[s]*24+1,SN.sy[s]*24+1,22,22);ctx.fill();if(s===0){ctx.fillStyle='#111';ctx.fillRect(SN.sx[s]*24+6,SN.sy[s]*24+7,4,4);ctx.fillRect(SN.sx[s]*24+14,SN.sy[s]*24+7,4,4)}}}
-/* ---- PRESSURE ---- */
-var PR=null,holding=false;
-var holdBtn=document.getElementById('holdBtn');
-holdBtn.addEventListener('touchstart',function(e){e.preventDefault();holding=true},{passive:false});
-holdBtn.addEventListener('touchend',function(){holding=false});
-holdBtn.addEventListener('mousedown',function(){holding=true});
-holdBtn.addEventListener('mouseup',function(){holding=false});
-cv.addEventListener('touchstart',function(){if(current==='pressure')holding=true},{passive:true});
-cv.addEventListener('touchend',function(){holding=false},{passive:true});
-document.addEventListener('keydown',function(e){if(current==='pressure'&&e.key===' '){holding=true}});
-document.addEventListener('keyup',function(e){if(e.key===' '){holding=false}});
-function startPressure(){PR={a:-90,v:0,t:0,out:0,gw:46};score=0;running=true;lastT=performance.now();loopPressure(lastT)}
-var lastT=0;
-function loopPressure(now){if(!running||current!=='pressure')return;var dt=Math.min(.05,(now-lastT)/1000);lastT=now;PR.t+=dt;
-var shrink=Math.floor(PR.t/10)*5;PR.gw=Math.max(13,46-shrink);
-var gc=-90+Math.sin(PR.t*.9)* (8+PR.t*.6);
-PR.g1=gc-PR.gw/2;PR.g2=gc+PR.gw/2;
-if(holding)PR.v+=300*dt;else PR.v-=210*dt;PR.v*= .985;PR.v=Math.max(-260,Math.min(260,PR.v));PR.a+=PR.v*dt*.55;PR.a=Math.max(-178,Math.min(-2,PR.a));
-var inside=PR.a>=PR.g1&&PR.a<=PR.g2;if(inside)PR.out=0;else PR.out+=dt;
-score=Math.floor(PR.t*10);hScore.textContent=fa(score);hInfo.textContent=fa(Math.floor(PR.t))+' ثانیه';
-if(PR.out>1.1){return gameOver(score,'💥 لاستیک ترکید! دوام: '+fa(Math.floor(PR.t))+' ثانیه')}
-ctx.fillStyle='#0a0d13';ctx.fillRect(0,0,360,480);ctx.textAlign='center';
-ctx.fillStyle='#ffc400';ctx.font='bold 18px Tahoma';ctx.fillText('🎈 فشار باد',180,40);
-var cx=180,cy=360,R=135;
-ctx.lineWidth=26;ctx.lineCap='round';
-ctx.strokeStyle='#2a0f12';ctx.beginPath();ctx.arc(cx,cy,R,Math.PI,0);ctx.stroke();
-function deg(d){return Math.PI+d*Math.PI/180}
-ctx.strokeStyle='#22e584';ctx.beginPath();ctx.arc(cx,cy,R,deg(PR.g1),deg(PR.g2));ctx.stroke();
-ctx.fillStyle=inside?'#22e584':'#ff3d2e';ctx.font='bold 15px Tahoma';ctx.fillText(inside?'سبز! عالی':'خارج از محدوده! '+fa((1.1-PR.out).toFixed(1)),180,200);
-var ar=deg(PR.a);ctx.strokeStyle='#fff';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(ar)* (R-8),cy+Math.sin(ar)*(R-8));ctx.stroke();
-ctx.fillStyle='#ffc400';ctx.beginPath();ctx.arc(cx,cy,10,0,7);ctx.fill();
-var tireR=28+ (PR.a+180)/180*22;ctx.fillStyle='#141518';ctx.beginPath();ctx.arc(180,120,tireR,0,7);ctx.fill();ctx.strokeStyle=inside?'#22e584':'#ff3d2e';ctx.lineWidth=4;ctx.stroke();ctx.fillStyle='#fff';ctx.font='bold 11px Tahoma';ctx.fillText('YAZD',180,124);
-raf=requestAnimationFrame(loopPressure)}
-/* ---- DRIFT ---- */
-var DR=null,leftH=false,rightH=false;
-document.getElementById('leftBtn').addEventListener('touchstart',function(e){e.preventDefault();leftH=true},{passive:false});
-document.getElementById('leftBtn').addEventListener('touchend',function(){leftH=false});
-document.getElementById('rightBtn').addEventListener('touchstart',function(e){e.preventDefault();rightH=true},{passive:false});
-document.getElementById('rightBtn').addEventListener('touchend',function(){rightH=false});
-document.getElementById('leftBtn').addEventListener('mousedown',function(){leftH=true});
-document.getElementById('leftBtn').addEventListener('mouseup',function(){leftH=false});
-document.getElementById('rightBtn').addEventListener('mousedown',function(){rightH=true});
-document.getElementById('rightBtn').addEventListener('mouseup',function(){rightH=false});
-document.addEventListener('keydown',function(e){if(current!=='drift')return;if(e.key==='ArrowLeft')leftH=true;if(e.key==='ArrowRight')rightH=true});
-document.addEventListener('keyup',function(e){if(e.key==='ArrowLeft')leftH=false;if(e.key==='ArrowRight')rightH=false});
-function startDrift(){DR={th:0,r:130,speed:2.1,lives:3,inv:0,coins:[],obs:[],t:0,combo:1};score=0;running=true;for(var i=0;i<5;i++)spawnCoinD();for(var j=0;j<3;j++)spawnObsD();lastD=performance.now();hInfo.textContent='❤️❤️❤️';loopDrift(lastD)}
-var lastD=0;
-function spawnCoinD(){DR.coins.push({a:Math.random()*6.28,r:100+Math.random()*60})}
-function spawnObsD(){DR.obs.push({a:Math.random()*6.28,r:100+Math.random()*60})}
-function loopDrift(now){if(!running||current!=='drift')return;var dt=Math.min(.05,(now-lastD)/1000);lastD=now;DR.t+=dt;DR.speed=2.1+DR.t*.09;DR.th+=DR.speed*dt;
-if(leftH)DR.r-=130*dt;if(rightH)DR.r+=130*dt;DR.r=Math.max(88,Math.min(172,DR.r));
-if(DR.inv>0)DR.inv-=dt;
-var cx=180,cy=250;var carX=cx+Math.cos(DR.th)*DR.r,carY=cy+Math.sin(DR.th)*DR.r;
-for(var i=DR.coins.length-1;i>=0;i--){var c=DR.coins[i],x=cx+Math.cos(c.a)*c.r,y=cy+Math.sin(c.a)*c.r;var d=Math.hypot(carX-x,carY-y);if(d<20){var near=(DR.r<102||DR.r>158)?2:1;DR.combo=Math.min(5,DR.combo+(near===2?1:0));var g=50*DR.combo*near;score+=g;tone(800+DR.combo*120,.08);DR.coins.splice(i,1);spawnCoinD();if(Math.random()<.6)spawnObsD()}}
-for(var j=DR.obs.length-1;j>=0;j--){var o=DR.obs[j],ox=cx+Math.cos(o.a)*o.r,oy=cy+Math.sin(o.a)*o.r;if(Math.hypot(carX-ox,carY-oy)<22&&DR.inv<=0){DR.lives--;DR.inv=1.5;DR.combo=1;score=Math.max(0,score-100);tone(220,.25);hInfo.textContent='❤️'.repeat(Math.max(0,DR.lives));if(DR.lives<=0){hScore.textContent=fa(score);return gameOver(score,'مسافت: '+fa(Math.floor(DR.th/6.28*120))+' متر • دریفت تمام شد!')}}}
-var edgeDist=Math.min(DR.r-88,172-DR.r);if(edgeDist<13)score+=dt*30*2;else score+=dt*12;
-hScore.textContent=fa(Math.floor(score));
-ctx.fillStyle='#0a0d13';ctx.fillRect(0,0,360,480);ctx.textAlign='center';ctx.fillStyle='#ffc400';ctx.font='bold 15px Tahoma';ctx.fillText('🌀 دریفت یزد • دور '+fa(Math.floor(DR.th/6.28)),180,28);
-ctx.fillStyle='#161c2a';ctx.beginPath();ctx.arc(cx,cy,172,0,7);ctx.fill();ctx.fillStyle='#0a0d13';ctx.beginPath();ctx.arc(cx,cy,88,0,7);ctx.fill();
-ctx.strokeStyle='#ffc40066';ctx.setLineDash([10,8]);ctx.lineWidth=2;ctx.beginPath();ctx.arc(cx,cy,130,0,7);ctx.stroke();ctx.setLineDash([]);
-ctx.strokeStyle='#ff3d2e';ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,172,0,7);ctx.stroke();ctx.beginPath();ctx.arc(cx,cy,88,0,7);ctx.stroke();
-DR.coins.forEach(function(c){var x=cx+Math.cos(c.a)*c.r,y=cy+Math.sin(c.a)*c.r;ctx.fillStyle='#ffc400';ctx.beginPath();ctx.arc(x,y,9,0,7);ctx.fill();ctx.fillStyle='#111';ctx.font='bold 7px Tahoma';ctx.fillText('Y',x,y+3)});
-DR.obs.forEach(function(o){var x=cx+Math.cos(o.a)*o.r,y=cy+Math.sin(o.a)*o.r;ctx.fillStyle='#ff3d2e';ctx.beginPath();ctx.moveTo(x,y-11);ctx.lineTo(x-9,y+8);ctx.lineTo(x+9,y+8);ctx.closePath();ctx.fill();ctx.fillStyle='#fff';ctx.font='9px Tahoma';ctx.fillText('!',x,y+5)});
-ctx.save();ctx.translate(carX,carY);ctx.rotate(DR.th+Math.PI/2);if(DR.inv>0&&Math.floor(DR.t*8)%2===0)ctx.globalAlpha=.3;ctx.fillStyle='#ffc400';ctx.fillRect(-9,-16,18,32);ctx.fillStyle='#111';ctx.fillRect(-9,-16,18,7);ctx.fillStyle='#fff';ctx.font='8px Tahoma';ctx.fillText('YD',0,8);ctx.restore();ctx.globalAlpha=1;
-if(edgeDist<13){ctx.fillStyle='#ffe45c';ctx.font='bold 16px Tahoma';ctx.fillText('دریفت! ×'+fa(DR.combo),180,52)}
-raf=requestAnimationFrame(loopDrift)}
-function startNow(id){if(id==='tower')startTower();else if(id==='pit')startPit();else if(id==='snake')startSnake();else if(id==='pressure')startPressure();else if(id==='drift')startDrift()}
-updateMenu();
+if(SN.food&&nx===SN.food.x&&ny===SN.food.y){SN.eat++;snakeEat++;snakeScore=SN.eat*100+SN.sx.length*10;score=snakeScore;coins=snakeEat;dist=SN.sx.length;tone(900,.09);speakCoin(snakeEat);placeSnakeFood();if(SN.eat%5===0){clearInterval(snakeInterval);SN.speed=Math.max(70,SN.speed-14);snakeInterval=setInterval(stepSnake,SN.speed)}}else{SN.sx.pop();SN.sy.pop()}
+syncHUD();drawSnake()}
+function drawSnake(){if(!sctx||!SN)return;var W=360,H=480;C=sctx;C.fillStyle='#0d1210';C.fillRect(0,0,W,H);C.fillStyle='#ffffff06';for(var gx=0;gx<15;gx++){for(var gy=0;gy<20;gy++){if((gx+gy)%2===0)C.fillRect(gx*24,gy*24,24,24)}}
+C.strokeStyle='#22e58455';C.lineWidth=2;C.strokeRect(3,3,W-6,H-6);
+C.fillStyle='#ffc400';C.font='bold 13px Tahoma';C.textAlign='center';C.fillText('🐍 مار انبار • '+fa(snakeScore),W/2,22);
+if(SN.food){var fx=SN.food.x*24+12,fy=SN.food.y*24+12;C.fillStyle='#141518';C.beginPath();C.arc(fx,fy,10,0,7);C.fill();C.strokeStyle='#ffc400';C.lineWidth=2;C.beginPath();C.arc(fx,fy,10,0,7);C.stroke();C.fillStyle='#fff';C.font='bold 7px Tahoma';C.fillText('TIRE',fx,fy+3)}
+for(var s=SN.sx.length-1;s>=0;s--){var px=SN.sx[s]*24+1,py=SN.sy[s]*24+1;C.fillStyle=s===0?'#ffc400':(s%2?'#22e584':'#159a5c');if(C.roundRect){C.beginPath();C.roundRect(px,py,22,22,7);C.fill()}else{C.fillRect(px,py,22,22)}if(s===0){C.fillStyle='#111';C.fillRect(SN.sx[s]*24+6,SN.sy[s]*24+7,4,4);C.fillRect(SN.sx[s]*24+14,SN.sy[s]*24+7,4,4)}}}
+function startGame(mode){mode=(mode==='record')?'record':(mode==='snake'?'snake':'shift');if(!me){gameMode=mode;loginModal.classList.remove('hidden');return}gameMode=mode;resultModal.classList.add('hidden');show('game');
+if(mode==='snake'){try{threeContainer.style.display='none'}catch(e){}try{snakeWrap.style.display='block'}catch(e){}try{shiftControls.classList.add('hidden');shiftControls.style.display='none'}catch(e){}try{snakeControls.classList.remove('hidden');snakeControls.style.display='grid'}catch(e){}running=false;clearInterval(timer);snakeScore=0;snakeEat=0;score=0;coins=0;dist=0;combo=1;SN={sx:[7,6,5],sy:[10,10,10],dx:1,dy:0,food:null,eat:0,speed:150};placeSnakeFood();snakeRunning=true;syncHUD();drawSnake();clearInterval(snakeInterval);snakeInterval=setInterval(stepSnake,SN.speed);haptic('heavy');musicStarted=false;tryPlayMusic();try{speechSynthesis.cancel()}catch(e){}return}
+try{threeContainer.style.display='block'}catch(e){}try{snakeWrap.style.display='none'}catch(e){}try{shiftControls.classList.remove('hidden');shiftControls.style.display='flex'}catch(e){}try{snakeControls.classList.add('hidden');snakeControls.style.display='none'}catch(e){}snakeRunning=false;clearInterval(snakeInterval);
+threeLoading.style.display='flex';
+setTimeout(function(){ensureThree(function(ok){if(!ok){threeLoading.innerHTML='⚠️ موتور سه‌بعدی بارگذاری نشد؛ اتصال اینترنت را بررسی کن';return}
+try{initThree()}catch(e){threeLoading.innerHTML='⚠️ WebGL در این دستگاه فعال نیست';return}
+updateThreeSize();setTimeout(updateThreeSize,220);
+coinMeshes.forEach(function(c){scene.remove(c)});obsMeshes.forEach(function(o){scene.remove(o)});coinMeshes=[];obsMeshes=[];
+score=0;coins=0;combo=1;lane=1;targetX=0;elapsed=0;inv=0;shake=0;dist=0;speed=mode==='record'?36:32;spawnT=0;timeLeft=60;lives=mode==='record'?3:3;
+if(car)car.position.x=0;threeLoading.style.display='none';running=true;clearInterval(timer);syncHUD();
+if(mode==='shift'){timer=setInterval(function(){timeLeft--;syncHUD();if(timeLeft===10)playWarning();if(timeLeft<=0)endGame(false)},1000)}else{showPop('♾️ جاده رکورد شروع شد!');clearInterval(timer)}
+haptic('heavy');musicStarted=false;tryPlayMusic();try{speechSynthesis.cancel()}catch(e){}})},60)}
+function retryGame(){resultModal.classList.add('hidden');startGame(gameMode)}
+function animate3D(){requestAnimationFrame(animate3D);if(gameMode==='snake'&&snakeRunning)return;if(!threeReady||!renderer||!scene||!camera)return;var now=performance.now(),dt=Math.min(.05,(now-lastT)/1000);lastT=now;
+if(!running){roadLines.forEach(function(d){d.position.z+=10*dt;if(d.position.z>14)d.position.z-=240});if(car)car.position.y=Math.sin(now*.003)*.03;renderer.render(scene,camera);return}
+elapsed+=dt;
+if(gameMode==='shift')speed=Math.min(64,32+elapsed*.75);else speed=Math.min(95,36+elapsed*1.5);
+spawnT-=dt;if(spawnT<=0){if(gameMode==='shift'){spawnT=.55-Math.min(.26,elapsed*.007)}else{spawnT=.52-Math.min(.32,elapsed*.011)}var l=Math.floor(Math.random()*3);if(Math.random()<.58)spawnCoin3D(l);else spawnObs3D(l);if(Math.random()<(gameMode==='record'?.32:.24))spawnCoin3D(Math.floor(Math.random()*3))}
+dist+=speed*dt*2.3;
+roadLines.forEach(function(d){d.position.z+=speed*dt;if(d.position.z>14)d.position.z-=240});
+poleMeshes.forEach(function(p){p.position.z+=speed*dt;if(p.position.z>16)p.position.z-=220});
+adMeshes.forEach(function(a){a.mesh.position.z+=speed*dt;if(a.mesh.position.z>20)a.mesh.position.z-=384});
+buildMeshes.forEach(function(b){b.position.z+=speed*dt*.96;if(b.position.z>30)b.position.z-=252});
+car.position.x+=(targetX-car.position.x)*Math.min(1,dt*11);car.rotation.y=(targetX-car.position.x)*-.15;car.rotation.z=(targetX-car.position.x)*-.09;car.position.y=Math.sin(elapsed*18)*.028;if(carWing)carWing.rotation.x=Math.sin(elapsed*6)*.035;wheels.forEach(function(w){w.rotation.x+=speed*dt*1.9});
+if(inv>0)inv-=dt;
+coinMeshes.forEach(function(c){c.position.z+=speed*dt;c.rotation.y+=dt*3.2});
+obsMeshes.forEach(function(o){o.position.z+=speed*dt;if(o.userData.blink)o.userData.blink.scale.setScalar(1+Math.sin(elapsed*10)*.25)});
+for(var i=coinMeshes.length-1;i>=0;i--){var c=coinMeshes[i];if(c.position.z>13){scene.remove(c);coinMeshes.splice(i,1);continue}if(Math.abs(c.position.z-2.5)<1.6&&Math.abs(c.position.x-car.position.x)<1.35){var gain=50*combo;scene.remove(c);coinMeshes.splice(i,1);coins++;score+=gain;combo=Math.min(5,combo+1);playCoinDing();speakCoin(coins);haptic('light');spawnFloat('+'+fa(gain),false);if(combo>=3)showPop('کمبو ×'+fa(combo)+' 🔥');syncHUD()}}
+for(var j=obsMeshes.length-1;j>=0;j--){var o=obsMeshes[j];if(o.position.z>13){scene.remove(o);obsMeshes.splice(j,1);continue}if(Math.abs(o.position.z-2.5)<1.4&&Math.abs(o.position.x-car.position.x)<1.28&&inv<=0){
+if(gameMode==='shift'){score=Math.max(0,score-50);combo=1;inv=1.2;shake=.7;playWarning();flash('#ff3d2e55');spawnFloat('−۵۰',true);showPop('💥 برخورد!')}
+else{lives--;combo=1;inv=1.6;shake=.9;score=Math.max(0,score-100);playWarning();flash('#ff3d2e88');spawnFloat('−۱ جان 💔',true);showPop(lives>0?'💔 '+fa(lives)+' جان مانده!':'💥 پایان رکورد!');syncHUD();if(lives<=0){syncHUD();setTimeout(function(){endGame(false)},450);break}}
+syncHUD()}}
+if(gameMode==='shift')score+=dt*8;else score+=dt*14;
+syncHUD();
+if(shake>0)shake-=dt;var sh=shake>0?(Math.random()-.5)*shake:0;
+camera.position.x=car.position.x*.46+sh;camera.position.y=5.4;camera.position.z=9.4;camera.lookAt(car.position.x*.62,1.15,-12);
+var targetFov=70+(speed-32)*.32;if(Math.abs(camera.fov-targetFov)>.2){camera.fov+=(targetFov-camera.fov)*dt*2;camera.updateProjectionMatrix()}
+renderer.render(scene,camera)}
+function flash(color){var f=document.createElement('div');f.style.cssText='position:fixed;inset:0;background:'+(color||'#ff3d2e55')+';pointer-events:none;z-index:40';document.body.appendChild(f);setTimeout(function(){f.remove()},130)}
+function endGame(manual){if(gameMode==='snake'){if(!snakeRunning)return;snakeRunning=false;clearInterval(snakeInterval);try{speechSynthesis.cancel()}catch(e){}var s=Math.floor(snakeScore),d=SN?SN.sx.length:0,c=snakeEat;
+if(me){me.games=(me.games||0)+1;me.coins=(me.coins||0)+c;if(s>(me.bestSnake||0))me.bestSnake=s;if(d>(me.bestSnakeLen||0))me.bestSnakeLen=d;me.total=(me.total||0)+s;var unit=units.find(function(x){return x.n===me.unit});if(unit)unit.s+=s;saveMe();refresh()}
+resScore.textContent=fa(s);resCoin.textContent=fa(c);resDist.textContent=fa(d);
+if(me){if(gameMode==='snake'){resTitle.textContent=manual?'مار متوقف شد':'🐍 بازی مار تمام شد!';resDesc.textContent=me.name+' • واحد '+me.unit+' • طول '+fa(d)+' خانه • لوگو '+fa(c)}}
+resEmoji.textContent=s>1000?'🏆':(s>400?'🥈':'🐍');
+try{threeContainer.style.display='block'}catch(e){}try{snakeWrap.style.display='none'}catch(e){}try{shiftControls.classList.remove('hidden');shiftControls.style.display='flex'}catch(e){}try{snakeControls.classList.add('hidden');snakeControls.style.display='none'}catch(e){}
+resultModal.classList.remove('hidden');confetti();haptic('heavy');show('home');return}
+if(!running)return;running=false;clearInterval(timer);try{speechSynthesis.cancel()}catch(e){}var s2=Math.floor(score),d2=Math.floor(dist);
+if(me){me.games=(me.games||0)+1;me.coins=(me.coins||0)+coins;
+if(gameMode==='shift'){if(s2>(me.bestShift||0))me.bestShift=s2}
+else{if(s2>(me.bestRecordScore||0))me.bestRecordScore=s2;if(d2>(me.bestDist||0))me.bestDist=d2}
+me.total=(me.total||0)+s2;var unit2=units.find(function(x){return x.n===me.unit});if(unit2)unit2.s+=s2;saveMe();refresh()}
+resScore.textContent=fa(s2);resCoin.textContent=fa(coins);resDist.textContent=fa(d2);
+if(me){if(gameMode==='shift'){resTitle.textContent=manual?'شیفت به پایان رسید':'شیفت تمام شد!';resDesc.textContent=me.name+' • واحد '+me.unit+' • سطح '+levelFor(me.total||0)}else{resTitle.textContent=manual?'رکورد ثبت شد':'💔 جان‌ها تمام شد!';resDesc.textContent=me.name+' • مسافت '+fa(d2)+' متر • واحد '+me.unit}}
+resEmoji.textContent=(gameMode==='record'&&d2>1500)||(gameMode==='shift'&&s2>2000)?'🏆':(s2>1000||d2>800)?'🥈':'🛞';
+resultModal.classList.remove('hidden');confetti();haptic('heavy');show('home')}
+function closeResult(){resultModal.classList.add('hidden')}
+function confetti(){var c=document.getElementById('confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;var p=[];for(var i=0;i<90;i++)p.push({x:Math.random()*c.width,y:-20-Math.random()*160,v:2+Math.random()*4,s:3+Math.random()*6,c:['#ffc400','#ff3d2e','#22e584','#4da3ff','#fff'][i%5],r:Math.random()*6});var n=0;(function a(){x.clearRect(0,0,c.width,c.height);p.forEach(function(o){o.y+=o.v;o.r+=.1;x.save();x.translate(o.x,o.y);x.rotate(o.r);x.fillStyle=o.c;x.fillRect(0,0,o.s,o.s*.6);x.restore()});if(n++<105)requestAnimationFrame(a);else x.clearRect(0,0,c.width,c.height)})()}
+document.addEventListener('visibilitychange',function(){if(document.hidden&&(running||snakeRunning))endGame(true)});
+var currentSlide=0,slideTimer=null;var slideFiles=[];for(var si2=1;si2<=12;si2++)slideFiles.push('slide'+si2+'.jpg');
+function renderSlideDots(){var d=document.getElementById('slideDots');if(!d)return;d.innerHTML=slideFiles.map(function(_,i){return '<button class="slide-dot '+(i===currentSlide?'active':'')+'" onclick="goSlide('+i+')"></button>'}).join('')}
+function showSlide(){var img=document.getElementById('slideImage'),fb=document.getElementById('slideFallback');if(!img)return;renderSlideDots();img.style.display='block';fb.style.display='none';img.onerror=function(){img.style.display='none';fb.style.display='grid';document.getElementById('slideFallbackTitle').textContent='تصویر '+fa(currentSlide+1)+' • یزدتایر'};img.src=slideFiles[currentSlide]}
+function goSlide(i){currentSlide=(i+slideFiles.length)%slideFiles.length;showSlide();resetSlideTimer()}
+function changeSlide(d){goSlide(currentSlide+d)}
+function resetSlideTimer(){clearInterval(slideTimer);slideTimer=setInterval(function(){changeSlide(1)},4500)}
+function initSlideshow(){showSlide();resetSlideTimer()}
+function openAdmin(){var pin=prompt('رمز ورود مدیر را وارد کن:');if(pin!=='1234'){if(pin!==null)alert('رمز نادرست است');return}renderAdsEditor();document.getElementById('adminModal').classList.remove('hidden')}
+function closeAdmin(){document.getElementById('adminModal').classList.add('hidden')}
+function escAttr(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function renderAdsEditor(){var host=document.getElementById('adsEditor');host.innerHTML=TRACK_ADS.map(function(a,i){return '<div class="ad-edit"><b>تبلیغ '+fa(i+1)+'</b><div class="ad-grid"><input data-k="title" value="'+escAttr(a.title)+'" placeholder="عنوان"><input data-k="subtitle" value="'+escAttr(a.subtitle)+'" placeholder="زیرعنوان"></div><div class="ad-grid"><label class="small">رنگ<input data-k="color" type="color" value="'+(a.color||'#FFC400')+'"></label><label class="small">سمت<select data-k="side"><option value="-1" '+(Number(a.side)!==1?'selected':'')+'>چپ</option><option value="1" '+(Number(a.side)===1?'selected':'')+'>راست</option></select></label></div><div class="ad-grid"><label class="small">اندازه عنوان<input data-k="titleSize" type="number" min="40" max="260" value="'+(a.titleSize||178)+'"></label><label class="small">اندازه زیرعنوان<input data-k="subtitleSize" type="number" min="24" max="160" value="'+(a.subtitleSize||82)+'"></label></div><input data-k="image" value="'+escAttr(a.image)+'" placeholder="آدرس تصویر (اختیاری)"><input type="file" accept="image/*" onchange="loadAdImage(event,'+i+')"><div class="ad-preview">'+(a.image?'<img src="'+a.image+'">':'پیش‌نمایش تابلو')+'</div><button class="btn btn-ghost" onclick="removeAd('+i+')">🗑 حذف</button></div>'}).join('')}
+function collectAds(){return Array.prototype.slice.call(document.querySelectorAll('.ad-edit')).map(function(el){var a={};el.querySelectorAll('[data-k]').forEach(function(inp){a[inp.dataset.k]=inp.value});a.side=Number(a.side)||-1;a.titleSize=Math.max(40,Math.min(260,Number(a.titleSize)||178));a.subtitleSize=Math.max(24,Math.min(160,Number(a.subtitleSize)||82));return a})}
+function loadAdImage(ev,i){var f=ev.target.files&&ev.target.files[0];if(!f)return;if(f.size>1300000){alert('حجم تصویر باید کمتر از ۱.۳ مگابایت باشد');ev.target.value='';return}var r=new FileReader();r.onload=function(){var ads=collectAds();ads[i].image=r.result;TRACK_ADS=ads;renderAdsEditor()};r.readAsDataURL(f)}
+function removeAd(i){if(!confirm('این تبلیغ حذف شود؟'))return;TRACK_ADS=collectAds();TRACK_ADS.splice(i,1);renderAdsEditor()}
+function addAd(){TRACK_ADS=collectAds();TRACK_ADS.push({title:'تبلیغ جدید',subtitle:'متن تبلیغ شما',color:'#FFC400',side:1,titleSize:178,subtitleSize:82});renderAdsEditor()}
+function saveAds(){var ads=collectAds();if(!ads.length){alert('حداقل یک تبلیغ لازم است');return}TRACK_ADS=ads;try{localStorage.setItem('yazd_track_ads',JSON.stringify(TRACK_ADS))}catch(e){alert('فضای ذخیره‌سازی پر شده است');return}if(scene&&threeReady){adMeshes.forEach(function(a){scene.remove(a.mesh);if(a.texture)a.texture.dispose()});adMeshes=[];for(var i=0;i<12;i++)createTrackBillboard(TRACK_ADS[i%TRACK_ADS.length],-38-i*32)}closeAdmin();alert('تبلیغات ذخیره و اعمال شد')}
+var splashDone=false;function hideSplash(){if(splashDone)return;splashDone=true;var s=document.getElementById('splash');if(s){s.style.opacity=0;setTimeout(function(){s.remove()},600)}try{renderBoards();initSlideshow()}catch(e){}if(!me){loginModal.classList.remove('hidden')}else refresh()}
+document.addEventListener('DOMContentLoaded',function(){renderBoards();setTimeout(hideSplash,1100)});setTimeout(hideSplash,3200);
 </script>
 </body>
 </html>
